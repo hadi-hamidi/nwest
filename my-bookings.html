@@ -316,7 +316,40 @@
                 
                 <div class="nav-actions">
                     <button class="btn btn-primary" onclick="window.location.href='index.html'">حجز جديد</button>
-                    <button class="btn btn-outline" onclick="window.location.href='login.html'">تسجيل خروج</button>
+                    <button class="btn btn-secondary" onclick="window.location.href='customer-dashboard.html'" id="dashboardBtn" style="display: none;">لوحة التحكم</button>
+                    <button class="btn btn-outline" id="logoutBtn" onclick="logoutUser()" style="display: none;">تسجيل خروج</button>
+                    <button class="btn btn-outline" id="loginBtn" onclick="window.location.href='login.html'" style="display: none;">تسجيل دخول</button>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="nav-menu" id="navMenu">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">الرئيسية</a></li>
+                    <li><a href="index.html#routes" class="nav-link">الطرق</a></li>
+                    <li><a href="index.html#about" class="nav-link">من نحن</a></li>
+                    <li><a href="index.html#fleet" class="nav-link">أسطولنا</a></li>
+                    <li><a href="index.html#faq" class="nav-link">الأسئلة الشائعة</a></li>
+                    <li><a href="index.html#contact" class="nav-link">تواصل معنا</a></li>
+                </ul>
+                
+                <!-- Mobile Login/Logout Links -->
+                <div class="mobile-login">
+                    <a href="login.html" class="mobile-login-link" id="mobileLoginLink" style="display: none;">تسجيل الدخول</a>
+                    <a href="#" class="mobile-logout-link" id="mobileLogoutLink" onclick="logoutUser()" style="display: none;">تسجيل الخروج</a>
+                    <a href="customer-dashboard.html" class="mobile-dashboard-link" id="mobileDashboardLink" style="display: none;">لوحة التحكم</a>
+                </div>
+                
+                <!-- Mobile Actions -->
+                <div class="mobile-actions">
+                    <button class="btn btn-primary" onclick="window.location.href='index.html'">حجز جديد</button>
                 </div>
             </div>
         </nav>
@@ -585,6 +618,70 @@
     </div>
 
     <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const hamburger = document.getElementById('hamburger');
+            const navMenu = document.getElementById('navMenu');
+            
+            if (hamburger && navMenu) {
+                hamburger.addEventListener('click', function() {
+                    navMenu.classList.toggle('active');
+                });
+            }
+            
+            // Check user login status
+            checkUserLoginStatus();
+        });
+        
+        // Check user login status
+        function checkUserLoginStatus() {
+            const user = localStorage.getItem('user');
+            const loginBtn = document.getElementById('loginBtn');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const dashboardBtn = document.getElementById('dashboardBtn');
+            const mobileLoginLink = document.getElementById('mobileLoginLink');
+            const mobileLogoutLink = document.getElementById('mobileLogoutLink');
+            const mobileDashboardLink = document.getElementById('mobileDashboardLink');
+            
+            if (user) {
+                // User is logged in - show logout and dashboard buttons
+                if (loginBtn) loginBtn.style.display = 'none';
+                if (logoutBtn) logoutBtn.style.display = 'block';
+                if (dashboardBtn) dashboardBtn.style.display = 'block';
+                if (mobileLoginLink) mobileLoginLink.style.display = 'none';
+                if (mobileLogoutLink) mobileLogoutLink.style.display = 'block';
+                if (mobileDashboardLink) mobileDashboardLink.style.display = 'block';
+            } else {
+                // User is not logged in - show login button
+                if (loginBtn) loginBtn.style.display = 'block';
+                if (logoutBtn) logoutBtn.style.display = 'none';
+                if (dashboardBtn) dashboardBtn.style.display = 'none';
+                if (mobileLoginLink) mobileLoginLink.style.display = 'block';
+                if (mobileLogoutLink) mobileLogoutLink.style.display = 'none';
+                if (mobileDashboardLink) mobileDashboardLink.style.display = 'none';
+            }
+        }
+        
+        // Logout functionality
+        function logoutUser() {
+            // Show confirmation dialog
+            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                // Clear user data from localStorage
+                localStorage.removeItem('user');
+                localStorage.removeItem('rememberUser');
+                
+                // Show success notification
+                alert('تم تسجيل الخروج بنجاح');
+                
+                // Update UI to show login button
+                checkUserLoginStatus();
+                
+                // Redirect to home page after a short delay
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            }
+        }
         let currentFilter = 'all';
         let currentRating = 0;
 
@@ -799,6 +896,135 @@
 
         .btn-danger:hover {
             background: #dc2626;
+        }
+        
+        /* Mobile Menu Styles */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-color);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+        
+        .nav-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: white;
+            box-shadow: var(--shadow-lg);
+            z-index: 1000;
+        }
+        
+        .nav-menu.active {
+            display: block;
+        }
+        
+        .nav-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .nav-list li {
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .nav-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .nav-link {
+            display: block;
+            padding: 1rem 1.5rem;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .nav-link:hover {
+            background: var(--primary-light);
+            color: white;
+        }
+        
+        .mobile-login {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .mobile-login-link,
+        .mobile-logout-link {
+            display: block;
+            background: linear-gradient(135deg, #1d4ed8, #ea580c);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-login-link:hover {
+            background: linear-gradient(135deg, #1d4ed8, #ea580c);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            color: white;
+        }
+        
+        .mobile-logout-link {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+        }
+        
+        .mobile-logout-link:hover {
+            background: linear-gradient(135deg, #b91c1c, #991b1b);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+            color: white;
+        }
+        
+        .mobile-dashboard-link {
+            display: block;
+            background: linear-gradient(135deg, #6b7280, #4b5563);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .mobile-dashboard-link:hover {
+            background: linear-gradient(135deg, #4b5563, #374151);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(107, 114, 128, 0.3);
+            color: white;
+        }
+        
+        .mobile-actions {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            .nav-actions {
+                display: none;
+            }
         }
     </style>
 </body>

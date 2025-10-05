@@ -3,12 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="نورث وست باص - خدمة نقل متميزة وآمنة في المملكة العربية السعودية">
-    <meta name="keywords" content="نورث وست, باص, نقل, سفر, السعودية, رحلات">
+    <meta name="description" content="نورث وست باص - خدمة نقل متميزة وآمنة في المملكة العربية السعودية. رحلات يومية بين المدن الرئيسية مع باصات فاخرة وخدمة عملاء 24/7. احجز رحلتك الآن!">
+    <meta name="keywords" content="نورث وست, باص, نقل, سفر, السعودية, رحلات, جدة, الرياض, مكة, المدينة, حجز, تذاكر, باصات فاخرة, خدمة عملاء">
     <meta name="author" content="نورث وست باص">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#1e40af">
-    <title>نورث وست باص - رحلتك المميزة</title>
+    <title>نورث وست باص - رحلتك المميزة | خدمة نقل فاخرة في السعودية</title>
+    
+    <!-- Enhanced SEO Meta Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="نورث وست باص">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="نورث وست باص - رحلتك المميزة">
+    <meta property="og:description" content="خدمة نقل متميزة وآمنة في المملكة العربية السعودية. رحلات يومية بين المدن الرئيسية مع باصات فاخرة">
+    <meta property="og:image" content="images/colored-logo-arabic-1.svg">
+    <meta property="og:url" content="https://northwestbus.sa">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="نورث وست باص">
+    <meta property="og:locale" content="ar_SA">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="نورث وست باص - رحلتك المميزة">
+    <meta name="twitter:description" content="خدمة نقل متميزة وآمنة في المملكة العربية السعودية">
+    <meta name="twitter:image" content="images/colored-logo-arabic-1.svg">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "نورث وست باص",
+        "alternateName": "North West Bus",
+        "url": "https://northwestbus.sa",
+        "logo": "images/colored-logo-arabic-1.svg",
+        "description": "خدمة نقل متميزة وآمنة في المملكة العربية السعودية",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "SA",
+            "addressRegion": "الرياض"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+966-50-123-4567",
+            "contactType": "customer service",
+            "availableLanguage": ["Arabic", "English"]
+        },
+        "sameAs": [
+            "https://facebook.com/northwestbus",
+            "https://twitter.com/northwestbus",
+            "https://instagram.com/northwestbus"
+        ]
+    }
+    </script>
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="images/colored-logo-arabic-1.svg">
@@ -25,10 +77,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
     
     <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
     
     <!-- Styles -->
     <link rel="stylesheet" href="style.css?v=2024-12-20">
+    
+    <!-- Performance Optimizations -->
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap"></noscript>
+    
+    <!-- Critical CSS inline for above-the-fold content -->
+    <style>
+        /* Critical CSS for immediate rendering */
+        body { margin: 0; font-family: 'Cairo', sans-serif; }
+        .hero { min-height: 100vh; background: linear-gradient(135deg, #2563eb, #f97316); }
+        .nav { position: fixed; top: 0; width: 100%; z-index: 1000; }
+    </style>
     <style>
         /* Force Orange & Blue Colors */
         :root {
@@ -124,6 +189,25 @@
             margin-top: 20px;
             padding: 20px;
             border-top: 1px solid #e5e7eb;
+            display: block;
+        }
+        
+        .mobile-login-link,
+        .mobile-logout-link,
+        .mobile-dashboard-link {
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        /* Force show mobile elements on mobile */
+        @media (max-width: 768px) {
+            .mobile-login-link,
+            .mobile-logout-link,
+            .mobile-dashboard-link {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
         }
         
         .mobile-login-link {
@@ -138,11 +222,87 @@
             transition: all 0.3s ease;
         }
         
+        @media (max-width: 768px) {
+            .mobile-login-link {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+        }
+        
         .mobile-login-link:hover {
             background: linear-gradient(135deg, #1d4ed8, #ea580c);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
             color: white;
+        }
+        
+        .mobile-logout-link {
+            display: block;
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-logout-link {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+        }
+        
+        .mobile-logout-link:hover {
+            background: linear-gradient(135deg, #b91c1c, #991b1b);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
+            color: white;
+        }
+        
+        .mobile-dashboard-link {
+            display: block;
+            background: linear-gradient(135deg, #6b7280, #4b5563);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-dashboard-link {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+        }
+        
+        .mobile-dashboard-link:hover {
+            background: linear-gradient(135deg, #4b5563, #374151);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(107, 114, 128, 0.3);
+            color: white;
+        }
+        
+        /* Force show all mobile elements */
+        @media (max-width: 768px) {
+            .mobile-login-link,
+            .mobile-logout-link,
+            .mobile-dashboard-link {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                position: relative !important;
+                z-index: 1 !important;
+            }
         }
         
         /* Mobile Language Selector */
@@ -226,6 +386,37 @@
                 right: auto;
                 width: 100%;
                 margin-top: 8px;
+            }
+        }
+        
+        /* Show mobile elements on mobile */
+        @media (max-width: 768px) {
+            .mobile-login {
+                display: block !important;
+            }
+            
+            .mobile-language-selector {
+                display: block !important;
+            }
+            
+            .mobile-login-link,
+            .mobile-logout-link,
+            .mobile-dashboard-link {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+            
+            .nav-menu.active {
+                display: block !important;
+            }
+            
+            .hamburger {
+                display: flex !important;
             }
         }
         
@@ -576,6 +767,16 @@
     <!-- PWA Manifest -->
     <link rel="manifest" href="manifest.json">
     
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+    
+    <!-- Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https:; connect-src 'self';">
+    
     <!-- iOS PWA Support -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
@@ -636,9 +837,11 @@
                         <li><a href="#contact" class="nav-link">تواصل معنا</a></li>
                     </ul>
                     
-                    <!-- Mobile Login Link -->
+                    <!-- Mobile Login/Logout Links -->
                     <div class="mobile-login">
-                        <a href="login.html" class="mobile-login-link">تسجيل الدخول</a>
+                        <a href="login.html" class="mobile-login-link" id="mobileLoginLink" style="display: none;">تسجيل الدخول</a>
+                        <a href="#" class="mobile-logout-link" id="mobileLogoutLink" onclick="logoutUser()" style="display: none;">تسجيل الخروج</a>
+                        <a href="customer-dashboard.html" class="mobile-dashboard-link" id="mobileDashboardLink" style="display: none;">لوحة التحكم</a>
                     </div>
                     
                     <!-- Mobile Language Selector -->
@@ -662,7 +865,9 @@
                         </ul>
                     </div>
                     <button class="btn btn-primary booking-btn" onclick="initializeBookingSystem()">احجز الآن</button>
-                    <button class="btn btn-outline" onclick="window.location.href='login.html'">تسجيل الدخول</button>
+                    <button class="btn btn-outline" id="loginBtn" onclick="window.location.href='login.html'" style="display: none;">تسجيل الدخول</button>
+                    <button class="btn btn-outline" id="logoutBtn" onclick="logoutUser()" style="display: none;">تسجيل الخروج</button>
+                    <button class="btn btn-secondary" id="dashboardBtn" onclick="window.location.href='customer-dashboard.html'" style="display: none;">لوحة التحكم</button>
                 </div>
 
                 <div class="hamburger" id="hamburger">
@@ -682,7 +887,7 @@
         <div class="container">
             <div class="hero-content scroll-animate" id="main-content">
                 <div class="hero-logo floating">
-                    <img src="images/colored-logo-arabic-1.svg" alt="نورث وست باص" style="width: 120px; height: 120px; margin-bottom: 2rem; opacity: 0.9;">
+                    <img src="images/colored-logo-arabic-1.svg" alt="نورث وست باص" style="width: 120px; height: 120px; margin-bottom: 2rem; opacity: 0.9;" loading="eager">
                 </div>
                 <h1 class="hero-title">استمتع بالوصول إلى وجهتك في رحلة سلسة</h1>
                 <p class="hero-subtitle">خدمة نقل متميزة تجمع بين الراحة والأمان والالتزام بالمواعيد</p>
@@ -819,7 +1024,7 @@
                 <div class="booking-features">
                     <div class="feature-item scroll-animate">
                         <div class="feature-icon">
-                            <img src="images/yellowvipbus (1).webp" alt="باص فاخر" class="rotating-slow">
+                            <img src="images/yellowvipbus (1).webp" alt="باص فاخر" class="rotating-slow" loading="lazy">
                         </div>
                         <div class="feature-text">
                             <span class="feature-title">باصات فاخرة</span>
@@ -2493,7 +2698,8 @@
                     
                     // Buttons
                     'btn-book': 'احجز الآن',
-                    'btn-login': 'تسجيل دخول'
+                    'btn-login': 'تسجيل دخول',
+                    'btn-logout': 'تسجيل الخروج'
                 },
                 'en': {
                     // Navigation
@@ -2614,7 +2820,8 @@
                     
                     // Buttons
                     'btn-book': 'Book Now',
-                    'btn-login': 'Login'
+                    'btn-login': 'Login',
+                    'btn-logout': 'Logout'
                 },
                 'ur': {
                     // Navigation
@@ -2735,7 +2942,8 @@
                     
                     // Buttons
                     'btn-book': 'ابھی بک کریں',
-                    'btn-login': 'لاگ ان'
+                    'btn-login': 'لاگ ان',
+                    'btn-logout': 'لاگ آؤٹ'
                 }
             };
             
@@ -2789,6 +2997,8 @@
                     btn.textContent = currentContent['btn-book'];
                 } else if (text === 'تسجيل الدخول' || text === 'تسجيل دخول' || text === 'Login' || text === 'لاگ ان') {
                     btn.textContent = currentContent['btn-login'];
+                } else if (text === 'تسجيل الخروج' || text === 'Logout' || text === 'لاگ آؤٹ') {
+                    btn.textContent = currentContent['btn-logout'];
                 }
             });
             
@@ -3129,7 +3339,9 @@
                 } else if (text.includes('تواصل معنا') || text.includes('Contact Us') || text.includes('رابطہ')) {
                     link.textContent = currentContent['nav-contact'];
                 } else if (text.includes('تسجيل الدخول') || text.includes('Login') || text.includes('لاگ ان')) {
-                    link.textContent = currentContent['nav-login'];
+                    link.textContent = currentContent['btn-login'];
+                } else if (text.includes('تسجيل الخروج') || text.includes('Logout') || text.includes('لاگ آؤٹ')) {
+                    link.textContent = currentContent['btn-logout'];
                 }
             });
             
@@ -3316,7 +3528,279 @@
             setTimeout(() => {
                 applyLanguage(savedLanguage);
             }, 500);
+            
+            // Initialize form validation
+            initializeFormValidation();
+            
+            // Check user login status
+            checkUserLoginStatus();
         });
+        
+        // Form Validation Functions
+        function initializeFormValidation() {
+            // Set minimum date to today
+            const dateInput = document.querySelector('input[type="date"]');
+            if (dateInput) {
+                const today = new Date().toISOString().split('T')[0];
+                dateInput.setAttribute('min', today);
+            }
+            
+            // Add real-time validation
+            const formInputs = document.querySelectorAll('.form-control');
+            formInputs.forEach(input => {
+                input.addEventListener('blur', validateField);
+                input.addEventListener('input', clearFieldError);
+            });
+        }
+        
+        function validateCitySelection() {
+            const fromCity = document.getElementById('fromCity');
+            const toCity = document.getElementById('toCity');
+            
+            if (fromCity && toCity) {
+                if (fromCity.value === toCity.value && fromCity.value !== '') {
+                    showFieldError(toCity, 'لا يمكن اختيار نفس المدينة للوجهة');
+                    return false;
+                } else {
+                    clearFieldError({target: toCity});
+                }
+            }
+            return true;
+        }
+        
+        function validateField(event) {
+            const field = event.target;
+            const value = field.value.trim();
+            
+            // Clear previous errors
+            clearFieldError(event);
+            
+            // Required field validation
+            if (field.hasAttribute('required') && !value) {
+                showFieldError(field, 'هذا الحقل مطلوب');
+                return false;
+            }
+            
+            // Date validation
+            if (field.type === 'date' && value) {
+                const selectedDate = new Date(value);
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                
+                if (selectedDate < today) {
+                    showFieldError(field, 'لا يمكن اختيار تاريخ في الماضي');
+                    return false;
+                }
+            }
+            
+            // Email validation
+            if (field.type === 'email' && value) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(value)) {
+                    showFieldError(field, 'يرجى إدخال بريد إلكتروني صحيح');
+                    return false;
+                }
+            }
+            
+            // Phone validation
+            if (field.type === 'tel' && value) {
+                const phoneRegex = /^[0-9+\-\s()]+$/;
+                if (!phoneRegex.test(value)) {
+                    showFieldError(field, 'يرجى إدخال رقم هاتف صحيح');
+                    return false;
+                }
+            }
+            
+            return true;
+        }
+        
+        function showFieldError(field, message) {
+            const errorDiv = field.parentNode.querySelector('.form-error') || 
+                           field.parentNode.parentNode.querySelector('.form-error');
+            
+            if (errorDiv) {
+                errorDiv.textContent = message;
+                errorDiv.style.display = 'block';
+            } else {
+                // Create error div if it doesn't exist
+                const errorElement = document.createElement('div');
+                errorElement.className = 'form-error';
+                errorElement.style.cssText = 'display: block; color: #dc2626; font-size: 0.875rem; margin-top: 0.25rem;';
+                errorElement.textContent = message;
+                field.parentNode.appendChild(errorElement);
+            }
+            
+            field.style.borderColor = '#dc2626';
+        }
+        
+        function clearFieldError(event) {
+            const field = event.target;
+            const errorDiv = field.parentNode.querySelector('.form-error') || 
+                           field.parentNode.parentNode.querySelector('.form-error');
+            
+            if (errorDiv) {
+                errorDiv.style.display = 'none';
+            }
+            
+            field.style.borderColor = '';
+        }
+        
+        // Enhanced notification system
+        function showNotification(message, type = 'info') {
+            // Remove existing notifications
+            const existingNotifications = document.querySelectorAll('.notification');
+            existingNotifications.forEach(notification => notification.remove());
+            
+            // Create notification element
+            const notification = document.createElement('div');
+            notification.className = `notification notification-${type}`;
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${type === 'error' ? '#dc2626' : type === 'warning' ? '#f59e0b' : type === 'success' ? '#10b981' : '#3b82f6'};
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                z-index: 10000;
+                max-width: 400px;
+                font-weight: 500;
+                animation: slideIn 0.3s ease-out;
+            `;
+            
+            notification.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <i class="fas ${type === 'error' ? 'fa-exclamation-circle' : type === 'warning' ? 'fa-exclamation-triangle' : type === 'success' ? 'fa-check-circle' : 'fa-info-circle'}"></i>
+                    <span>${message}</span>
+                    <button onclick="this.parentElement.parentElement.remove()" style="background: none; border: none; color: white; cursor: pointer; margin-left: auto;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            `;
+            
+            // Add animation styles
+            const style = document.createElement('style');
+            style.textContent = `
+                @keyframes slideIn {
+                    from { transform: translateX(100%); opacity: 0; }
+                    to { transform: translateX(0); opacity: 1; }
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Add to page
+            document.body.appendChild(notification);
+            
+            // Auto remove after 5 seconds
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.style.animation = 'slideIn 0.3s ease-out reverse';
+                    setTimeout(() => notification.remove(), 300);
+                }
+            }, 5000);
+        }
+        
+        // Global error handler
+        window.addEventListener('error', function(event) {
+            console.error('Global error:', event.error);
+            showNotification('حدث خطأ غير متوقع، يرجى إعادة تحميل الصفحة', 'error');
+        });
+        
+        // Unhandled promise rejection handler
+        window.addEventListener('unhandledrejection', function(event) {
+            console.error('Unhandled promise rejection:', event.reason);
+            showNotification('حدث خطأ في النظام، يرجى المحاولة مرة أخرى', 'error');
+        });
+        
+        // Logout functionality
+        function logoutUser() {
+            // Show confirmation dialog
+            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                // Clear user data from localStorage
+                localStorage.removeItem('user');
+                localStorage.removeItem('rememberUser');
+                
+                // Show success notification
+                showNotification('تم تسجيل الخروج بنجاح', 'success');
+                
+                // Update UI to show login button
+                updateLoginUI();
+                
+                // Redirect to home page after a short delay
+                setTimeout(() => {
+                    window.location.href = 'index.html';
+                }, 1500);
+            }
+        }
+        
+        // Update login/logout UI based on user status
+        function updateLoginUI() {
+            const user = localStorage.getItem('user');
+            const loginBtn = document.getElementById('loginBtn');
+            const logoutBtn = document.getElementById('logoutBtn');
+            const dashboardBtn = document.getElementById('dashboardBtn');
+            const mobileLoginLink = document.getElementById('mobileLoginLink');
+            const mobileLogoutLink = document.getElementById('mobileLogoutLink');
+            const mobileDashboardLink = document.getElementById('mobileDashboardLink');
+            
+            console.log('updateLoginUI called, user:', user ? 'logged in' : 'not logged in');
+            console.log('Elements found:', {
+                loginBtn: !!loginBtn,
+                logoutBtn: !!logoutBtn,
+                dashboardBtn: !!dashboardBtn,
+                mobileLoginLink: !!mobileLoginLink,
+                mobileLogoutLink: !!mobileLogoutLink,
+                mobileDashboardLink: !!mobileDashboardLink
+            });
+            
+            if (user) {
+                // User is logged in - show logout and dashboard buttons
+                if (loginBtn) loginBtn.style.display = 'none';
+                if (logoutBtn) logoutBtn.style.display = 'block';
+                if (dashboardBtn) dashboardBtn.style.display = 'block';
+                if (mobileLoginLink) mobileLoginLink.style.display = 'none';
+                if (mobileLogoutLink) mobileLogoutLink.style.display = 'block';
+                if (mobileDashboardLink) mobileDashboardLink.style.display = 'block';
+            } else {
+                // User is not logged in - show login button
+                if (loginBtn) loginBtn.style.display = 'block';
+                if (logoutBtn) logoutBtn.style.display = 'none';
+                if (dashboardBtn) dashboardBtn.style.display = 'none';
+                if (mobileLoginLink) mobileLoginLink.style.display = 'block';
+                if (mobileLogoutLink) mobileLogoutLink.style.display = 'none';
+                if (mobileDashboardLink) mobileDashboardLink.style.display = 'none';
+            }
+        }
+        
+        // Check user login status on page load
+        function checkUserLoginStatus() {
+            const user = localStorage.getItem('user');
+            console.log('Checking user login status:', user ? 'User logged in' : 'No user');
+            
+            if (user) {
+                try {
+                    const userData = JSON.parse(user);
+                    console.log('User logged in:', userData.name || userData.fullName);
+                    
+                    // Update UI
+                    updateLoginUI();
+                    
+                    // Update booking button text if user is logged in
+                    const bookingBtn = document.querySelector('.booking-btn');
+                    if (bookingBtn) {
+                        bookingBtn.textContent = 'احجز الآن';
+                    }
+                } catch (error) {
+                    console.error('Error parsing user data:', error);
+                    // Clear invalid user data
+                    localStorage.removeItem('user');
+                    updateLoginUI();
+                }
+            } else {
+                updateLoginUI();
+            }
+        }
     </script>
 </body>
 </html>

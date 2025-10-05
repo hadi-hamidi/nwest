@@ -1,0 +1,1326 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="لوحة تحكم العميل - نورث وست باص">
+    <title>لوحة تحكم العميل - نورث وست باص</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/colored-logo-arabic-1.svg">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .customer-dashboard {
+            display: flex;
+            min-height: 100vh;
+            background: #f8fafc;
+        }
+        
+        .sidebar {
+            width: 280px;
+            background: white;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        
+        .sidebar-header {
+            padding: 2rem;
+            border-bottom: 1px solid #e5e7eb;
+            text-align: center;
+            background: linear-gradient(135deg, #1d4ed8, #ea580c);
+            color: white;
+        }
+        
+        .sidebar-header .logo {
+            margin-bottom: 1rem;
+        }
+        
+        .sidebar-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        
+        .sidebar-header p {
+            margin: 0.5rem 0 0 0;
+            opacity: 0.9;
+            font-size: 0.9rem;
+        }
+        
+        .sidebar-menu {
+            padding: 1rem 0;
+        }
+        
+        .menu-item {
+            display: block;
+            padding: 1rem 2rem;
+            color: #374151;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-right: 3px solid transparent;
+        }
+        
+        .menu-item:hover,
+        .menu-item.active {
+            background: rgba(29, 78, 216, 0.1);
+            color: #1d4ed8;
+            border-right-color: #1d4ed8;
+        }
+        
+        .menu-item i {
+            width: 20px;
+            margin-left: 0.5rem;
+        }
+        
+        .main-content {
+            flex: 1;
+            margin-right: 280px;
+            padding: 2rem;
+        }
+        
+        .dashboard-header {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header-left h1 {
+            color: #1d4ed8;
+            margin: 0 0 0.5rem 0;
+            font-size: 2rem;
+        }
+        
+        .header-left p {
+            color: #6b7280;
+            margin: 0;
+        }
+        
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #f3f4f6;
+            border-radius: 8px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #1d4ed8, #ea580c);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+        
+        .user-details h4 {
+            margin: 0;
+            color: #374151;
+            font-size: 0.9rem;
+        }
+        
+        .user-details p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 0.8rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .stat-icon.bookings {
+            background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+        }
+        
+        .stat-icon.completed {
+            background: linear-gradient(135deg, #059669, #10b981);
+        }
+        
+        .stat-icon.pending {
+            background: linear-gradient(135deg, #ea580c, #f97316);
+        }
+        
+        .stat-icon.total {
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+        }
+        
+        .stat-content h3 {
+            margin: 0 0 0.5rem 0;
+            color: #374151;
+            font-size: 1.5rem;
+        }
+        
+        .stat-content p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        .content-section {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+        
+        .section-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-header h2 {
+            margin: 0;
+            color: #374151;
+            font-size: 1.25rem;
+        }
+        
+        .section-content {
+            padding: 2rem;
+        }
+        
+        .recent-bookings {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .booking-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .booking-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .booking-route {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .route-info {
+            flex: 1;
+        }
+        
+        .route-info h4 {
+            margin: 0 0 0.25rem 0;
+            color: #374151;
+            font-size: 1rem;
+        }
+        
+        .route-info p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 0.8rem;
+        }
+        
+        .route-arrow {
+            color: #ea580c;
+            font-size: 1.2rem;
+        }
+        
+        .booking-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-confirmed {
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .status-completed {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .booking-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+        
+        .btn-action {
+            padding: 0.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+        }
+        
+        .btn-view {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .btn-cancel {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        
+        .btn-rate {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .btn-action:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .action-card {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .action-card:hover {
+            border-color: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(29, 78, 216, 0.15);
+        }
+        
+        .action-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .action-card.book {
+            border-color: #1d4ed8;
+        }
+        
+        .action-card.book .action-icon {
+            background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+        }
+        
+        .action-card.track {
+            border-color: #059669;
+        }
+        
+        .action-card.track .action-icon {
+            background: linear-gradient(135deg, #059669, #10b981);
+        }
+        
+        .action-card.support {
+            border-color: #ea580c;
+        }
+        
+        .action-card.support .action-icon {
+            background: linear-gradient(135deg, #ea580c, #f97316);
+        }
+        
+        .action-card.profile {
+            border-color: #7c3aed;
+        }
+        
+        .action-card.profile .action-icon {
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
+        }
+        
+        .action-card h3 {
+            margin: 0 0 0.5rem 0;
+            color: #374151;
+            font-size: 1rem;
+        }
+        
+        .action-card p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 0.8rem;
+        }
+        
+        /* Booking Filters */
+        .booking-filters {
+            margin-top: 1rem;
+        }
+        
+        .filter-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .filter-tab {
+            padding: 0.5rem 1rem;
+            background: #f3f4f6;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .filter-tab:hover {
+            background: #e5e7eb;
+        }
+        
+        .filter-tab.active {
+            background: #1d4ed8;
+            color: white;
+            border-color: #1d4ed8;
+        }
+        
+        .search-section {
+            margin-top: 1rem;
+        }
+        
+        .search-input {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+        
+        .search-input input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .search-input button {
+            padding: 0.75rem 1.5rem;
+            background: #1d4ed8;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input button:hover {
+            background: #1e40af;
+        }
+        
+        /* Bookings List */
+        .bookings-list {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .booking-item {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .booking-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        .booking-header {
+            background: linear-gradient(135deg, #1d4ed8, #3b82f6);
+            color: white;
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .booking-number {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        .booking-status {
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .status-confirmed {
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .status-pending {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .status-completed {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .status-cancelled {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        
+        .booking-content {
+            padding: 1.5rem;
+        }
+        
+        .booking-route {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .route-info {
+            flex: 1;
+        }
+        
+        .route-info h4 {
+            margin: 0 0 0.25rem 0;
+            color: #374151;
+            font-size: 1.1rem;
+        }
+        
+        .route-info p {
+            margin: 0;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        .route-arrow {
+            color: #ea580c;
+            font-size: 1.5rem;
+        }
+        
+        .booking-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .detail-item {
+            text-align: center;
+            padding: 0.5rem;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+        
+        .detail-item i {
+            color: #6b7280;
+            margin-bottom: 0.25rem;
+        }
+        
+        .detail-item span {
+            display: block;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .booking-actions {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-action {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+        
+        .btn-view {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+        
+        .btn-cancel {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        
+        .btn-rate {
+            background: #fef3c7;
+            color: #92400e;
+        }
+        
+        .btn-action:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                width: 280px;
+                z-index: 1000;
+                position: fixed;
+            }
+            
+            .sidebar.open {
+                transform: translateX(0);
+                display: block;
+            }
+            
+            .main-content {
+                margin-right: 0;
+                padding: 1rem;
+            }
+            
+            .dashboard-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .quick-actions {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Mobile Menu Button */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: #1d4ed8;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+        }
+        
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: 12px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h3 {
+            margin: 0;
+            color: #374151;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6b7280;
+        }
+        
+        .modal-body {
+            padding: 1.5rem;
+        }
+        
+        .booking-details-modal {
+            display: grid;
+            gap: 1rem;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem;
+            background: #f9fafb;
+            border-radius: 8px;
+        }
+        
+        .detail-row .label {
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .detail-row .value {
+            color: #6b7280;
+        }
+    </style>
+</head>
+<body>
+    <div class="customer-dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <img src="images/colored-logo-arabic-1.svg" alt="نورث وست باص" style="height: 40px;">
+                </div>
+                <h3>لوحة تحكم العميل</h3>
+                <p>مرحباً بك في حسابك الشخصي</p>
+            </div>
+            
+            <nav class="sidebar-menu">
+                <a href="#dashboard" class="menu-item active" onclick="showSection('dashboard')">
+                    <i class="fas fa-tachometer-alt"></i>
+                    الرئيسية
+                </a>
+                <a href="#bookings" class="menu-item" onclick="showSection('bookings')">
+                    <i class="fas fa-calendar-check"></i>
+                    حجوزاتي
+                </a>
+                <a href="#profile" class="menu-item" onclick="showSection('profile')">
+                    <i class="fas fa-user"></i>
+                    الملف الشخصي
+                </a>
+                <a href="#support" class="menu-item" onclick="showSection('support')">
+                    <i class="fas fa-headset"></i>
+                    الدعم الفني
+                </a>
+                <a href="#" class="menu-item logout-item" onclick="logoutUser()" style="color: #dc2626; border-top: 1px solid #e5e7eb; margin-top: 1rem; padding-top: 1rem;">
+                    <i class="fas fa-sign-out-alt"></i>
+                    تسجيل الخروج
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Dashboard Header -->
+            <div class="dashboard-header">
+                <div class="header-left">
+                    <h1>مرحباً بك!</h1>
+                    <p>إدارة حجوزاتك ومعلوماتك الشخصية</p>
+                </div>
+                <div class="header-right">
+                    <div class="user-info">
+                        <div class="user-avatar" id="userAvatar">ع</div>
+                        <div class="user-details">
+                            <h4 id="userName">العميل</h4>
+                            <p id="userEmail">customer@email.com</p>
+                        </div>
+                    </div>
+                    <button class="mobile-menu-btn" onclick="toggleSidebar()">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dashboard Section -->
+            <div id="dashboard" class="content-section">
+                <div class="section-header">
+                    <h2>نظرة عامة</h2>
+                </div>
+                <div class="section-content">
+                    <!-- Stats Grid -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon bookings">
+                                <i class="fas fa-calendar-check"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="totalBookings">0</h3>
+                                <p>إجمالي الحجوزات</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon completed">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="completedBookings">0</h3>
+                                <p>الحجوزات المكتملة</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon pending">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="pendingBookings">0</h3>
+                                <p>الحجوزات المعلقة</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon total">
+                                <i class="fas fa-coins"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 id="totalSpent">0 ريال</h3>
+                                <p>إجمالي المدفوعات</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="section-header">
+                        <h2>الإجراءات السريعة</h2>
+                    </div>
+                    <div class="quick-actions">
+                        <a href="index.html" class="action-card book">
+                            <div class="action-icon">
+                                <i class="fas fa-plus"></i>
+                            </div>
+                            <h3>حجز جديد</h3>
+                            <p>احجز رحلتك القادمة</p>
+                        </a>
+                        <a href="#bookings" class="action-card track" onclick="showSection('bookings')">
+                            <div class="action-icon">
+                                <i class="fas fa-route"></i>
+                            </div>
+                            <h3>تتبع الرحلة</h3>
+                            <p>تتبع حالة حجوزاتك</p>
+                        </a>
+                        <a href="#support" class="action-card support" onclick="showSection('support')">
+                            <div class="action-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h3>الدعم الفني</h3>
+                            <p>احصل على المساعدة</p>
+                        </a>
+                        <a href="#profile" class="action-card profile" onclick="showSection('profile')">
+                            <div class="action-icon">
+                                <i class="fas fa-user-edit"></i>
+                            </div>
+                            <h3>تحديث الملف</h3>
+                            <p>عدّل معلوماتك الشخصية</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bookings Section -->
+            <div id="bookings" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h2>حجوزاتي</h2>
+                    <div class="booking-filters">
+                        <div class="filter-tabs">
+                            <div class="filter-tab active" onclick="filterBookings('all')">
+                                <i class="fas fa-list"></i> الكل
+                            </div>
+                            <div class="filter-tab" onclick="filterBookings('upcoming')">
+                                <i class="fas fa-clock"></i> القادمة
+                            </div>
+                            <div class="filter-tab" onclick="filterBookings('completed')">
+                                <i class="fas fa-check-circle"></i> المكتملة
+                            </div>
+                            <div class="filter-tab" onclick="filterBookings('cancelled')">
+                                <i class="fas fa-times-circle"></i> الملغية
+                            </div>
+                        </div>
+                        <div class="search-section">
+                            <div class="search-input">
+                                <input type="text" id="bookingSearch" placeholder="البحث برقم الحجز أو الوجهة...">
+                                <button class="btn btn-primary" onclick="searchBookings()">
+                                    <i class="fas fa-search"></i> بحث
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-content">
+                    <div class="bookings-list" id="bookingsList">
+                        <!-- Bookings will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Profile Section -->
+            <div id="profile" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h2>الملف الشخصي</h2>
+                </div>
+                <div class="section-content">
+                    <div class="user-profile">
+                        <div class="profile-info">
+                            <div class="user-avatar-large">
+                                <div class="avatar" id="profileAvatar">ع</div>
+                            </div>
+                            <div class="profile-details">
+                                <h3 id="profileName">اسم العميل</h3>
+                                <p id="profileEmail">البريد الإلكتروني</p>
+                                <p id="profilePhone">رقم الهاتف</p>
+                            </div>
+                        </div>
+                        <div class="profile-actions">
+                            <button class="btn btn-primary" onclick="editProfile()">
+                                <i class="fas fa-edit"></i>
+                                تعديل الملف الشخصي
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support Section -->
+            <div id="support" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h2>الدعم الفني</h2>
+                </div>
+                <div class="section-content">
+                    <div class="support-options">
+                        <div class="support-card">
+                            <i class="fas fa-phone"></i>
+                            <h3>اتصل بنا</h3>
+                            <p>920000000</p>
+                        </div>
+                        <div class="support-card">
+                            <i class="fab fa-whatsapp"></i>
+                            <h3>واتساب</h3>
+                            <p>+966500000000</p>
+                        </div>
+                        <div class="support-card">
+                            <i class="fas fa-envelope"></i>
+                            <h3>البريد الإلكتروني</h3>
+                            <p>support@northwestbus.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check user login status
+        function checkUserLogin() {
+            const user = localStorage.getItem('user');
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            try {
+                const userData = JSON.parse(user);
+                updateUserInfo(userData);
+                loadUserBookings();
+            } catch (error) {
+                console.error('Error parsing user data:', error);
+                window.location.href = 'login.html';
+            }
+        }
+        
+        // Update user information
+        function updateUserInfo(userData) {
+            const userName = document.getElementById('userName');
+            const userEmail = document.getElementById('userEmail');
+            const userAvatar = document.getElementById('userAvatar');
+            const profileName = document.getElementById('profileName');
+            const profileEmail = document.getElementById('profileEmail');
+            const profilePhone = document.getElementById('profilePhone');
+            const profileAvatar = document.getElementById('profileAvatar');
+            
+            if (userName) userName.textContent = userData.name || userData.fullName || 'العميل';
+            if (userEmail) userEmail.textContent = userData.email || 'customer@email.com';
+            if (userAvatar) userAvatar.textContent = (userData.name || userData.fullName || 'ع').charAt(0);
+            if (profileName) profileName.textContent = userData.name || userData.fullName || 'اسم العميل';
+            if (profileEmail) profileEmail.textContent = userData.email || 'البريد الإلكتروني';
+            if (profilePhone) profilePhone.textContent = userData.phone || 'رقم الهاتف';
+            if (profileAvatar) profileAvatar.textContent = (userData.name || userData.fullName || 'ع').charAt(0);
+        }
+        
+        // Load user bookings
+        function loadUserBookings() {
+            const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            
+            // Filter bookings for current user
+            const userBookings = bookings.filter(booking => booking.userId === user.id);
+            
+            updateBookingStats(userBookings);
+            renderBookings(userBookings);
+        }
+        
+        // Update booking statistics
+        function updateBookingStats(bookings) {
+            const totalBookings = bookings.length;
+            const completedBookings = bookings.filter(b => b.status === 'completed').length;
+            const pendingBookings = bookings.filter(b => b.status === 'pending' || b.status === 'confirmed').length;
+            const totalSpent = bookings.reduce((sum, booking) => sum + (booking.totalPrice || 0), 0);
+            
+            document.getElementById('totalBookings').textContent = totalBookings;
+            document.getElementById('completedBookings').textContent = completedBookings;
+            document.getElementById('pendingBookings').textContent = pendingBookings;
+            document.getElementById('totalSpent').textContent = totalSpent + ' ريال';
+        }
+        
+        // Render bookings
+        function renderBookings(bookings) {
+            const bookingsList = document.getElementById('bookingsList');
+            if (!bookingsList) return;
+            
+            if (bookings.length === 0) {
+                bookingsList.innerHTML = `
+                    <div style="text-align: center; padding: 2rem; color: #6b7280;">
+                        <i class="fas fa-calendar-times" style="font-size: 3rem; margin-bottom: 1rem; display: block;"></i>
+                        <h3>لا توجد حجوزات</h3>
+                        <p>لم تقم بأي حجز بعد</p>
+                        <a href="index.html" class="btn btn-primary">احجز الآن</a>
+                    </div>
+                `;
+                return;
+            }
+            
+            bookingsList.innerHTML = bookings.map(booking => `
+                <div class="booking-item" data-status="${booking.status}">
+                    <div class="booking-header">
+                        <div class="booking-number">#${booking.id}</div>
+                        <div class="booking-status status-${booking.status}">
+                            ${getStatusText(booking.status)}
+                        </div>
+                    </div>
+                    <div class="booking-content">
+                        <div class="booking-route">
+                            <div class="route-info">
+                                <h4>${booking.from}</h4>
+                                <p>${booking.fromStation || 'محطة المغادرة'}</p>
+                            </div>
+                            <div class="route-arrow">
+                                <i class="fas fa-arrow-left"></i>
+                            </div>
+                            <div class="route-info">
+                                <h4>${booking.to}</h4>
+                                <p>${booking.toStation || 'محطة الوصول'}</p>
+                            </div>
+                        </div>
+                        <div class="booking-details">
+                            <div class="detail-item">
+                                <i class="fas fa-calendar"></i>
+                                <span>${new Date(booking.date).toLocaleDateString('ar-SA')}</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-clock"></i>
+                                <span>${booking.time}</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-users"></i>
+                                <span>${booking.passengers} راكب</span>
+                            </div>
+                            <div class="detail-item">
+                                <i class="fas fa-coins"></i>
+                                <span>${booking.totalPrice} ريال</span>
+                            </div>
+                        </div>
+                        <div class="booking-actions">
+                            <button class="btn-action btn-view" onclick="viewBooking('${booking.id}')" title="عرض">
+                                <i class="fas fa-eye"></i> عرض
+                            </button>
+                            ${booking.status === 'confirmed' ? `
+                                <button class="btn-action btn-cancel" onclick="cancelBooking('${booking.id}')" title="إلغاء">
+                                    <i class="fas fa-times"></i> إلغاء
+                                </button>
+                            ` : ''}
+                            ${booking.status === 'completed' ? `
+                                <button class="btn-action btn-rate" onclick="rateBooking('${booking.id}')" title="تقييم">
+                                    <i class="fas fa-star"></i> تقييم
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        
+        // Get status text
+        function getStatusText(status) {
+            const statusMap = {
+                'pending': 'معلق',
+                'confirmed': 'مؤكد',
+                'completed': 'مكتمل',
+                'cancelled': 'ملغي'
+            };
+            return statusMap[status] || status;
+        }
+        
+        // Show section
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).style.display = 'block';
+            
+            // Update active menu item
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            document.querySelector(`[onclick="showSection('${sectionId}')"]`).classList.add('active');
+        }
+        
+        // Toggle sidebar on mobile
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('open');
+        }
+        
+        // Logout user
+        function logoutUser() {
+            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                localStorage.removeItem('user');
+                localStorage.removeItem('rememberUser');
+                alert('تم تسجيل الخروج بنجاح');
+                window.location.href = 'index.html';
+            }
+        }
+        
+        // Filter bookings
+        function filterBookings(filter) {
+            const filterTabs = document.querySelectorAll('.filter-tab');
+            filterTabs.forEach(tab => tab.classList.remove('active'));
+            event.target.closest('.filter-tab').classList.add('active');
+            
+            const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            const userBookings = bookings.filter(booking => booking.userId === user.id);
+            
+            let filteredBookings = userBookings;
+            
+            if (filter !== 'all') {
+                filteredBookings = userBookings.filter(booking => {
+                    if (filter === 'upcoming') {
+                        return booking.status === 'confirmed' || booking.status === 'pending';
+                    } else if (filter === 'completed') {
+                        return booking.status === 'completed';
+                    } else if (filter === 'cancelled') {
+                        return booking.status === 'cancelled';
+                    }
+                    return true;
+                });
+            }
+            
+            renderBookings(filteredBookings);
+        }
+        
+        // Search bookings
+        function searchBookings() {
+            const searchTerm = document.getElementById('bookingSearch').value.toLowerCase();
+            const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            const userBookings = bookings.filter(booking => booking.userId === user.id);
+            
+            if (!searchTerm) {
+                renderBookings(userBookings);
+                return;
+            }
+            
+            const filteredBookings = userBookings.filter(booking => 
+                booking.id.toLowerCase().includes(searchTerm) ||
+                booking.from.toLowerCase().includes(searchTerm) ||
+                booking.to.toLowerCase().includes(searchTerm) ||
+                booking.status.toLowerCase().includes(searchTerm)
+            );
+            
+            renderBookings(filteredBookings);
+        }
+        
+        // View booking details
+        function viewBooking(bookingId) {
+            const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+            const booking = bookings.find(b => b.id === bookingId);
+            
+            if (!booking) {
+                alert('الحجز غير موجود');
+                return;
+            }
+            
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3>تفاصيل الحجز #${booking.id}</h3>
+                        <button class="close-btn" onclick="closeModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="booking-details-modal">
+                            <div class="detail-row">
+                                <span class="label">الوجهة:</span>
+                                <span class="value">${booking.from} ← ${booking.to}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">التاريخ:</span>
+                                <span class="value">${new Date(booking.date).toLocaleDateString('ar-SA')}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">الوقت:</span>
+                                <span class="value">${booking.time}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">عدد الركاب:</span>
+                                <span class="value">${booking.passengers}</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">المبلغ:</span>
+                                <span class="value">${booking.totalPrice} ريال</span>
+                            </div>
+                            <div class="detail-row">
+                                <span class="label">الحالة:</span>
+                                <span class="value status-${booking.status}">${getStatusText(booking.status)}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+        
+        // Cancel booking
+        function cancelBooking(bookingId) {
+            if (confirm('هل أنت متأكد من إلغاء هذا الحجز؟')) {
+                const bookings = JSON.parse(localStorage.getItem('bookings') || '[]');
+                const updatedBookings = bookings.map(booking => {
+                    if (booking.id === bookingId) {
+                        booking.status = 'cancelled';
+                    }
+                    return booking;
+                });
+                
+                localStorage.setItem('bookings', JSON.stringify(updatedBookings));
+                loadUserBookings();
+                alert('تم إلغاء الحجز بنجاح');
+            }
+        }
+        
+        // Rate booking
+        function rateBooking(bookingId) {
+            const rating = prompt('قيم الرحلة من 1 إلى 5:');
+            if (rating && rating >= 1 && rating <= 5) {
+                alert(`شكراً لك! تم تقييم الرحلة بـ ${rating} نجوم`);
+            }
+        }
+        
+        // Close modal
+        function closeModal() {
+            const modal = document.querySelector('.modal-overlay');
+            if (modal) {
+                modal.remove();
+            }
+        }
+        
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', function() {
+            checkUserLogin();
+            
+            // Check if URL has #bookings hash
+            if (window.location.hash === '#bookings') {
+                showSection('bookings');
+            }
+        });
+    </script>
+</body>
+</html>
