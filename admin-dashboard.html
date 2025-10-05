@@ -283,6 +283,273 @@
             color: #3730a3;
         }
         
+        .status-vip {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #92400e;
+        }
+        
+        .customer-info {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        
+        .customer-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+        }
+        
+        .customer-avatar.vip {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+        }
+        
+        .customer-details strong {
+            display: block;
+            color: var(--text-color);
+            font-size: 0.9rem;
+        }
+        
+        .customer-details small {
+            color: var(--text-light);
+            font-size: 0.8rem;
+        }
+        
+        .contact-info div,
+        .address-info div {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.25rem;
+            font-size: 0.85rem;
+        }
+        
+        .contact-info i,
+        .address-info i {
+            width: 12px;
+            color: var(--text-light);
+        }
+        
+        .badge {
+            background: var(--primary-color);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .amount {
+            color: var(--success-color);
+            font-weight: 600;
+        }
+        
+        .btn-action {
+            padding: 0.25rem 0.5rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: var(--transition);
+            margin: 0 0.125rem;
+        }
+        
+        .btn-view {
+            background: #e0f2fe;
+            color: #0277bd;
+        }
+        
+        .btn-edit {
+            background: #f3e8ff;
+            color: #7c3aed;
+        }
+        
+        .btn-message {
+            background: #ecfdf5;
+            color: #059669;
+        }
+        
+        .btn-delete {
+            background: #fef2f2;
+            color: #dc2626;
+        }
+        
+        .btn-action:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            padding: 1rem;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h3 {
+            margin: 0;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .close-btn:hover {
+            background: var(--light-color);
+            color: var(--text-color);
+        }
+        
+        .modal-body {
+            padding: 1.5rem;
+        }
+        
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        /* Customer Details View */
+        .customer-details-view {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .detail-section {
+            background: var(--light-color);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+        }
+        
+        .detail-section h4 {
+            margin: 0 0 1rem 0;
+            color: var(--primary-color);
+            font-size: 1.1rem;
+        }
+        
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        
+        .detail-row:last-child {
+            border-bottom: none;
+        }
+        
+        .detail-row .label {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        .detail-row .value {
+            color: var(--text-light);
+        }
+        
+        @media (max-width: 768px) {
+            .modal-overlay {
+                padding: 0.5rem;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-footer {
+                flex-direction: column;
+            }
+        }
+        
         .action-buttons {
             display: flex;
             gap: 0.5rem;
@@ -3644,7 +3911,7 @@
                 </a>
                 <a href="#customers" class="menu-item" onclick="showSection('customers')">
                     <i class="fas fa-users"></i>
-                    العملاء
+                    إدارة العملاء
                 </a>
                 <a href="#drivers" class="menu-item" onclick="showSection('drivers')">
                     <i class="fas fa-user-tie"></i>
@@ -3742,19 +4009,19 @@
                             <i class="fas fa-users"></i>
                         </div>
                         <div class="stat-content">
-                            <h3>العملاء النشطين</h3>
-                            <div class="stat-number" id="activeCustomers">0</div>
-                            <div class="stat-change neutral">لا توجد بيانات</div>
+                            <h3>إجمالي العملاء</h3>
+                            <div class="stat-number" id="totalCustomers">3</div>
+                            <div class="stat-change positive">+2 هذا الشهر</div>
                         </div>
                     </div>
-                    <div class="stat-card" onclick="showSection('trips')">
+                    <div class="stat-card" onclick="showSection('customers')">
                         <div class="stat-icon">
-                            <i class="fas fa-bus"></i>
+                            <i class="fas fa-crown"></i>
                         </div>
                         <div class="stat-content">
-                            <h3>الرحلات اليوم</h3>
-                            <div class="stat-number" id="todayTrips">0</div>
-                            <div class="stat-change neutral">لا توجد بيانات</div>
+                            <h3>عملاء VIP</h3>
+                            <div class="stat-number" id="vipCustomers">1</div>
+                            <div class="stat-change positive">33% من العملاء</div>
                         </div>
                     </div>
                     <div class="stat-card" onclick="showSection('reports')">
@@ -4044,6 +4311,7 @@
                             <tr>
                                 <th>العميل</th>
                                 <th>معلومات الاتصال</th>
+                                <th>العنوان</th>
                                 <th>تاريخ التسجيل</th>
                                 <th>عدد الحجوزات</th>
                                 <th>إجمالي المدفوعات</th>
@@ -4052,11 +4320,145 @@
                             </tr>
                         </thead>
                         <tbody>
+                            <!-- Customer Data -->
                             <tr>
-                                <td colspan="7" style="text-align: center; padding: 2rem; color: #64748b;">
-                                    <i class="fas fa-users" style="font-size: 2rem; margin-bottom: 1rem; display: block;"></i>
-                                    <strong>لا توجد عملاء مسجلين حالياً</strong>
-                                    <br><small>سيتم عرض العملاء عند تسجيلهم</small>
+                                <td>
+                                    <div class="customer-info">
+                                        <div class="customer-avatar">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <div class="customer-details">
+                                            <strong>أحمد محمد العلي</strong>
+                                            <small>NW20241220001</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="contact-info">
+                                        <div><i class="fas fa-envelope"></i> ahmed@email.com</div>
+                                        <div><i class="fas fa-phone"></i> +966501234567</div>
+                                        <div><i class="fab fa-whatsapp"></i> +966501234567</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="address-info">
+                                        <div><i class="fas fa-map-marker-alt"></i> الرياض، حي النرجس</div>
+                                        <div><i class="fas fa-home"></i> شارع الملك فهد، رقم 123</div>
+                                    </div>
+                                </td>
+                                <td>2024-12-20</td>
+                                <td><span class="badge">15</span></td>
+                                <td><span class="amount">2,500 ريال</span></td>
+                                <td><span class="status-badge status-confirmed">نشط</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-action btn-view" onclick="viewCustomer('NW20241220001')" title="عرض التفاصيل">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-action btn-edit" onclick="editCustomer('NW20241220001')" title="تعديل">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-action btn-message" onclick="messageCustomer('NW20241220001')" title="إرسال رسالة">
+                                            <i class="fas fa-envelope"></i>
+                                        </button>
+                                        <button class="btn-action btn-delete" onclick="deleteCustomer('NW20241220001')" title="حذف">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <div class="customer-info">
+                                        <div class="customer-avatar">
+                                            <i class="fas fa-user"></i>
+                                        </div>
+                                        <div class="customer-details">
+                                            <strong>فاطمة أحمد السعد</strong>
+                                            <small>NW20241220002</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="contact-info">
+                                        <div><i class="fas fa-envelope"></i> fatima@email.com</div>
+                                        <div><i class="fas fa-phone"></i> +966502345678</div>
+                                        <div><i class="fab fa-whatsapp"></i> +966502345678</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="address-info">
+                                        <div><i class="fas fa-map-marker-alt"></i> جدة، حي الروضة</div>
+                                        <div><i class="fas fa-home"></i> شارع التحلية، رقم 456</div>
+                                    </div>
+                                </td>
+                                <td>2024-12-19</td>
+                                <td><span class="badge">8</span></td>
+                                <td><span class="amount">1,200 ريال</span></td>
+                                <td><span class="status-badge status-confirmed">نشط</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-action btn-view" onclick="viewCustomer('NW20241220002')" title="عرض التفاصيل">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-action btn-edit" onclick="editCustomer('NW20241220002')" title="تعديل">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-action btn-message" onclick="messageCustomer('NW20241220002')" title="إرسال رسالة">
+                                            <i class="fas fa-envelope"></i>
+                                        </button>
+                                        <button class="btn-action btn-delete" onclick="deleteCustomer('NW20241220002')" title="حذف">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            
+                            <tr>
+                                <td>
+                                    <div class="customer-info">
+                                        <div class="customer-avatar vip">
+                                            <i class="fas fa-crown"></i>
+                                        </div>
+                                        <div class="customer-details">
+                                            <strong>محمد عبدالله القحطاني</strong>
+                                            <small>NW20241220003</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="contact-info">
+                                        <div><i class="fas fa-envelope"></i> mohammed@email.com</div>
+                                        <div><i class="fas fa-phone"></i> +966503456789</div>
+                                        <div><i class="fab fa-whatsapp"></i> +966503456789</div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="address-info">
+                                        <div><i class="fas fa-map-marker-alt"></i> مكة المكرمة، حي العزيزية</div>
+                                        <div><i class="fas fa-home"></i> شارع الملك عبدالعزيز، رقم 789</div>
+                                    </div>
+                                </td>
+                                <td>2024-12-18</td>
+                                <td><span class="badge">25</span></td>
+                                <td><span class="amount">5,000 ريال</span></td>
+                                <td><span class="status-badge status-vip">VIP</span></td>
+                                <td>
+                                    <div class="action-buttons">
+                                        <button class="btn-action btn-view" onclick="viewCustomer('NW20241220003')" title="عرض التفاصيل">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button class="btn-action btn-edit" onclick="editCustomer('NW20241220003')" title="تعديل">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="btn-action btn-message" onclick="messageCustomer('NW20241220003')" title="إرسال رسالة">
+                                            <i class="fas fa-envelope"></i>
+                                        </button>
+                                        <button class="btn-action btn-delete" onclick="deleteCustomer('NW20241220003')" title="حذف">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>
@@ -5820,52 +6222,360 @@
 
         // Customer Management Functions
         function showAddCustomerModal() {
-            alert('إضافة عميل جديد - سيتم فتح نموذج الإضافة');
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-user-plus"></i> إضافة عميل جديد</h3>
+                        <button class="close-btn" onclick="closeModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="addCustomerForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>الاسم الكامل *</label>
+                                    <input type="text" id="customerName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>البريد الإلكتروني *</label>
+                                    <input type="email" id="customerEmail" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>رقم الهاتف *</label>
+                                    <input type="tel" id="customerPhone" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>رقم الهوية الوطنية *</label>
+                                    <input type="text" id="customerNationalId" required maxlength="10">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>المدينة *</label>
+                                    <select id="customerCity" required>
+                                        <option value="">اختر المدينة</option>
+                                        <option value="riyadh">الرياض</option>
+                                        <option value="jeddah">جدة</option>
+                                        <option value="makkah">مكة المكرمة</option>
+                                        <option value="madinah">المدينة المنورة</option>
+                                        <option value="dammam">الدمام</option>
+                                        <option value="taif">الطائف</option>
+                                        <option value="tabuk">تبوك</option>
+                                        <option value="yanbu">ينبع</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>الحالة</label>
+                                    <select id="customerStatus">
+                                        <option value="active">نشط</option>
+                                        <option value="inactive">غير نشط</option>
+                                        <option value="VIP">VIP</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>العنوان التفصيلي</label>
+                                <textarea id="customerAddress" rows="3" placeholder="شارع، رقم المبنى، رقم الشقة"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" onclick="closeModal()">إلغاء</button>
+                        <button class="btn btn-primary" onclick="addCustomer()">إضافة العميل</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+        
+        function closeModal() {
+            const modal = document.querySelector('.modal-overlay');
+            if (modal) {
+                modal.remove();
+            }
+        }
+        
+        function addCustomer() {
+            const form = document.getElementById('addCustomerForm');
+            const formData = new FormData(form);
+            
+            const customerData = {
+                id: 'NW' + Date.now().toString(36).toUpperCase(),
+                name: document.getElementById('customerName').value,
+                email: document.getElementById('customerEmail').value,
+                phone: document.getElementById('customerPhone').value,
+                nationalId: document.getElementById('customerNationalId').value,
+                city: document.getElementById('customerCity').value,
+                address: document.getElementById('customerAddress').value,
+                status: document.getElementById('customerStatus').value,
+                registrationDate: new Date().toISOString(),
+                totalBookings: 0,
+                totalSpent: 0
+            };
+            
+            // Save to localStorage
+            const existingCustomers = JSON.parse(localStorage.getItem('customers') || '[]');
+            existingCustomers.push(customerData);
+            localStorage.setItem('customers', JSON.stringify(existingCustomers));
+            
+            // Close modal and refresh table
+            closeModal();
+            
+            // Reload customers table
+            const customers = JSON.parse(localStorage.getItem('customers') || '[]');
+            renderCustomersTable(customers);
+            updateCustomerStatistics(customers);
         }
 
         function viewCustomer(customerId) {
-            alert(`عرض تفاصيل العميل ${customerId} - سيتم فتح صفحة التفاصيل`);
+            const customers = JSON.parse(localStorage.getItem('customers') || '[]');
+            const customer = customers.find(c => c.id === customerId);
+            
+            if (!customer) {
+                alert('العميل غير موجود');
+                return;
+            }
+            
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-user"></i> تفاصيل العميل</h3>
+                        <button class="close-btn" onclick="closeModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="customer-details-view">
+                            <div class="detail-section">
+                                <h4>المعلومات الشخصية</h4>
+                                <div class="detail-row">
+                                    <span class="label">الاسم:</span>
+                                    <span class="value">${customer.name}</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">رقم الهوية:</span>
+                                    <span class="value">${customer.nationalId}</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">البريد الإلكتروني:</span>
+                                    <span class="value">${customer.email}</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">رقم الهاتف:</span>
+                                    <span class="value">${customer.phone}</span>
+                                </div>
+                            </div>
+                            <div class="detail-section">
+                                <h4>العنوان</h4>
+                                <div class="detail-row">
+                                    <span class="label">المدينة:</span>
+                                    <span class="value">${customer.city}</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">العنوان:</span>
+                                    <span class="value">${customer.address || 'غير محدد'}</span>
+                                </div>
+                            </div>
+                            <div class="detail-section">
+                                <h4>الإحصائيات</h4>
+                                <div class="detail-row">
+                                    <span class="label">عدد الحجوزات:</span>
+                                    <span class="value">${customer.totalBookings || 0}</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">إجمالي المدفوعات:</span>
+                                    <span class="value">${customer.totalSpent || 0} ريال</span>
+                                </div>
+                                <div class="detail-row">
+                                    <span class="label">تاريخ التسجيل:</span>
+                                    <span class="value">${new Date(customer.registrationDate).toLocaleDateString('ar-SA')}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" onclick="closeModal()">إغلاق</button>
+                        <button class="btn btn-primary" onclick="editCustomer('${customerId}')">تعديل</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
         }
 
         function editCustomer(customerId) {
-            alert(`تعديل العميل ${customerId} - سيتم فتح نموذج التعديل`);
+            const customers = JSON.parse(localStorage.getItem('customers') || '[]');
+            const customer = customers.find(c => c.id === customerId);
+            
+            if (!customer) {
+                alert('العميل غير موجود');
+                return;
+            }
+            
+            closeModal(); // Close any existing modal
+            
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-edit"></i> تعديل بيانات العميل</h3>
+                        <button class="close-btn" onclick="closeModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="editCustomerForm">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>الاسم الكامل *</label>
+                                    <input type="text" id="editCustomerName" value="${customer.name}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>البريد الإلكتروني *</label>
+                                    <input type="email" id="editCustomerEmail" value="${customer.email}" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>رقم الهاتف *</label>
+                                    <input type="tel" id="editCustomerPhone" value="${customer.phone}" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>رقم الهوية الوطنية *</label>
+                                    <input type="text" id="editCustomerNationalId" value="${customer.nationalId}" required maxlength="10">
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label>المدينة *</label>
+                                    <select id="editCustomerCity" required>
+                                        <option value="riyadh" ${customer.city === 'riyadh' ? 'selected' : ''}>الرياض</option>
+                                        <option value="jeddah" ${customer.city === 'jeddah' ? 'selected' : ''}>جدة</option>
+                                        <option value="makkah" ${customer.city === 'makkah' ? 'selected' : ''}>مكة المكرمة</option>
+                                        <option value="madinah" ${customer.city === 'madinah' ? 'selected' : ''}>المدينة المنورة</option>
+                                        <option value="dammam" ${customer.city === 'dammam' ? 'selected' : ''}>الدمام</option>
+                                        <option value="taif" ${customer.city === 'taif' ? 'selected' : ''}>الطائف</option>
+                                        <option value="tabuk" ${customer.city === 'tabuk' ? 'selected' : ''}>تبوك</option>
+                                        <option value="yanbu" ${customer.city === 'yanbu' ? 'selected' : ''}>ينبع</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>الحالة</label>
+                                    <select id="editCustomerStatus">
+                                        <option value="active" ${customer.status === 'active' ? 'selected' : ''}>نشط</option>
+                                        <option value="inactive" ${customer.status === 'inactive' ? 'selected' : ''}>غير نشط</option>
+                                        <option value="VIP" ${customer.status === 'VIP' ? 'selected' : ''}>VIP</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>العنوان التفصيلي</label>
+                                <textarea id="editCustomerAddress" rows="3">${customer.address || ''}</textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" onclick="closeModal()">إلغاء</button>
+                        <button class="btn btn-primary" onclick="updateCustomer('${customerId}')">حفظ التغييرات</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+        
+        function updateCustomer(customerId) {
+            const customers = JSON.parse(localStorage.getItem('customers') || '[]');
+            const customerIndex = customers.findIndex(c => c.id === customerId);
+            
+            if (customerIndex === -1) {
+                alert('العميل غير موجود');
+                return;
+            }
+            
+            // Update customer data
+            customers[customerIndex].name = document.getElementById('editCustomerName').value;
+            customers[customerIndex].email = document.getElementById('editCustomerEmail').value;
+            customers[customerIndex].phone = document.getElementById('editCustomerPhone').value;
+            customers[customerIndex].nationalId = document.getElementById('editCustomerNationalId').value;
+            customers[customerIndex].city = document.getElementById('editCustomerCity').value;
+            customers[customerIndex].address = document.getElementById('editCustomerAddress').value;
+            customers[customerIndex].status = document.getElementById('editCustomerStatus').value;
+            
+            // Save to localStorage
+            localStorage.setItem('customers', JSON.stringify(customers));
+            
+            // Close modal and refresh table
+            closeModal();
+            
+            // Reload customers table
+            renderCustomersTable(customers);
+            updateCustomerStatistics(customers);
         }
 
         function messageCustomer(customerId) {
-            alert(`إرسال رسالة للعميل ${customerId} - سيتم فتح نموذج الرسالة`);
+            const customers = JSON.parse(localStorage.getItem('customers') || '[]');
+            const customer = customers.find(c => c.id === customerId);
+            
+            if (!customer) {
+                alert('العميل غير موجود');
+                return;
+            }
+            
+            const message = prompt(`إرسال رسالة إلى ${customer.name} (${customer.phone}):`);
+            if (message && message.trim()) {
+                alert(`تم إرسال الرسالة: "${message}" إلى ${customer.name}`);
+                // هنا يمكن إضافة منطق إرسال الرسالة الفعلي
+            }
+        }
+        
+        function deleteCustomer(customerId) {
+            if (confirm('هل أنت متأكد من حذف هذا العميل؟ لا يمكن التراجع عن هذا الإجراء.')) {
+                const customers = JSON.parse(localStorage.getItem('customers') || '[]');
+                const filteredCustomers = customers.filter(c => c.id !== customerId);
+                localStorage.setItem('customers', JSON.stringify(filteredCustomers));
+                
+                // Reload customers table
+                renderCustomersTable(filteredCustomers);
+                updateCustomerStatistics(filteredCustomers);
+            }
         }
 
         function filterCustomers() {
             const searchTerm = document.getElementById('customerSearch').value.toLowerCase();
             const statusFilter = document.getElementById('customerStatusFilter').value;
             const dateFilter = document.getElementById('customerDateFilter').value;
-            const table = document.getElementById('customersTable');
-            const rows = table.getElementsByTagName('tbody')[0].getElementsByTagName('tr');
-
-            for (let i = 0; i < rows.length; i++) {
-                const row = rows[i];
-                const customerName = row.cells[0].textContent.toLowerCase();
-                const contactInfo = row.cells[1].textContent.toLowerCase();
-                const status = row.cells[5].textContent.toLowerCase();
-                const registrationDate = row.cells[2].textContent;
-
-                const matchesSearch = customerName.includes(searchTerm) || contactInfo.includes(searchTerm);
-                const matchesStatus = !statusFilter || status.includes(statusFilter);
-                const matchesDate = !dateFilter || registrationDate.includes(dateFilter);
-
-                if (matchesSearch && matchesStatus && matchesDate) {
-                    row.style.display = '';
-                } else {
-                    row.style.display = 'none';
-                }
-            }
+            
+            // Get customers from localStorage
+            const customers = JSON.parse(localStorage.getItem('customers') || '[]');
+            
+            // Filter customers
+            const filteredCustomers = customers.filter(customer => {
+                const matchesSearch = !searchTerm || 
+                    customer.name.toLowerCase().includes(searchTerm) ||
+                    customer.email.toLowerCase().includes(searchTerm) ||
+                    customer.phone.includes(searchTerm);
+                
+                const matchesStatus = !statusFilter || customer.status === statusFilter;
+                
+                const matchesDate = !dateFilter || 
+                    new Date(customer.registrationDate).toISOString().split('T')[0] === dateFilter;
+                
+                return matchesSearch && matchesStatus && matchesDate;
+            });
+            
+            // Re-render table with filtered data
+            renderCustomersTable(filteredCustomers);
         }
 
         function resetCustomerFilters() {
             document.getElementById('customerSearch').value = '';
             document.getElementById('customerStatusFilter').value = '';
             document.getElementById('customerDateFilter').value = '';
-            filterCustomers();
+            
+            // Reload all customers
+            const customers = JSON.parse(localStorage.getItem('customers') || '[]');
+            renderCustomersTable(customers);
         }
 
         // Driver Management Functions
@@ -9029,6 +9739,180 @@
         let performanceMonitor;
         document.addEventListener('DOMContentLoaded', function() {
             performanceMonitor = new PerformanceMonitor();
+        });
+        // Load customers data
+        function loadCustomers() {
+            const customers = JSON.parse(localStorage.getItem('customers') || '[]');
+            updateCustomerStatistics(customers);
+            renderCustomersTable(customers);
+        }
+        
+        // Render customers table with real data
+        function renderCustomersTable(customers) {
+            const tableBody = document.querySelector('#customersTable tbody');
+            if (!tableBody) return;
+            
+            if (customers.length === 0) {
+                tableBody.innerHTML = `
+                    <tr>
+                        <td colspan="8" style="text-align: center; padding: 2rem; color: #64748b;">
+                            <i class="fas fa-users" style="font-size: 2rem; margin-bottom: 1rem; display: block;"></i>
+                            <strong>لا توجد عملاء مسجلين حالياً</strong>
+                            <br><small>سيتم عرض العملاء عند تسجيلهم</small>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+            
+            tableBody.innerHTML = customers.map(customer => `
+                <tr>
+                    <td>
+                        <div class="customer-info">
+                            <div class="customer-avatar ${customer.status === 'VIP' ? 'vip' : ''}">
+                                <i class="fas ${customer.status === 'VIP' ? 'fa-crown' : 'fa-user'}"></i>
+                            </div>
+                            <div class="customer-details">
+                                <strong>${customer.name}</strong>
+                                <small>${customer.id}</small>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="contact-info">
+                            <div><i class="fas fa-envelope"></i> ${customer.email}</div>
+                            <div><i class="fas fa-phone"></i> ${customer.phone}</div>
+                            ${customer.whatsapp ? `<div><i class="fab fa-whatsapp"></i> ${customer.whatsapp}</div>` : ''}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="address-info">
+                            <div><i class="fas fa-map-marker-alt"></i> ${getCityName(customer.city)}</div>
+                            ${customer.address ? `<div><i class="fas fa-home"></i> ${customer.address}</div>` : ''}
+                        </div>
+                    </td>
+                    <td>${new Date(customer.registrationDate).toLocaleDateString('ar-SA')}</td>
+                    <td><span class="badge">${customer.totalBookings || 0}</span></td>
+                    <td><span class="amount">${customer.totalSpent || 0} ريال</span></td>
+                    <td><span class="status-badge status-${customer.status === 'VIP' ? 'vip' : 'confirmed'}">${getStatusText(customer.status)}</span></td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-action btn-view" onclick="viewCustomer('${customer.id}')" title="عرض التفاصيل">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn-action btn-edit" onclick="editCustomer('${customer.id}')" title="تعديل">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-action btn-message" onclick="messageCustomer('${customer.id}')" title="إرسال رسالة">
+                                <i class="fas fa-envelope"></i>
+                            </button>
+                            <button class="btn-action btn-delete" onclick="deleteCustomer('${customer.id}')" title="حذف">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+        
+        function getCityName(cityCode) {
+            const cities = {
+                'riyadh': 'الرياض',
+                'jeddah': 'جدة',
+                'makkah': 'مكة المكرمة',
+                'madinah': 'المدينة المنورة',
+                'dammam': 'الدمام',
+                'taif': 'الطائف',
+                'tabuk': 'تبوك',
+                'yanbu': 'ينبع'
+            };
+            return cities[cityCode] || cityCode;
+        }
+        
+        function getStatusText(status) {
+            const statuses = {
+                'active': 'نشط',
+                'inactive': 'غير نشط',
+                'VIP': 'VIP'
+            };
+            return statuses[status] || status;
+        }
+        
+        // Update customer statistics
+        function updateCustomerStatistics(customers) {
+            const totalCustomers = customers.length;
+            const vipCustomers = customers.filter(c => c.status === 'VIP').length;
+            const activeCustomers = customers.filter(c => c.status === 'active').length;
+            const newCustomersThisMonth = customers.filter(c => {
+                const registrationDate = new Date(c.registrationDate);
+                const currentDate = new Date();
+                return registrationDate.getMonth() === currentDate.getMonth() && 
+                       registrationDate.getFullYear() === currentDate.getFullYear();
+            }).length;
+            
+            // Update DOM elements
+            const totalCustomersEl = document.getElementById('totalCustomers');
+            const vipCustomersEl = document.getElementById('vipCustomers');
+            const activeCustomersEl = document.getElementById('activeCustomers');
+            
+            if (totalCustomersEl) totalCustomersEl.textContent = totalCustomers;
+            if (vipCustomersEl) vipCustomersEl.textContent = vipCustomers;
+            if (activeCustomersEl) activeCustomersEl.textContent = activeCustomers;
+        }
+        
+        // Initialize customer data on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add sample data if no customers exist
+            const existingCustomers = JSON.parse(localStorage.getItem('customers') || '[]');
+            if (existingCustomers.length === 0) {
+                const sampleCustomers = [
+                    {
+                        id: 'NW20241220001',
+                        name: 'أحمد محمد العلي',
+                        email: 'ahmed@email.com',
+                        phone: '+966501234567',
+                        whatsapp: '+966501234567',
+                        nationalId: '1234567890',
+                        city: 'riyadh',
+                        address: 'شارع الملك فهد، رقم 123',
+                        status: 'active',
+                        registrationDate: new Date('2024-12-20').toISOString(),
+                        totalBookings: 15,
+                        totalSpent: 2500
+                    },
+                    {
+                        id: 'NW20241220002',
+                        name: 'فاطمة أحمد السعد',
+                        email: 'fatima@email.com',
+                        phone: '+966502345678',
+                        whatsapp: '+966502345678',
+                        nationalId: '2345678901',
+                        city: 'jeddah',
+                        address: 'شارع التحلية، رقم 456',
+                        status: 'active',
+                        registrationDate: new Date('2024-12-19').toISOString(),
+                        totalBookings: 8,
+                        totalSpent: 1200
+                    },
+                    {
+                        id: 'NW20241220003',
+                        name: 'محمد عبدالله القحطاني',
+                        email: 'mohammed@email.com',
+                        phone: '+966503456789',
+                        whatsapp: '+966503456789',
+                        nationalId: '3456789012',
+                        city: 'makkah',
+                        address: 'شارع الملك عبدالعزيز، رقم 789',
+                        status: 'VIP',
+                        registrationDate: new Date('2024-12-18').toISOString(),
+                        totalBookings: 25,
+                        totalSpent: 5000
+                    }
+                ];
+                localStorage.setItem('customers', JSON.stringify(sampleCustomers));
+            }
+            
+            loadCustomers();
         });
     </script>
 </body>

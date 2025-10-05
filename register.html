@@ -71,6 +71,31 @@
             margin-bottom: 1.5rem;
         }
         
+        .form-row.single {
+            grid-template-columns: 1fr;
+        }
+        
+        .form-section {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .form-section h3 {
+            color: var(--primary-color);
+            margin: 0 0 1rem 0;
+            font-size: 1.1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .form-section h3 i {
+            font-size: 1rem;
+        }
+        
         .form-group {
             margin-bottom: 1.5rem;
         }
@@ -293,16 +318,139 @@
                         </div>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="gender">الجنس *</label>
-                        <div class="input-group">
-                            <i class="fas fa-venus-mars"></i>
-                            <select id="gender" name="gender" required>
-                                <option value="">اختر الجنس</option>
-                                <option value="male">ذكر</option>
-                                <option value="female">أنثى</option>
-                            </select>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gender">الجنس *</label>
+                            <div class="input-group">
+                                <i class="fas fa-venus-mars"></i>
+                                <select id="gender" name="gender" required>
+                                    <option value="">اختر الجنس</option>
+                                    <option value="male">ذكر</option>
+                                    <option value="female">أنثى</option>
+                                </select>
+                            </div>
                         </div>
+                        
+                        <div class="form-group">
+                            <label for="nationality">الجنسية *</label>
+                            <div class="input-group">
+                                <i class="fas fa-flag"></i>
+                                <select id="nationality" name="nationality" required>
+                                    <option value="">اختر الجنسية</option>
+                                    <option value="saudi">سعودي</option>
+                                    <option value="egyptian">مصري</option>
+                                    <option value="syrian">سوري</option>
+                                    <option value="jordanian">أردني</option>
+                                    <option value="lebanese">لبناني</option>
+                                    <option value="other">أخرى</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- معلومات الاتصال الإضافية -->
+                    <div class="form-group">
+                        <label for="phone2">رقم هاتف إضافي</label>
+                        <div class="input-group">
+                            <i class="fas fa-phone-alt"></i>
+                            <input type="tel" id="phone2" name="phone2" placeholder="+966501234567">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="whatsapp">رقم الواتساب</label>
+                        <div class="input-group">
+                            <i class="fab fa-whatsapp"></i>
+                            <input type="tel" id="whatsapp" name="whatsapp" placeholder="+966501234567">
+                        </div>
+                    </div>
+                    
+                    <!-- العنوان -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="city">المدينة *</label>
+                            <div class="input-group">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <select id="city" name="city" required>
+                                    <option value="">اختر المدينة</option>
+                                    <option value="riyadh">الرياض</option>
+                                    <option value="jeddah">جدة</option>
+                                    <option value="makkah">مكة المكرمة</option>
+                                    <option value="madinah">المدينة المنورة</option>
+                                    <option value="dammam">الدمام</option>
+                                    <option value="taif">الطائف</option>
+                                    <option value="tabuk">تبوك</option>
+                                    <option value="yanbu">ينبع</option>
+                                    <option value="other">أخرى</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="district">الحي *</label>
+                            <div class="input-group">
+                                <i class="fas fa-home"></i>
+                                <input type="text" id="district" name="district" required placeholder="اسم الحي">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="address">العنوان التفصيلي *</label>
+                        <div class="input-group">
+                            <i class="fas fa-map"></i>
+                            <textarea id="address" name="address" rows="3" required placeholder="شارع، رقم المبنى، رقم الشقة"></textarea>
+                        </div>
+                    </div>
+                    
+                    <!-- تفضيلات السفر -->
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="preferredSeat">مقعد مفضل</label>
+                            <div class="input-group">
+                                <i class="fas fa-chair"></i>
+                                <select id="preferredSeat" name="preferredSeat">
+                                    <option value="">لا يوجد تفضيل</option>
+                                    <option value="window">نافذة</option>
+                                    <option value="aisle">ممر</option>
+                                    <option value="front">أمامي</option>
+                                    <option value="back">خلفي</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="travelFrequency">تكرار السفر</label>
+                            <div class="input-group">
+                                <i class="fas fa-calendar-alt"></i>
+                                <select id="travelFrequency" name="travelFrequency">
+                                    <option value="">اختر التكرار</option>
+                                    <option value="daily">يومي</option>
+                                    <option value="weekly">أسبوعي</option>
+                                    <option value="monthly">شهري</option>
+                                    <option value="rarely">نادراً</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- التفضيلات -->
+                    <div class="form-group">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" id="newsletter" name="newsletter">
+                            <span class="checkmark"></span>
+                            <i class="fas fa-envelope"></i>
+                            أريد تلقي العروض والتنبيهات عبر البريد الإلكتروني
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="checkbox-wrapper">
+                            <input type="checkbox" id="smsNotifications" name="smsNotifications">
+                            <span class="checkmark"></span>
+                            <i class="fas fa-sms"></i>
+                            أريد تلقي التنبيهات عبر الرسائل النصية
+                        </label>
                     </div>
                     
                     <div class="form-row">
@@ -349,20 +497,53 @@
     
     <script src="script.js"></script>
     <script>
+        // Generate unique customer ID
+        function generateCustomerId() {
+            const timestamp = Date.now().toString(36);
+            const random = Math.random().toString(36).substr(2, 5);
+            return 'NW' + timestamp + random.toUpperCase();
+        }
+        
         // Enhanced Registration Form
         document.getElementById('registerForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const formData = new FormData(this);
             const userData = {
+                // المعلومات الأساسية
                 fullName: formData.get('fullName'),
                 email: formData.get('email'),
                 phone: formData.get('phone'),
                 nationalId: formData.get('nationalId'),
                 dateOfBirth: formData.get('dateOfBirth'),
                 gender: formData.get('gender'),
+                nationality: formData.get('nationality'),
+                
+                // معلومات الاتصال الإضافية
+                phone2: formData.get('phone2'),
+                whatsapp: formData.get('whatsapp'),
+                
+                // العنوان
+                city: formData.get('city'),
+                district: formData.get('district'),
+                address: formData.get('address'),
+                
+                // تفضيلات السفر
+                preferredSeat: formData.get('preferredSeat'),
+                travelFrequency: formData.get('travelFrequency'),
+                
+                // التفضيلات
+                newsletter: formData.get('newsletter') === 'on',
+                smsNotifications: formData.get('smsNotifications') === 'on',
+                
+                // كلمة المرور
                 password: formData.get('password'),
-                confirmPassword: formData.get('confirmPassword')
+                confirmPassword: formData.get('confirmPassword'),
+                
+                // معلومات إضافية
+                registrationDate: new Date().toISOString(),
+                customerId: generateCustomerId(),
+                status: 'active'
             };
             
             // Validation
@@ -377,19 +558,57 @@
             setTimeout(() => {
                 // Save user data
                 const user = {
-                    id: 'U' + Date.now(),
+                    id: userData.customerId,
                     fullName: userData.fullName,
                     email: userData.email,
                     phone: userData.phone,
+                    phone2: userData.phone2,
+                    whatsapp: userData.whatsapp,
                     nationalId: userData.nationalId,
                     dateOfBirth: userData.dateOfBirth,
                     gender: userData.gender,
+                    nationality: userData.nationality,
+                    city: userData.city,
+                    district: userData.district,
+                    address: userData.address,
+                    preferredSeat: userData.preferredSeat,
+                    travelFrequency: userData.travelFrequency,
+                    newsletter: userData.newsletter,
+                    smsNotifications: userData.smsNotifications,
                     role: 'user',
-                    createdAt: new Date().toISOString(),
+                    createdAt: userData.registrationDate,
                     isActive: true
                 };
                 
                 localStorage.setItem('user', JSON.stringify(user));
+                
+                // Store customer data for admin dashboard
+                const existingCustomers = JSON.parse(localStorage.getItem('customers') || '[]');
+                const customerData = {
+                    id: userData.customerId,
+                    name: userData.fullName,
+                    email: userData.email,
+                    phone: userData.phone,
+                    phone2: userData.phone2,
+                    whatsapp: userData.whatsapp,
+                    nationalId: userData.nationalId,
+                    dateOfBirth: userData.dateOfBirth,
+                    gender: userData.gender,
+                    nationality: userData.nationality,
+                    city: userData.city,
+                    district: userData.district,
+                    address: userData.address,
+                    preferredSeat: userData.preferredSeat,
+                    travelFrequency: userData.travelFrequency,
+                    newsletter: userData.newsletter,
+                    smsNotifications: userData.smsNotifications,
+                    registrationDate: userData.registrationDate,
+                    status: userData.status,
+                    totalBookings: 0,
+                    totalSpent: 0
+                };
+                existingCustomers.push(customerData);
+                localStorage.setItem('customers', JSON.stringify(existingCustomers));
                 
                 showLoading(false);
                 showSuccess('تم إنشاء الحساب بنجاح! سيتم توجيهك إلى الصفحة الرئيسية...');

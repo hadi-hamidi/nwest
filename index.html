@@ -103,6 +103,205 @@
             background: linear-gradient(90deg, #2563eb, #f97316) !important;
         }
         
+        .login-link {
+            background: linear-gradient(135deg, #2563eb, #f97316) !important;
+            color: white !important;
+            border-radius: 25px !important;
+            padding: 0.5rem 1rem !important;
+            margin: 0.25rem 0 !important;
+            font-weight: 600 !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .login-link:hover {
+            background: linear-gradient(135deg, #1d4ed8, #ea580c) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3) !important;
+        }
+        
+        /* Mobile Login Link */
+        .mobile-login {
+            margin-top: 20px;
+            padding: 20px;
+            border-top: 1px solid #e5e7eb;
+        }
+        
+        .mobile-login-link {
+            display: block;
+            background: linear-gradient(135deg, #2563eb, #f97316);
+            color: white;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .mobile-login-link:hover {
+            background: linear-gradient(135deg, #1d4ed8, #ea580c);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+            color: white;
+        }
+        
+        /* Mobile Language Selector */
+        .mobile-language-selector {
+            margin-top: 20px;
+            padding: 20px;
+            border-top: 1px solid #e5e7eb;
+            position: relative;
+        }
+        
+        .mobile-lang-btn {
+            background: linear-gradient(135deg, #2563eb, #f97316);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        .mobile-lang-btn:hover {
+            background: linear-gradient(135deg, #1d4ed8, #ea580c);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+        
+        .mobile-lang-menu {
+            position: relative;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            display: none;
+            margin-top: 8px;
+            width: 100%;
+        }
+        
+        .mobile-lang-menu.active {
+            display: block;
+        }
+        
+        .mobile-lang-menu li {
+            list-style: none;
+        }
+        
+        .mobile-lang-menu a {
+            display: block;
+            padding: 12px 20px;
+            color: #374151;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #f3f4f6;
+        }
+        
+        .mobile-lang-menu a:hover {
+            background: #f3f4f6;
+            color: #2563eb;
+        }
+        
+        .mobile-lang-menu li:last-child a {
+            border-bottom: none;
+        }
+        
+        /* Mobile Language Menu Responsive */
+        @media (max-width: 768px) {
+            .mobile-language-selector {
+                display: block !important;
+            }
+            
+            .mobile-lang-menu {
+                position: relative;
+                top: auto;
+                left: auto;
+                right: auto;
+                width: 100%;
+                margin-top: 8px;
+            }
+        }
+        
+        /* Hide mobile elements on desktop */
+        @media (min-width: 769px) {
+            .mobile-login {
+                display: none !important;
+            }
+            
+            .mobile-language-selector {
+                display: none !important;
+            }
+        }
+        
+        /* Language Selector */
+        .language-selector {
+            position: relative;
+        }
+        
+        .lang-btn {
+            background: none;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .lang-btn:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .lang-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            min-width: 120px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+        
+        .lang-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .lang-menu li {
+            list-style: none;
+        }
+        
+        .lang-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .lang-menu a:hover {
+            background: var(--light-color);
+            color: var(--primary-color);
+        }
+        
         .header {
             border-bottom: 3px solid #f97316 !important;
         }
@@ -161,6 +360,216 @@
         
         .wave {
             animation: wave 2s ease-in-out infinite;
+        }
+        
+        /* Schedule Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            padding: 1rem;
+        }
+        
+        .modal-content {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            max-width: 800px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        .modal-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-header h3 {
+            margin: 0;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .close-btn:hover {
+            background: var(--light-color);
+            color: var(--text-color);
+        }
+        
+        .modal-body {
+            padding: 1.5rem;
+        }
+        
+        .modal-footer {
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+        }
+        
+        /* Schedule Tabs */
+        .schedule-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .tab-btn {
+            background: none;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+            border-bottom: 2px solid transparent;
+            transition: var(--transition);
+        }
+        
+        .tab-btn.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+        
+        .tab-btn:hover {
+            color: var(--primary-color);
+        }
+        
+        /* Schedule Content */
+        .schedule-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        .route-schedule {
+            background: var(--light-color);
+            border-radius: var(--border-radius);
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+        }
+        
+        .route-info {
+            margin-bottom: 1rem;
+        }
+        
+        .route-info h5 {
+            color: var(--primary-color);
+            margin: 0 0 0.5rem 0;
+            font-size: 1.1rem;
+        }
+        
+        .route-info p {
+            margin: 0.25rem 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .route-info i {
+            width: 16px;
+            margin-left: 0.5rem;
+        }
+        
+        .schedule-times {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 0.75rem;
+        }
+        
+        .time-slot {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 0.75rem;
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .time-slot:hover {
+            border-color: var(--primary-color);
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
+        }
+        
+        .time-slot .time {
+            display: block;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 0.25rem;
+        }
+        
+        .time-slot .price {
+            display: block;
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        /* Weekly Schedule */
+        .weekly-schedule {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .day-schedule {
+            background: var(--light-color);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+        
+        .day-schedule h5 {
+            color: var(--primary-color);
+            margin: 0 0 0.5rem 0;
+        }
+        
+        .day-schedule p {
+            margin: 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .modal-overlay {
+                padding: 0.5rem;
+            }
+            
+            .schedule-times {
+                grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            }
+            
+            .weekly-schedule {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
     
@@ -226,19 +635,34 @@
                         <li><a href="#faq" class="nav-link">الأسئلة الشائعة</a></li>
                         <li><a href="#contact" class="nav-link">تواصل معنا</a></li>
                     </ul>
+                    
+                    <!-- Mobile Login Link -->
+                    <div class="mobile-login">
+                        <a href="login.html" class="mobile-login-link">تسجيل الدخول</a>
+                    </div>
+                    
+                    <!-- Mobile Language Selector -->
+                    <div class="mobile-language-selector">
+                        <button class="mobile-lang-btn" onclick="toggleLanguageMenu()">العربية <i class="fas fa-globe"></i></button>
+                        <ul class="mobile-lang-menu" id="mobileLangMenu">
+                            <li><a href="#" onclick="changeLanguage('ar')">العربية</a></li>
+                            <li><a href="#" onclick="changeLanguage('en')">English</a></li>
+                            <li><a href="#" onclick="changeLanguage('ur')">اردو</a></li>
+                        </ul>
+                    </div>
                 </div>
 
                 <div class="nav-actions">
                     <div class="language-selector">
-                        <button class="lang-btn">العربية <i class="fas fa-globe"></i></button>
-                        <ul class="lang-menu">
-                            <li><a href="#ar">العربية</a></li>
-                            <li><a href="#en">English</a></li>
-                            <li><a href="#ur">اردو</a></li>
+                        <button class="lang-btn" onclick="toggleLanguageMenu()">العربية <i class="fas fa-globe"></i></button>
+                        <ul class="lang-menu" id="langMenu">
+                            <li><a href="#" onclick="changeLanguage('ar')">العربية</a></li>
+                            <li><a href="#" onclick="changeLanguage('en')">English</a></li>
+                            <li><a href="#" onclick="changeLanguage('ur')">اردو</a></li>
                         </ul>
                     </div>
                     <button class="btn btn-primary booking-btn" onclick="initializeBookingSystem()">احجز الآن</button>
-                    <button class="btn btn-outline" onclick="window.location.href='login.html'">تسجيل دخول</button>
+                    <button class="btn btn-outline" onclick="window.location.href='login.html'">تسجيل الدخول</button>
                 </div>
 
                 <div class="hamburger" id="hamburger">
@@ -263,8 +687,8 @@
                 <h1 class="hero-title">استمتع بالوصول إلى وجهتك في رحلة سلسة</h1>
                 <p class="hero-subtitle">خدمة نقل متميزة تجمع بين الراحة والأمان والالتزام بالمواعيد</p>
                 <div class="hero-actions">
-                    <button class="btn btn-primary btn-large pulse">احجز رحلتك الآن</button>
-                    <button class="btn btn-secondary btn-large">جدول الرحلات</button>
+                    <button class="btn btn-primary btn-large pulse" onclick="scrollToBooking()">احجز رحلتك الآن</button>
+                    <button class="btn btn-secondary btn-large" onclick="showSchedule()">جدول الرحلات</button>
                 </div>
             </div>
 
@@ -473,7 +897,7 @@
                         <div class="route-schedule">
                             <span>رحلات يومية: 6:00 ص - 11:00 م</span>
                         </div>
-                        <button class="btn btn-outline">احجز الآن</button>
+                        <button class="btn btn-outline" onclick="bookRoute('جدة', 'الرياض', 120)">احجز الآن</button>
                     </div>
                 </div>
 
@@ -494,7 +918,7 @@
                         <div class="route-schedule">
                             <span>رحلات يومية: 5:30 ص - 10:30 م</span>
                         </div>
-                        <button class="btn btn-outline">احجز الآن</button>
+                        <button class="btn btn-outline" onclick="bookRoute('جدة', 'المدينة المنورة', 80)">احجز الآن</button>
                     </div>
                 </div>
 
@@ -515,7 +939,7 @@
                         <div class="route-schedule">
                             <span>رحلات يومية: 7:00 ص - 9:00 م</span>
                         </div>
-                        <button class="btn btn-outline">احجز الآن</button>
+                        <button class="btn btn-outline" onclick="bookRoute('الرياض', 'الطائف', 100)">احجز الآن</button>
                     </div>
                 </div>
 
@@ -536,7 +960,7 @@
                         <div class="route-schedule">
                             <span>رحلات يومية: 6:00 ص - 8:00 م</span>
                         </div>
-                        <button class="btn btn-outline">احجز الآن</button>
+                        <button class="btn btn-outline" onclick="bookRoute('مكة المكرمة', 'ينبع', 70)">احجز الآن</button>
                     </div>
                 </div>
                 <div class="route-card scroll-animate">
@@ -556,7 +980,7 @@
                         <div class="route-schedule">
                             <span>رحلات يومية: 7:00 ص - 9:00 م</span>
                         </div>
-                        <button class="btn btn-outline">احجز الآن</button>
+                        <button class="btn btn-outline" onclick="bookRoute('جدة', 'تبوك', 150)">احجز الآن</button>
                     </div>
                 </div>
             </div>
@@ -1574,6 +1998,34 @@
                 });
             });
         }
+        
+        // Mobile language menu functionality
+        const mobileLangBtn = document.querySelector('.mobile-lang-btn');
+        const mobileLangMenu = document.getElementById('mobileLangMenu');
+        
+        if (mobileLangBtn && mobileLangMenu) {
+            mobileLangBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                mobileLangMenu.classList.toggle('active');
+            });
+            
+            // Close mobile language menu when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!mobileLangBtn.contains(e.target) && !mobileLangMenu.contains(e.target)) {
+                    mobileLangMenu.classList.remove('active');
+                }
+            });
+            
+            // Close mobile language menu when clicking on language options
+            mobileLangMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const lang = link.getAttribute('onclick').match(/'([^']+)'/)[1];
+                    changeLanguage(lang);
+                    mobileLangMenu.classList.remove('active');
+                });
+            });
+        }
 
         // Accessibility improvements
         document.addEventListener('keydown', (e) => {
@@ -1641,6 +2093,1230 @@
         function showSupport() {
             alert('سيتم فتح خدمة العملاء قريباً');
         }
+        
+        // Book Route Function
+        function bookRoute(from, to, price) {
+            // Fill the booking form with route details
+            const fromSelect = document.getElementById('from');
+            const toSelect = document.getElementById('to');
+            
+            if (fromSelect && toSelect) {
+                // Set the route in the booking form
+                fromSelect.value = from.toLowerCase().replace(/\s+/g, '');
+                toSelect.value = to.toLowerCase().replace(/\s+/g, '');
+                
+                // Scroll to booking widget
+                const bookingWidget = document.querySelector('.booking-widget');
+                if (bookingWidget) {
+                    bookingWidget.scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Add highlight effect
+                    bookingWidget.style.boxShadow = '0 0 20px rgba(37, 99, 235, 0.3)';
+                    setTimeout(() => {
+                        bookingWidget.style.boxShadow = '';
+                    }, 2000);
+                }
+                
+                // Show success message
+                alert(`تم تحديد الرحلة: ${from} ← ${to}\nالسعر: ${price} ريال\nيمكنك الآن إكمال الحجز في النموذج أدناه`);
+            }
+        }
+        
+        // Hero Actions Functions
+        function scrollToBooking() {
+            // Scroll to booking widget
+            const bookingWidget = document.querySelector('.booking-widget');
+            if (bookingWidget) {
+                bookingWidget.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                // Add highlight effect
+                bookingWidget.style.boxShadow = '0 0 20px rgba(37, 99, 235, 0.3)';
+                setTimeout(() => {
+                    bookingWidget.style.boxShadow = '';
+                }, 2000);
+            }
+        }
+        
+        function showSchedule() {
+            // Create schedule modal
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.innerHTML = `
+                <div class="modal-content schedule-modal">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-calendar-alt"></i> جدول الرحلات</h3>
+                        <button class="close-btn" onclick="closeScheduleModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="schedule-tabs">
+                            <button class="tab-btn active" onclick="showScheduleTab('daily')">الرحلات اليومية</button>
+                            <button class="tab-btn" onclick="showScheduleTab('weekly')">الرحلات الأسبوعية</button>
+                        </div>
+                        
+                        <div id="dailySchedule" class="schedule-content">
+                            <h4>الرحلات اليومية</h4>
+                            <div class="schedule-grid">
+                                <div class="route-schedule">
+                                    <div class="route-info">
+                                        <h5>جدة ← الرياض</h5>
+                                        <p><i class="fas fa-clock"></i> 10 ساعات</p>
+                                        <p><i class="fas fa-road"></i> 950 كم</p>
+                                    </div>
+                                    <div class="schedule-times">
+                                        <div class="time-slot">
+                                            <span class="time">06:00 ص</span>
+                                            <span class="price">120 ريال</span>
+                                        </div>
+                                        <div class="time-slot">
+                                            <span class="time">10:00 ص</span>
+                                            <span class="price">120 ريال</span>
+                                        </div>
+                                        <div class="time-slot">
+                                            <span class="time">02:00 م</span>
+                                            <span class="price">120 ريال</span>
+                                        </div>
+                                        <div class="time-slot">
+                                            <span class="time">06:00 م</span>
+                                            <span class="price">120 ريال</span>
+                                        </div>
+                                        <div class="time-slot">
+                                            <span class="time">10:00 م</span>
+                                            <span class="price">120 ريال</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="route-schedule">
+                                    <div class="route-info">
+                                        <h5>جدة ← المدينة المنورة</h5>
+                                        <p><i class="fas fa-clock"></i> 4.5 ساعات</p>
+                                        <p><i class="fas fa-road"></i> 420 كم</p>
+                                    </div>
+                                    <div class="schedule-times">
+                                        <div class="time-slot">
+                                            <span class="time">05:30 ص</span>
+                                            <span class="price">80 ريال</span>
+                                        </div>
+                                        <div class="time-slot">
+                                            <span class="time">09:30 ص</span>
+                                            <span class="price">80 ريال</span>
+                                        </div>
+                                        <div class="time-slot">
+                                            <span class="time">01:30 م</span>
+                                            <span class="price">80 ريال</span>
+                                        </div>
+                                        <div class="time-slot">
+                                            <span class="time">05:30 م</span>
+                                            <span class="price">80 ريال</span>
+                                        </div>
+                                        <div class="time-slot">
+                                            <span class="time">09:30 م</span>
+                                            <span class="price">80 ريال</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="route-schedule">
+                                    <div class="route-info">
+                                        <h5>الرياض ← الطائف</h5>
+                                        <p><i class="fas fa-clock"></i> 8 ساعات</p>
+                                        <p><i class="fas fa-road"></i> 750 كم</p>
+                                    </div>
+                                    <div class="schedule-times">
+                                        <div class="time-slot">
+                                            <span class="time">07:00 ص</span>
+                                            <span class="price">100 ريال</span>
+                                        </div>
+                                        <div class="time-slot">
+                                            <span class="time">11:00 ص</span>
+                                            <span class="price">100 ريال</span>
+                                        </div>
+                                        <div class="time-slot">
+                                            <span class="time">03:00 م</span>
+                                            <span class="price">100 ريال</span>
+                                        </div>
+                                        <div class="time-slot">
+                                            <span class="time">07:00 م</span>
+                                            <span class="price">100 ريال</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div id="weeklySchedule" class="schedule-content" style="display: none;">
+                            <h4>الرحلات الأسبوعية</h4>
+                            <div class="weekly-schedule">
+                                <div class="day-schedule">
+                                    <h5>الأحد</h5>
+                                    <p>جميع الرحلات متاحة</p>
+                                </div>
+                                <div class="day-schedule">
+                                    <h5>الاثنين</h5>
+                                    <p>جميع الرحلات متاحة</p>
+                                </div>
+                                <div class="day-schedule">
+                                    <h5>الثلاثاء</h5>
+                                    <p>جميع الرحلات متاحة</p>
+                                </div>
+                                <div class="day-schedule">
+                                    <h5>الأربعاء</h5>
+                                    <p>جميع الرحلات متاحة</p>
+                                </div>
+                                <div class="day-schedule">
+                                    <h5>الخميس</h5>
+                                    <p>جميع الرحلات متاحة</p>
+                                </div>
+                                <div class="day-schedule">
+                                    <h5>الجمعة</h5>
+                                    <p>رحلات محدودة (بعد صلاة الجمعة)</p>
+                                </div>
+                                <div class="day-schedule">
+                                    <h5>السبت</h5>
+                                    <p>جميع الرحلات متاحة</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" onclick="closeScheduleModal()">إغلاق</button>
+                        <button class="btn btn-primary" onclick="scrollToBooking()">احجز الآن</button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+        
+        function closeScheduleModal() {
+            const modal = document.querySelector('.modal-overlay');
+            if (modal) {
+                modal.remove();
+            }
+        }
+        
+        function showScheduleTab(tabName) {
+            // Hide all content
+            document.querySelectorAll('.schedule-content').forEach(content => {
+                content.style.display = 'none';
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Show selected content
+            document.getElementById(tabName + 'Schedule').style.display = 'block';
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+        
+        // Language Functions
+        function toggleLanguageMenu() {
+            const langMenu = document.getElementById('langMenu');
+            const mobileLangMenu = document.getElementById('mobileLangMenu');
+            
+            if (langMenu) {
+                langMenu.classList.toggle('active');
+            }
+            if (mobileLangMenu) {
+                mobileLangMenu.classList.toggle('active');
+            }
+        }
+        
+        function changeLanguage(lang) {
+            // Close language menu
+            const langMenu = document.getElementById('langMenu');
+            const mobileLangMenu = document.getElementById('mobileLangMenu');
+            
+            if (langMenu) {
+                langMenu.classList.remove('active');
+            }
+            if (mobileLangMenu) {
+                mobileLangMenu.classList.remove('active');
+            }
+            
+            // Update language button text
+            const langBtn = document.querySelector('.lang-btn');
+            const mobileLangBtn = document.querySelector('.mobile-lang-btn');
+            const langNames = {
+                'ar': 'العربية',
+                'en': 'English',
+                'ur': 'اردو'
+            };
+            
+            if (langBtn) {
+                langBtn.innerHTML = `${langNames[lang]} <i class="fas fa-globe"></i>`;
+            }
+            if (mobileLangBtn) {
+                mobileLangBtn.innerHTML = `${langNames[lang]} <i class="fas fa-globe"></i>`;
+            }
+            
+            // Store language preference
+            localStorage.setItem('selectedLanguage', lang);
+            
+            // Apply language changes
+            applyLanguage(lang);
+            
+            // Force apply language again after a short delay
+            setTimeout(() => {
+                applyLanguage(lang);
+            }, 100);
+        }
+        
+        function applyLanguage(lang) {
+            // Language content
+            const content = {
+                'ar': {
+                    // Navigation
+                    'nav-home': 'الرئيسية',
+                    'nav-routes': 'الطرق',
+                    'nav-about': 'من نحن',
+                    'nav-fleet': 'أسطولنا',
+                    'nav-faq': 'الأسئلة الشائعة',
+                    'nav-contact': 'تواصل معنا',
+                    'nav-login': 'تسجيل الدخول',
+                    
+                    // Hero Section
+                    'hero-title': 'استمتع بالوصول إلى وجهتك في رحلة سلسة',
+                    'hero-subtitle': 'خدمة نقل متميزة تجمع بين الراحة والأمان والالتزام بالمواعيد',
+                    'hero-book': 'احجز رحلتك الآن',
+                    'hero-schedule': 'جدول الرحلات',
+                    
+                    // Booking Widget
+                    'booking-title': 'احجز رحلتك',
+                    'booking-subtitle': 'سافر بثقة مع نورث وست',
+                    'booking-from': 'من',
+                    'booking-to': 'إلى',
+                    'booking-date': 'تاريخ السفر',
+                    'booking-passengers': 'عدد الركاب',
+                    'booking-search': 'البحث عن الرحلات',
+                    'booking-choose-city': 'اختر المدينة',
+                    'booking-passenger': 'راكب',
+                    
+                    // Features
+                    'feature-luxury': 'باصات فاخرة',
+                    'feature-routes': 'طرق متنوعة',
+                    'feature-daily': 'رحلات يومية',
+                    'feature-luxury-desc': 'أحدث الباصات مع جميع وسائل الراحة',
+                    'feature-routes-desc': 'تغطية شاملة لأهم المدن السعودية',
+                    'feature-daily-desc': 'رحلات منتظمة على مدار الساعة',
+                    
+                    // Popular Routes
+                    'routes-title': 'الطرق الأكثر شعبية',
+                    'routes-subtitle': 'اكتشف أهم وجهاتنا مع رحلات يومية مريحة',
+                    'routes-book': 'احجز الآن',
+                    'routes-popular': 'الأكثر شعبية',
+                    'routes-duration': 'ساعات',
+                    'routes-distance': 'كم',
+                    'routes-price-from': 'من',
+                    'routes-price-riyal': 'ريال',
+                    'routes-price-person': 'للشخص الواحد',
+                    'routes-daily': 'رحلات يومية',
+                    
+                    // Other Sections
+                    'fleet-title': 'أسطولنا المتطور',
+                    'fleet-subtitle': 'باصات حديثة مجهزة بأحدث التقنيات لضمان راحتك وأمانك',
+                    'fleet-wifi': 'واي فاي مجاني',
+                    'fleet-wifi-desc': 'إنترنت عالي السرعة طوال الرحلة',
+                    'fleet-usb': 'شواحن USB',
+                    'fleet-usb-desc': 'منافذ شحن في كل مقعد',
+                    'fleet-ac': 'تكييف متطور',
+                    'fleet-ac-desc': 'درجة حرارة مثالية في جميع الأوقات',
+                    'fleet-tv': 'شاشات ترفيهية',
+                    'fleet-tv-desc': 'أفلام ومسلسلات متنوعة',
+                    'fleet-food': 'خدمة الوجبات',
+                    'fleet-food-desc': 'وجبات طازجة ومشروبات مجانية',
+                    'fleet-seats': 'مقاعد قابلة للإمالة',
+                    'fleet-seats-desc': 'راحة قصوى للنوم أثناء الرحلة',
+                    
+                    'about-title': 'معلومات عنا',
+                    'about-subtitle': 'أهلاً وسهلاً بكم في عالم نورث وست باص، حيث نضع للسفر مفهوم التميز والرقي.',
+                    'about-desc': 'باعتبارنا شركة حديثة ومتطورة جاءت نتاجاً لدمج خبرات اثنين من رواد المجال وهما شركتي القائد السعودية وموفنتيس مما يعني توفير الموثوقية، الالتزام بالمواعيد والتواصل المفتوح مع الجميع من أجل تقديم خدمة نقل استثنائية.',
+                    'about-passengers': 'راكب سعيد',
+                    'about-buses': 'باص حديث',
+                    'about-cities': 'مدينة',
+                    'about-support': 'خدمة عملاء',
+                    
+                    'faq-title': 'الأسئلة الشائعة',
+                    'faq-subtitle': 'إجابات على الأسئلة الأكثر شيوعاً',
+                    'contact-title': 'تواصل معنا',
+                    'contact-subtitle': 'نحن هنا لمساعدتك',
+                    'footer-title': 'نورث وست باص',
+                    
+                    // Branches Section
+                    'branches-title': 'فروعنا ومحطات التوقف',
+                    'branches-subtitle': 'نغطي أهم المدن في المملكة العربية السعودية',
+                    'branches-western': 'المنطقة الغربية',
+                    'branches-central': 'المنطقة الوسطى',
+                    'branches-northern': 'المنطقة الشمالية',
+                    'branches-southern': 'المنطقة الجنوبية',
+                    
+                    // Map Section
+                    'map-title': 'موقعنا على الخريطة',
+                    'map-subtitle': 'تعرف على مواقع فروعنا ومحطاتنا في جميع أنحاء المملكة',
+                    'map-info-title': 'شبكة واسعة من الفروع',
+                    'map-info-desc': 'نفخر بتغطيتنا الشاملة لأهم المدن والمناطق في المملكة العربية السعودية، مما يوفر لك سهولة الوصول إلى خدماتنا أينما كنت.',
+                    'map-locations': '15+ موقع',
+                    'map-locations-desc': 'فروع في جميع أنحاء المملكة',
+                    'map-routes': 'طرق متنوعة',
+                    'map-routes-desc': 'طرق تربط المدن الرئيسية',
+                    'map-coverage': 'تغطية شاملة',
+                    'map-coverage-desc': 'جميع مناطق المملكة',
+                    
+                    // Cities Names
+                    'city-jeddah': 'جدة',
+                    'city-riyadh': 'الرياض',
+                    'city-makkah': 'مكة المكرمة',
+                    'city-madinah': 'المدينة المنورة',
+                    'city-yanbu': 'ينبع',
+                    'city-taif': 'الطائف',
+                    'city-tabuk': 'تبوك',
+                    'city-alula': 'العلا',
+                    'city-baha': 'الباحة',
+                    'city-khamis': 'خميس مشيط',
+                    'city-jazan': 'جازان',
+                    'city-qassim': 'القصيم',
+                    'city-hail': 'حائل',
+                    
+                    // Actions
+                    'action-schedule': 'جدول الرحلات',
+                    'action-track': 'تتبع الرحلة',
+                    'action-support': 'خدمة العملاء',
+                    
+                    // Buttons
+                    'btn-book': 'احجز الآن',
+                    'btn-login': 'تسجيل دخول'
+                },
+                'en': {
+                    // Navigation
+                    'nav-home': 'Home',
+                    'nav-routes': 'Routes',
+                    'nav-about': 'About Us',
+                    'nav-fleet': 'Our Fleet',
+                    'nav-faq': 'FAQ',
+                    'nav-contact': 'Contact Us',
+                    'nav-login': 'Login',
+                    
+                    // Hero Section
+                    'hero-title': 'Enjoy reaching your destination in a smooth journey',
+                    'hero-subtitle': 'Premium transportation service combining comfort, safety and punctuality',
+                    'hero-book': 'Book Your Trip Now',
+                    'hero-schedule': 'Trip Schedule',
+                    
+                    // Booking Widget
+                    'booking-title': 'Book Your Trip',
+                    'booking-subtitle': 'Travel with confidence with Northwest',
+                    'booking-from': 'From',
+                    'booking-to': 'To',
+                    'booking-date': 'Travel Date',
+                    'booking-passengers': 'Number of Passengers',
+                    'booking-search': 'Search Trips',
+                    'booking-choose-city': 'Choose City',
+                    'booking-passenger': 'passenger',
+                    
+                    // Features
+                    'feature-luxury': 'Luxury Buses',
+                    'feature-routes': 'Diverse Routes',
+                    'feature-daily': 'Daily Trips',
+                    'feature-luxury-desc': 'Latest buses with all amenities',
+                    'feature-routes-desc': 'Comprehensive coverage of the most important Saudi cities',
+                    'feature-daily-desc': 'Regular trips around the clock',
+                    
+                    // Popular Routes
+                    'routes-title': 'Most Popular Routes',
+                    'routes-subtitle': 'Discover our most important destinations with comfortable daily trips',
+                    'routes-book': 'Book Now',
+                    'routes-popular': 'Most Popular',
+                    'routes-duration': 'hours',
+                    'routes-distance': 'km',
+                    'routes-price-from': 'From',
+                    'routes-price-riyal': 'SAR',
+                    'routes-price-person': 'per person',
+                    'routes-daily': 'Daily trips',
+                    
+                    // Other Sections
+                    'fleet-title': 'Our Advanced Fleet',
+                    'fleet-subtitle': 'Modern buses equipped with the latest technology to ensure your comfort and safety',
+                    'fleet-wifi': 'Free WiFi',
+                    'fleet-wifi-desc': 'High-speed internet throughout the journey',
+                    'fleet-usb': 'USB Chargers',
+                    'fleet-usb-desc': 'Charging ports at every seat',
+                    'fleet-ac': 'Advanced Air Conditioning',
+                    'fleet-ac-desc': 'Perfect temperature at all times',
+                    'fleet-tv': 'Entertainment Screens',
+                    'fleet-tv-desc': 'Movies and TV shows',
+                    'fleet-food': 'Meal Service',
+                    'fleet-food-desc': 'Fresh meals and free drinks',
+                    'fleet-seats': 'Reclining Seats',
+                    'fleet-seats-desc': 'Maximum comfort for sleeping during the journey',
+                    
+                    'about-title': 'About Us',
+                    'about-subtitle': 'Welcome to North West Bus world, where we redefine travel with excellence and sophistication.',
+                    'about-desc': 'As a modern and advanced company, we are the result of merging the expertise of two industry leaders: Al-Qaed Saudi and Moventis, which means providing reliability, punctuality, and open communication with everyone to deliver exceptional transportation service.',
+                    'about-passengers': 'Happy Passengers',
+                    'about-buses': 'Modern Buses',
+                    'about-cities': 'Cities',
+                    'about-support': 'Customer Service',
+                    
+                    'faq-title': 'Frequently Asked Questions',
+                    'faq-subtitle': 'Answers to the most common questions',
+                    'contact-title': 'Contact Us',
+                    'contact-subtitle': 'We are here to help you',
+                    'footer-title': 'North West Bus',
+                    
+                    // Branches Section
+                    'branches-title': 'Our Branches and Stations',
+                    'branches-subtitle': 'We cover the most important cities in Saudi Arabia',
+                    'branches-western': 'Western Region',
+                    'branches-central': 'Central Region',
+                    'branches-northern': 'Northern Region',
+                    'branches-southern': 'Southern Region',
+                    
+                    // Map Section
+                    'map-title': 'Our Location on the Map',
+                    'map-subtitle': 'Learn about our branch and station locations throughout the Kingdom',
+                    'map-info-title': 'Wide Network of Branches',
+                    'map-info-desc': 'We are proud of our comprehensive coverage of the most important cities and regions in Saudi Arabia, providing you with easy access to our services wherever you are.',
+                    'map-locations': '15+ Locations',
+                    'map-locations-desc': 'Branches throughout the Kingdom',
+                    'map-routes': 'Diverse Routes',
+                    'map-routes-desc': 'Routes connecting major cities',
+                    'map-coverage': 'Comprehensive Coverage',
+                    'map-coverage-desc': 'All regions of the Kingdom',
+                    
+                    // Cities Names
+                    'city-jeddah': 'Jeddah',
+                    'city-riyadh': 'Riyadh',
+                    'city-makkah': 'Makkah',
+                    'city-madinah': 'Madinah',
+                    'city-yanbu': 'Yanbu',
+                    'city-taif': 'Taif',
+                    'city-tabuk': 'Tabuk',
+                    'city-alula': 'AlUla',
+                    'city-baha': 'Al Baha',
+                    'city-khamis': 'Khamis Mushait',
+                    'city-jazan': 'Jazan',
+                    'city-qassim': 'Qassim',
+                    'city-hail': 'Hail',
+                    
+                    // Actions
+                    'action-schedule': 'Trip Schedule',
+                    'action-track': 'Track Trip',
+                    'action-support': 'Customer Service',
+                    
+                    // Buttons
+                    'btn-book': 'Book Now',
+                    'btn-login': 'Login'
+                },
+                'ur': {
+                    // Navigation
+                    'nav-home': 'ہوم',
+                    'nav-routes': 'راستے',
+                    'nav-about': 'ہمارے بارے میں',
+                    'nav-fleet': 'ہمارا بیڑا',
+                    'nav-faq': 'اکثر پوچھے جانے والے سوالات',
+                    'nav-contact': 'رابطہ',
+                    'nav-login': 'لاگ ان',
+                    
+                    // Hero Section
+                    'hero-title': 'اپنی منزل تک پہنچنے کا لطف اٹھائیں',
+                    'hero-subtitle': 'پریمیم ٹرانسپورٹ سروس جو آرام، حفاظت اور وقت کی پابندی کو یکجا کرتی ہے',
+                    'hero-book': 'ابھی اپنا سفر بک کریں',
+                    'hero-schedule': 'سفر کا شیڈول',
+                    
+                    // Booking Widget
+                    'booking-title': 'اپنا سفر بک کریں',
+                    'booking-subtitle': 'نارتھ ویسٹ کے ساتھ اعتماد کے ساتھ سفر کریں',
+                    'booking-from': 'سے',
+                    'booking-to': 'تک',
+                    'booking-date': 'سفر کی تاریخ',
+                    'booking-passengers': 'مسافروں کی تعداد',
+                    'booking-search': 'سفر تلاش کریں',
+                    'booking-choose-city': 'شہر منتخب کریں',
+                    'booking-passenger': 'مسافر',
+                    
+                    // Features
+                    'feature-luxury': 'لگژری بسز',
+                    'feature-routes': 'متنوع راستے',
+                    'feature-daily': 'روزانہ سفر',
+                    'feature-luxury-desc': 'تمام سہولات کے ساتھ جدید بسز',
+                    'feature-routes-desc': 'سعودی عرب کے اہم شہروں کا جامع کوریج',
+                    'feature-daily-desc': 'دن رات باقاعدہ سفر',
+                    
+                    // Popular Routes
+                    'routes-title': 'سب سے مقبول راستے',
+                    'routes-subtitle': 'آرام دہ روزانہ سفر کے ساتھ ہمارے اہم مقامات دریافت کریں',
+                    'routes-book': 'ابھی بک کریں',
+                    'routes-popular': 'سب سے مقبول',
+                    'routes-duration': 'گھنٹے',
+                    'routes-distance': 'کلومیٹر',
+                    'routes-price-from': 'سے',
+                    'routes-price-riyal': 'ریال',
+                    'routes-price-person': 'فی شخص',
+                    'routes-daily': 'روزانہ سفر',
+                    
+                    // Other Sections
+                    'fleet-title': 'ہمارا جدید بیڑا',
+                    'fleet-subtitle': 'جدید بسز جو آپ کی راحت اور حفاظت کو یقینی بنانے کے لیے جدید ترین ٹیکنالوجی سے لیس ہیں',
+                    'fleet-wifi': 'مفت وائی فائی',
+                    'fleet-wifi-desc': 'سفر کے دوران تیز رفتار انٹرنیٹ',
+                    'fleet-usb': 'USB چارجرز',
+                    'fleet-usb-desc': 'ہر سیٹ پر چارجنگ پورٹس',
+                    'fleet-ac': 'جدید ائر کنڈیشنگ',
+                    'fleet-ac-desc': 'ہر وقت مثالی درجہ حرارت',
+                    'fleet-tv': 'تفریحی اسکرینز',
+                    'fleet-tv-desc': 'فلمیں اور ٹی وی شوز',
+                    'fleet-food': 'کھانے کی سروس',
+                    'fleet-food-desc': 'تازہ کھانا اور مفت مشروبات',
+                    'fleet-seats': 'جھکاؤ والی سیٹیں',
+                    'fleet-seats-desc': 'سفر کے دوران سونے کے لیے زیادہ سے زیادہ آرام',
+                    
+                    'about-title': 'ہمارے بارے میں',
+                    'about-subtitle': 'نارتھ ویسٹ بس کی دنیا میں خوش آمدید، جہاں ہم سفر کو عمدگی اور نفاست سے نئے سرے سے تعریف کرتے ہیں۔',
+                    'about-desc': 'ایک جدید اور ترقی یافتہ کمپنی کے طور پر، ہم دو صنعت کے رہنماؤں کی مہارت کو یکجا کرنے کا نتیجہ ہیں: القائد سعودی اور موونٹس، جس کا مطلب ہے قابل اعتماد، وقت کی پابندی، اور سب کے ساتھ کھلے رابطے فراہم کرنا تاکہ غیر معمولی ٹرانسپورٹ سروس فراہم کی جا سکے۔',
+                    'about-passengers': 'خوش مسافر',
+                    'about-buses': 'جدید بسز',
+                    'about-cities': 'شہر',
+                    'about-support': 'کسٹمر سروس',
+                    
+                    'faq-title': 'اکثر پوچھے جانے والے سوالات',
+                    'faq-subtitle': 'سب سے عام سوالات کے جوابات',
+                    'contact-title': 'رابطہ',
+                    'contact-subtitle': 'ہم آپ کی مدد کے لیے یہاں ہیں',
+                    'footer-title': 'نارتھ ویسٹ بس',
+                    
+                    // Branches Section
+                    'branches-title': 'ہمارے شاخیں اور اسٹیشنز',
+                    'branches-subtitle': 'ہم سعودی عرب کے اہم شہروں کو کور کرتے ہیں',
+                    'branches-western': 'مغربی علاقہ',
+                    'branches-central': 'وسطی علاقہ',
+                    'branches-northern': 'شمالی علاقہ',
+                    'branches-southern': 'جنوبی علاقہ',
+                    
+                    // Map Section
+                    'map-title': 'نقشے پر ہمارا مقام',
+                    'map-subtitle': 'پورے بادشاہت میں ہمارے شاخوں اور اسٹیشنز کے مقامات کے بارے میں جانیں',
+                    'map-info-title': 'شاخوں کا وسیع نیٹ ورک',
+                    'map-info-desc': 'ہمیں سعودی عرب کے اہم شہروں اور علاقوں کی جامع کوریج پر فخر ہے، جو آپ کو جہاں بھی ہوں ہماری خدمات تک آسان رسائی فراہم کرتا ہے۔',
+                    'map-locations': '15+ مقامات',
+                    'map-locations-desc': 'پورے بادشاہت میں شاخیں',
+                    'map-routes': 'متنوع راستے',
+                    'map-routes-desc': 'بڑے شہروں کو جوڑنے والے راستے',
+                    'map-coverage': 'جامع کوریج',
+                    'map-coverage-desc': 'بادشاہت کے تمام علاقے',
+                    
+                    // Cities Names
+                    'city-jeddah': 'جدہ',
+                    'city-riyadh': 'ریاض',
+                    'city-makkah': 'مکہ',
+                    'city-madinah': 'مدینہ',
+                    'city-yanbu': 'ینبع',
+                    'city-taif': 'طائف',
+                    'city-tabuk': 'تبوک',
+                    'city-alula': 'العلا',
+                    'city-baha': 'الباحہ',
+                    'city-khamis': 'خمیس مشیط',
+                    'city-jazan': 'جازان',
+                    'city-qassim': 'قصیم',
+                    'city-hail': 'حائل',
+                    
+                    // Actions
+                    'action-schedule': 'سفر کا شیڈول',
+                    'action-track': 'سفر ٹریک کریں',
+                    'action-support': 'کسٹمر سروس',
+                    
+                    // Buttons
+                    'btn-book': 'ابھی بک کریں',
+                    'btn-login': 'لاگ ان'
+                }
+            };
+            
+            // Apply language changes
+            const currentContent = content[lang];
+            if (!currentContent) return;
+            
+            // Update navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === '#home') link.textContent = currentContent['nav-home'];
+                else if (href === '#routes') link.textContent = currentContent['nav-routes'];
+                else if (href === '#about') link.textContent = currentContent['nav-about'];
+                else if (href === '#fleet') link.textContent = currentContent['nav-fleet'];
+                else if (href === '#faq') link.textContent = currentContent['nav-faq'];
+                else if (href === '#contact') link.textContent = currentContent['nav-contact'];
+                else if (href === 'login.html') link.textContent = currentContent['nav-login'];
+            });
+            
+            // Force update navigation text content
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                const text = link.textContent.trim();
+                if (text === 'الرئيسية' || text === 'Home' || text === 'ہوم') {
+                    link.textContent = currentContent['nav-home'];
+                } else if (text === 'الطرق' || text === 'Routes' || text === 'راستے') {
+                    link.textContent = currentContent['nav-routes'];
+                } else if (text === 'من نحن' || text === 'About Us' || text === 'ہمارے بارے میں') {
+                    link.textContent = currentContent['nav-about'];
+                } else if (text === 'أسطولنا' || text === 'Our Fleet' || text === 'ہمارا بیڑا') {
+                    link.textContent = currentContent['nav-fleet'];
+                } else if (text === 'الأسئلة الشائعة' || text === 'FAQ' || text === 'اکثر پوچھے جانے والے سوالات') {
+                    link.textContent = currentContent['nav-faq'];
+                } else if (text === 'تواصل معنا' || text === 'Contact Us' || text === 'ہم سے رابطہ کریں') {
+                    link.textContent = currentContent['nav-contact'];
+                } else if (text === 'تسجيل الدخول' || text === 'Login' || text === 'لاگ ان') {
+                    link.textContent = currentContent['nav-login'];
+                }
+            });
+            
+            // Update header buttons
+            const headerBookBtn = document.querySelector('.nav-actions .btn-primary');
+            const headerLoginBtn = document.querySelector('.nav-actions .btn-outline');
+            if (headerBookBtn) headerBookBtn.textContent = currentContent['btn-book'];
+            if (headerLoginBtn) headerLoginBtn.textContent = currentContent['btn-login'];
+            
+            // Force update all buttons in header
+            document.querySelectorAll('.nav-actions button').forEach(btn => {
+                const text = btn.textContent.trim();
+                if (text === 'احجز الآن' || text === 'Book Now' || text === 'ابھی بک کریں') {
+                    btn.textContent = currentContent['btn-book'];
+                } else if (text === 'تسجيل الدخول' || text === 'تسجيل دخول' || text === 'Login' || text === 'لاگ ان') {
+                    btn.textContent = currentContent['btn-login'];
+                }
+            });
+            
+            // Update language button
+            const langBtn = document.querySelector('.lang-btn');
+            const mobileLangBtn = document.querySelector('.mobile-lang-btn');
+            const langNames = {
+                'ar': 'العربية',
+                'en': 'English',
+                'ur': 'اردو'
+            };
+            
+            if (langBtn) {
+                langBtn.innerHTML = `${langNames[lang]} <i class="fas fa-globe"></i>`;
+            }
+            if (mobileLangBtn) {
+                mobileLangBtn.innerHTML = `${langNames[lang]} <i class="fas fa-globe"></i>`;
+            }
+            
+            // Update hero section
+            const heroTitle = document.querySelector('.hero-title');
+            const heroSubtitle = document.querySelector('.hero-subtitle');
+            if (heroTitle) heroTitle.textContent = currentContent['hero-title'];
+            if (heroSubtitle) heroSubtitle.textContent = currentContent['hero-subtitle'];
+            
+            // Update hero buttons
+            const heroBookBtn = document.querySelector('.hero-actions .btn-primary');
+            const heroScheduleBtn = document.querySelector('.hero-actions .btn-secondary');
+            if (heroBookBtn) heroBookBtn.textContent = currentContent['hero-book'];
+            if (heroScheduleBtn) heroScheduleBtn.textContent = currentContent['hero-schedule'];
+            
+            // Update booking widget
+            const bookingTitle = document.querySelector('.booking-card h2');
+            const bookingSubtitle = document.querySelector('.booking-card p');
+            if (bookingTitle) bookingTitle.textContent = currentContent['booking-title'];
+            if (bookingSubtitle) bookingSubtitle.textContent = currentContent['booking-subtitle'];
+            
+            // Update booking form labels
+            const fromLabel = document.querySelector('label[for="from"]');
+            const toLabel = document.querySelector('label[for="to"]');
+            const dateLabel = document.querySelector('label[for="date"]');
+            const passengersLabel = document.querySelector('label[for="passengers"]');
+            
+            if (fromLabel) fromLabel.textContent = currentContent['booking-from'];
+            if (toLabel) toLabel.textContent = currentContent['booking-to'];
+            if (dateLabel) dateLabel.textContent = currentContent['booking-date'];
+            if (passengersLabel) passengersLabel.textContent = currentContent['booking-passengers'];
+            
+            // Update placeholders
+            const fromSelect = document.querySelector('#from');
+            const toSelect = document.querySelector('#to');
+            if (fromSelect) fromSelect.querySelector('option[value=""]').textContent = currentContent['booking-choose-city'];
+            if (toSelect) toSelect.querySelector('option[value=""]').textContent = currentContent['booking-choose-city'];
+            
+            // Update search button
+            const searchBtn = document.querySelector('.booking-card .btn-primary');
+            if (searchBtn) searchBtn.textContent = currentContent['booking-search'];
+            
+            // Update features
+            const features = document.querySelectorAll('.feature-card h3');
+            if (features.length >= 3) {
+                features[0].textContent = currentContent['feature-luxury'];
+                features[1].textContent = currentContent['feature-routes'];
+                features[2].textContent = currentContent['feature-daily'];
+            }
+            
+            const featureDescs = document.querySelectorAll('.feature-card p');
+            if (featureDescs.length >= 3) {
+                featureDescs[0].textContent = currentContent['feature-luxury-desc'];
+                featureDescs[1].textContent = currentContent['feature-routes-desc'];
+                featureDescs[2].textContent = currentContent['feature-daily-desc'];
+            }
+            
+            // Update action buttons
+            const actionBtns = document.querySelectorAll('.quick-action h4');
+            if (actionBtns.length >= 3) {
+                actionBtns[0].textContent = currentContent['action-schedule'];
+                actionBtns[1].textContent = currentContent['action-track'];
+                actionBtns[2].textContent = currentContent['action-support'];
+            }
+            
+            // Update header buttons (remove duplicate)
+            // const bookBtn = document.querySelector('.booking-btn');
+            // const loginBtn = document.querySelector('.btn-outline');
+            // if (bookBtn) bookBtn.textContent = currentContent['btn-book'];
+            // if (loginBtn) loginBtn.textContent = currentContent['btn-login'];
+            
+            // Update popular routes section
+            const routesTitle = document.querySelector('.popular-routes h2');
+            const routesSubtitle = document.querySelector('.popular-routes p');
+            if (routesTitle) routesTitle.textContent = currentContent['routes-title'];
+            if (routesSubtitle) routesSubtitle.textContent = currentContent['routes-subtitle'];
+            
+            // Update route cards
+            const routeCards = document.querySelectorAll('.route-card');
+            routeCards.forEach(card => {
+                const bookBtn = card.querySelector('.btn-outline');
+                if (bookBtn) bookBtn.textContent = currentContent['routes-book'];
+                
+                const popularBadge = card.querySelector('.route-badge');
+                if (popularBadge) popularBadge.textContent = currentContent['routes-popular'];
+                
+                // Update duration spans
+                const durationSpans = card.querySelectorAll('.route-duration');
+                durationSpans.forEach(span => {
+                    const text = span.textContent;
+                    if (text.includes('ساعات')) {
+                        span.innerHTML = text.replace('ساعات', currentContent['routes-duration']);
+                    } else if (text.includes('hours')) {
+                        span.innerHTML = text.replace('hours', currentContent['routes-duration']);
+                    } else if (text.includes('گھنٹے')) {
+                        span.innerHTML = text.replace('گھنٹے', currentContent['routes-duration']);
+                    }
+                });
+                
+                // Update distance spans
+                const distanceSpans = card.querySelectorAll('.route-distance');
+                distanceSpans.forEach(span => {
+                    const text = span.textContent;
+                    if (text.includes('كم')) {
+                        span.innerHTML = text.replace('كم', currentContent['routes-distance']);
+                    } else if (text.includes('km')) {
+                        span.innerHTML = text.replace('km', currentContent['routes-distance']);
+                    } else if (text.includes('کلومیٹر')) {
+                        span.innerHTML = text.replace('کلومیٹر', currentContent['routes-distance']);
+                    }
+                });
+                
+                // Update price spans
+                const priceSpans = card.querySelectorAll('.price');
+                priceSpans.forEach(span => {
+                    const text = span.textContent;
+                    if (text.includes('ريال')) {
+                        span.textContent = text.replace('ريال', currentContent['routes-price-riyal']);
+                    } else if (text.includes('SAR')) {
+                        span.textContent = text.replace('SAR', currentContent['routes-price-riyal']);
+                    } else if (text.includes('ریال')) {
+                        span.textContent = text.replace('ریال', currentContent['routes-price-riyal']);
+                    }
+                });
+                
+                // Update price notes
+                const priceNotes = card.querySelectorAll('.price-note');
+                priceNotes.forEach(span => {
+                    span.textContent = currentContent['routes-price-person'];
+                });
+                
+                // Update schedule spans
+                const scheduleSpans = card.querySelectorAll('.route-schedule span');
+                scheduleSpans.forEach(span => {
+                    const text = span.textContent;
+                    if (text.includes('رحلات يومية')) {
+                        span.textContent = text.replace('رحلات يومية', currentContent['routes-daily']);
+                    } else if (text.includes('Daily trips')) {
+                        span.textContent = text.replace('Daily trips', currentContent['routes-daily']);
+                    } else if (text.includes('روزانہ سفر')) {
+                        span.textContent = text.replace('روزانہ سفر', currentContent['routes-daily']);
+                    }
+                });
+            });
+            
+            // Update all sections
+            updateAllSections(currentContent);
+            
+            // Update direction
+            if (lang === 'ar') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            } else if (lang === 'ur') {
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ur';
+            } else {
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = 'en';
+            }
+        }
+        
+        // Update all sections function
+        function updateAllSections(currentContent) {
+            // Update fleet section
+            const fleetTitle = document.querySelector('.fleet h2');
+            const fleetSubtitle = document.querySelector('.fleet p');
+            if (fleetTitle) fleetTitle.textContent = currentContent['fleet-title'] || 'أسطولنا المتطور';
+            if (fleetSubtitle) fleetSubtitle.textContent = currentContent['fleet-subtitle'] || 'باصات حديثة مجهزة بأحدث التقنيات لضمان راحتك وأمانك';
+            
+            // Update fleet features
+            const fleetFeatures = document.querySelectorAll('.fleet-feature');
+            fleetFeatures.forEach((feature, index) => {
+                const title = feature.querySelector('h4');
+                const desc = feature.querySelector('p');
+                
+                if (title && desc) {
+                    switch(index) {
+                        case 0:
+                            title.textContent = currentContent['fleet-wifi'] || 'واي فاي مجاني';
+                            desc.textContent = currentContent['fleet-wifi-desc'] || 'إنترنت عالي السرعة طوال الرحلة';
+                            break;
+                        case 1:
+                            title.textContent = currentContent['fleet-usb'] || 'شواحن USB';
+                            desc.textContent = currentContent['fleet-usb-desc'] || 'منافذ شحن في كل مقعد';
+                            break;
+                        case 2:
+                            title.textContent = currentContent['fleet-ac'] || 'تكييف متطور';
+                            desc.textContent = currentContent['fleet-ac-desc'] || 'درجة حرارة مثالية في جميع الأوقات';
+                            break;
+                        case 3:
+                            title.textContent = currentContent['fleet-tv'] || 'شاشات ترفيهية';
+                            desc.textContent = currentContent['fleet-tv-desc'] || 'أفلام ومسلسلات متنوعة';
+                            break;
+                        case 4:
+                            title.textContent = currentContent['fleet-food'] || 'خدمة الوجبات';
+                            desc.textContent = currentContent['fleet-food-desc'] || 'وجبات طازجة ومشروبات مجانية';
+                            break;
+                        case 5:
+                            title.textContent = currentContent['fleet-seats'] || 'مقاعد قابلة للإمالة';
+                            desc.textContent = currentContent['fleet-seats-desc'] || 'راحة قصوى للنوم أثناء الرحلة';
+                            break;
+                    }
+                }
+            });
+            
+            // Update about section
+            const aboutTitle = document.querySelector('.about h2');
+            const aboutSubtitle = document.querySelector('.about .lead');
+            const aboutDesc = document.querySelector('.about p:not(.lead)');
+            if (aboutTitle) aboutTitle.textContent = currentContent['about-title'] || 'معلومات عنا';
+            if (aboutSubtitle) aboutSubtitle.textContent = currentContent['about-subtitle'] || 'أهلاً وسهلاً بكم في عالم نورث وست باص، حيث نضع للسفر مفهوم التميز والرقي.';
+            if (aboutDesc) aboutDesc.textContent = currentContent['about-desc'] || 'باعتبارنا شركة حديثة ومتطورة جاءت نتاجاً لدمج خبرات اثنين من رواد المجال وهما شركتي القائد السعودية وموفنتيس مما يعني توفير الموثوقية، الالتزام بالمواعيد والتواصل المفتوح مع الجميع من أجل تقديم خدمة نقل استثنائية.';
+            
+            // Update about stats
+            const stats = document.querySelectorAll('.stat p');
+            if (stats.length >= 4) {
+                stats[0].textContent = currentContent['about-passengers'] || 'راكب سعيد';
+                stats[1].textContent = currentContent['about-buses'] || 'باص حديث';
+                stats[2].textContent = currentContent['about-cities'] || 'مدينة';
+                stats[3].textContent = currentContent['about-support'] || 'خدمة عملاء';
+            }
+            
+            // Update FAQ section
+            const faqTitle = document.querySelector('.faq h2');
+            const faqSubtitle = document.querySelector('.faq p');
+            if (faqTitle) faqTitle.textContent = currentContent['faq-title'] || 'الأسئلة الشائعة';
+            if (faqSubtitle) faqSubtitle.textContent = currentContent['faq-subtitle'] || 'إجابات على الأسئلة الأكثر شيوعاً';
+            
+            // Update contact section
+            const contactTitle = document.querySelector('.contact h2');
+            const contactSubtitle = document.querySelector('.contact p');
+            if (contactTitle) contactTitle.textContent = currentContent['contact-title'] || 'تواصل معنا';
+            if (contactSubtitle) contactSubtitle.textContent = currentContent['contact-subtitle'] || 'نحن هنا لمساعدتك';
+            
+            // Update footer
+            const footerTitle = document.querySelector('.footer h3');
+            if (footerTitle) footerTitle.textContent = currentContent['footer-title'] || 'نورث وست باص';
+            
+            // Update branches section
+            const branchesTitle = document.querySelector('.branches h2');
+            const branchesSubtitle = document.querySelector('.branches p');
+            if (branchesTitle) branchesTitle.textContent = currentContent['branches-title'] || 'فروعنا ومحطات التوقف';
+            if (branchesSubtitle) branchesSubtitle.textContent = currentContent['branches-subtitle'] || 'نغطي أهم المدن في المملكة العربية السعودية';
+            
+            // Update branch cards
+            const branchCards = document.querySelectorAll('.branch-card h3');
+            if (branchCards.length >= 4) {
+                branchCards[0].textContent = currentContent['branches-western'] || 'المنطقة الغربية';
+                branchCards[1].textContent = currentContent['branches-central'] || 'المنطقة الوسطى';
+                branchCards[2].textContent = currentContent['branches-northern'] || 'المنطقة الشمالية';
+                branchCards[3].textContent = currentContent['branches-southern'] || 'المنطقة الجنوبية';
+            }
+            
+            // Update map section
+            const mapTitle = document.querySelector('.map-section h2');
+            const mapSubtitle = document.querySelector('.map-section p');
+            if (mapTitle) mapTitle.textContent = currentContent['map-title'] || 'موقعنا على الخريطة';
+            if (mapSubtitle) mapSubtitle.textContent = currentContent['map-subtitle'] || 'تعرف على مواقع فروعنا ومحطاتنا في جميع أنحاء المملكة';
+            
+            // Update map info
+            const mapInfoTitle = document.querySelector('.map-info h3');
+            const mapInfoDesc = document.querySelector('.map-info p');
+            if (mapInfoTitle) mapInfoTitle.textContent = currentContent['map-info-title'] || 'شبكة واسعة من الفروع';
+            if (mapInfoDesc) mapInfoDesc.textContent = currentContent['map-info-desc'] || 'نفخر بتغطيتنا الشاملة لأهم المدن والمناطق في المملكة العربية السعودية، مما يوفر لك سهولة الوصول إلى خدماتنا أينما كنت.';
+            
+            // Update map features
+            const mapFeatures = document.querySelectorAll('.map-feature');
+            mapFeatures.forEach((feature, index) => {
+                const title = feature.querySelector('h4');
+                const desc = feature.querySelector('p');
+                
+                if (title && desc) {
+                    switch(index) {
+                        case 0:
+                            title.textContent = currentContent['map-locations'] || '15+ موقع';
+                            desc.textContent = currentContent['map-locations-desc'] || 'فروع في جميع أنحاء المملكة';
+                            break;
+                        case 1:
+                            title.textContent = currentContent['map-routes'] || 'طرق متنوعة';
+                            desc.textContent = currentContent['map-routes-desc'] || 'طرق تربط المدن الرئيسية';
+                            break;
+                        case 2:
+                            title.textContent = currentContent['map-coverage'] || 'تغطية شاملة';
+                            desc.textContent = currentContent['map-coverage-desc'] || 'جميع مناطق المملكة';
+                            break;
+                    }
+                }
+            });
+            
+            // Update cities names in all sections
+            updateCitiesNames(currentContent);
+            
+            // Update all buttons
+            document.querySelectorAll('button').forEach(btn => {
+                const text = btn.textContent;
+                if (text.includes('احجز الآن') || text.includes('Book Now') || text.includes('ابھی بک کریں')) {
+                    btn.textContent = currentContent['btn-book'];
+                } else if (text.includes('تسجيل دخول') || text.includes('Login') || text.includes('لاگ ان')) {
+                    btn.textContent = currentContent['btn-login'];
+                } else if (text.includes('جدول الرحلات') || text.includes('Trip Schedule') || text.includes('سفر کا شیڈول')) {
+                    btn.textContent = currentContent['action-schedule'];
+                } else if (text.includes('تتبع الرحلة') || text.includes('Track Trip') || text.includes('سفر ٹریک کریں')) {
+                    btn.textContent = currentContent['action-track'];
+                } else if (text.includes('خدمة العملاء') || text.includes('Customer Service') || text.includes('کسٹمر سروس')) {
+                    btn.textContent = currentContent['action-support'];
+                }
+            });
+            
+            // Update all links
+            document.querySelectorAll('a').forEach(link => {
+                const text = link.textContent;
+                if (text.includes('الرئيسية') || text.includes('Home') || text.includes('ہوم')) {
+                    link.textContent = currentContent['nav-home'];
+                } else if (text.includes('الطرق') || text.includes('Routes') || text.includes('راستے')) {
+                    link.textContent = currentContent['nav-routes'];
+                } else if (text.includes('من نحن') || text.includes('About Us') || text.includes('ہمارے بارے میں')) {
+                    link.textContent = currentContent['nav-about'];
+                } else if (text.includes('أسطولنا') || text.includes('Our Fleet') || text.includes('ہمارا بیڑا')) {
+                    link.textContent = currentContent['nav-fleet'];
+                } else if (text.includes('الأسئلة الشائعة') || text.includes('FAQ') || text.includes('اکثر پوچھے جانے والے سوالات')) {
+                    link.textContent = currentContent['nav-faq'];
+                } else if (text.includes('تواصل معنا') || text.includes('Contact Us') || text.includes('رابطہ')) {
+                    link.textContent = currentContent['nav-contact'];
+                } else if (text.includes('تسجيل الدخول') || text.includes('Login') || text.includes('لاگ ان')) {
+                    link.textContent = currentContent['nav-login'];
+                }
+            });
+            
+            // Force update all text elements
+            document.querySelectorAll('*').forEach(element => {
+                if (element.children.length === 0) { // Only text nodes
+                    let text = element.textContent;
+                    if (text && text.length < 200) { // Only short text to avoid long content
+                        // Update navigation texts
+                        if (text.trim() === 'الرئيسية' || text.trim() === 'Home' || text.trim() === 'ہوم') {
+                            element.textContent = currentContent['nav-home'];
+                        } else if (text.trim() === 'الطرق' || text.trim() === 'Routes' || text.trim() === 'راستے') {
+                            element.textContent = currentContent['nav-routes'];
+                        } else if (text.trim() === 'من نحن' || text.trim() === 'About Us' || text.trim() === 'ہمارے بارے میں') {
+                            element.textContent = currentContent['nav-about'];
+                        } else if (text.trim() === 'أسطولنا' || text.trim() === 'Our Fleet' || text.trim() === 'ہمارا بیڑا') {
+                            element.textContent = currentContent['nav-fleet'];
+                        } else if (text.trim() === 'الأسئلة الشائعة' || text.trim() === 'FAQ' || text.trim() === 'اکثر پوچھے جانے والے سوالات') {
+                            element.textContent = currentContent['nav-faq'];
+                        } else if (text.trim() === 'تواصل معنا' || text.trim() === 'Contact Us' || text.trim() === 'ہم سے رابطہ کریں') {
+                            element.textContent = currentContent['nav-contact'];
+                        } else if (text.trim() === 'تسجيل الدخول' || text.trim() === 'Login' || text.trim() === 'لاگ ان') {
+                            element.textContent = currentContent['nav-login'];
+                        } else if (text.trim() === 'احجز الآن' || text.trim() === 'Book Now' || text.trim() === 'ابھی بک کریں') {
+                            element.textContent = currentContent['btn-book'];
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Update cities names function
+        function updateCitiesNames(currentContent) {
+            // Update cities in route cards
+            const routeCards = document.querySelectorAll('.route-card h3');
+            routeCards.forEach(card => {
+                const text = card.textContent;
+                if (text.includes('جدة ← الرياض')) {
+                    card.textContent = `${currentContent['city-jeddah']} ← ${currentContent['city-riyadh']}`;
+                } else if (text.includes('جدة ← المدينة المنورة')) {
+                    card.textContent = `${currentContent['city-jeddah']} ← ${currentContent['city-madinah']}`;
+                } else if (text.includes('الرياض ← الطائف')) {
+                    card.textContent = `${currentContent['city-riyadh']} ← ${currentContent['city-taif']}`;
+                } else if (text.includes('مكة المكرمة ← ينبع')) {
+                    card.textContent = `${currentContent['city-makkah']} ← ${currentContent['city-yanbu']}`;
+                } else if (text.includes('جدة ← تبوك')) {
+                    card.textContent = `${currentContent['city-jeddah']} ← ${currentContent['city-tabuk']}`;
+                }
+            });
+            
+            // Update cities in branch cards
+            const branchLists = document.querySelectorAll('.branch-card ul');
+            branchLists.forEach((list, index) => {
+                const items = list.querySelectorAll('li');
+                items.forEach(item => {
+                    const text = item.textContent;
+                    if (text.includes('جدة')) {
+                        item.textContent = text.replace('جدة', currentContent['city-jeddah']);
+                    }
+                    if (text.includes('مكة المكرمة')) {
+                        item.textContent = text.replace('مكة المكرمة', currentContent['city-makkah']);
+                    }
+                    if (text.includes('المدينة المنورة')) {
+                        item.textContent = text.replace('المدينة المنورة', currentContent['city-madinah']);
+                    }
+                    if (text.includes('ينبع')) {
+                        item.textContent = text.replace('ينبع', currentContent['city-yanbu']);
+                    }
+                    if (text.includes('الطائف')) {
+                        item.textContent = text.replace('الطائف', currentContent['city-taif']);
+                    }
+                    if (text.includes('الرياض')) {
+                        item.textContent = text.replace('الرياض', currentContent['city-riyadh']);
+                    }
+                    if (text.includes('القصيم')) {
+                        item.textContent = text.replace('القصيم', currentContent['city-qassim']);
+                    }
+                    if (text.includes('حائل')) {
+                        item.textContent = text.replace('حائل', currentContent['city-hail']);
+                    }
+                    if (text.includes('تبوك')) {
+                        item.textContent = text.replace('تبوك', currentContent['city-tabuk']);
+                    }
+                    if (text.includes('العلا')) {
+                        item.textContent = text.replace('العلا', currentContent['city-alula']);
+                    }
+                    if (text.includes('الباحة')) {
+                        item.textContent = text.replace('الباحة', currentContent['city-baha']);
+                    }
+                    if (text.includes('خميس مشيط')) {
+                        item.textContent = text.replace('خميس مشيط', currentContent['city-khamis']);
+                    }
+                    if (text.includes('جازان')) {
+                        item.textContent = text.replace('جازان', currentContent['city-jazan']);
+                    }
+                });
+            });
+            
+            // Update cities in booking form options
+            const bookingOptions = document.querySelectorAll('select option');
+            bookingOptions.forEach(option => {
+                const text = option.textContent;
+                if (text.includes('جدة')) {
+                    option.textContent = text.replace('جدة', currentContent['city-jeddah']);
+                }
+                if (text.includes('الرياض')) {
+                    option.textContent = text.replace('الرياض', currentContent['city-riyadh']);
+                }
+                if (text.includes('مكة المكرمة')) {
+                    option.textContent = text.replace('مكة المكرمة', currentContent['city-makkah']);
+                }
+                if (text.includes('المدينة المنورة')) {
+                    option.textContent = text.replace('المدينة المنورة', currentContent['city-madinah']);
+                }
+                if (text.includes('الدمام')) {
+                    option.textContent = text.replace('الدمام', currentContent['city-dammam'] || 'الدمام');
+                }
+                if (text.includes('الطائف')) {
+                    option.textContent = text.replace('الطائف', currentContent['city-taif']);
+                }
+                if (text.includes('تبوك')) {
+                    option.textContent = text.replace('تبوك', currentContent['city-tabuk']);
+                }
+                if (text.includes('ينبع')) {
+                    option.textContent = text.replace('ينبع', currentContent['city-yanbu']);
+                }
+            });
+            
+            // Update cities in all text content
+            document.querySelectorAll('*').forEach(element => {
+                if (element.children.length === 0) { // Only text nodes
+                    let text = element.textContent;
+                    if (text && text.length < 100) { // Only short text to avoid long content
+                        // Replace all city names
+                        text = text.replace(/جدة/g, currentContent['city-jeddah']);
+                        text = text.replace(/الرياض/g, currentContent['city-riyadh']);
+                        text = text.replace(/مكة المكرمة/g, currentContent['city-makkah']);
+                        text = text.replace(/المدينة المنورة/g, currentContent['city-madinah']);
+                        text = text.replace(/ينبع/g, currentContent['city-yanbu']);
+                        text = text.replace(/الطائف/g, currentContent['city-taif']);
+                        text = text.replace(/تبوك/g, currentContent['city-tabuk']);
+                        text = text.replace(/العلا/g, currentContent['city-alula']);
+                        text = text.replace(/الباحة/g, currentContent['city-baha']);
+                        text = text.replace(/خميس مشيط/g, currentContent['city-khamis']);
+                        text = text.replace(/جازان/g, currentContent['city-jazan']);
+                        text = text.replace(/القصيم/g, currentContent['city-qassim']);
+                        text = text.replace(/حائل/g, currentContent['city-hail']);
+                        
+                        if (text !== element.textContent) {
+                            element.textContent = text;
+                        }
+                    }
+                }
+            });
+        }
+        
+        // Load saved language on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedLanguage = localStorage.getItem('selectedLanguage') || 'ar';
+            applyLanguage(savedLanguage);
+            
+            // Update language button
+            const langBtn = document.querySelector('.lang-btn');
+            const mobileLangBtn = document.querySelector('.mobile-lang-btn');
+            const langNames = {
+                'ar': 'العربية',
+                'en': 'English',
+                'ur': 'اردو'
+            };
+            
+            if (langBtn) {
+                langBtn.innerHTML = `${langNames[savedLanguage]} <i class="fas fa-globe"></i>`;
+            }
+            if (mobileLangBtn) {
+                mobileLangBtn.innerHTML = `${langNames[savedLanguage]} <i class="fas fa-globe"></i>`;
+            }
+            
+            // Force apply language after a short delay to ensure all elements are loaded
+            setTimeout(() => {
+                applyLanguage(savedLanguage);
+            }, 100);
+            
+            // Apply language again after a longer delay to catch any dynamically loaded content
+            setTimeout(() => {
+                applyLanguage(savedLanguage);
+            }, 500);
+        });
     </script>
 </body>
 </html>
