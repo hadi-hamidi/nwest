@@ -1,0 +1,1646 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="نورث وست باص - خدمة نقل متميزة وآمنة في المملكة العربية السعودية">
+    <meta name="keywords" content="نورث وست, باص, نقل, سفر, السعودية, رحلات">
+    <meta name="author" content="نورث وست باص">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#1e40af">
+    <title>نورث وست باص - رحلتك المميزة</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/colored-logo-arabic-1.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="images/colored-logo-arabic-1.svg">
+    <link rel="icon" type="image/png" sizes="16x16" href="images/colored-logo-arabic-1.svg">
+    <link rel="apple-touch-icon" href="images/colored-logo-arabic-1.svg">
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css?v=2024-12-20">
+    <style>
+        /* Force Orange & Blue Colors */
+        :root {
+            --primary-color: #2563eb !important;
+            --primary-dark: #1d4ed8 !important;
+            --primary-light: #3b82f6 !important;
+            --accent-color: #f97316 !important;
+            --accent-dark: #ea580c !important;
+            --accent-light: #fb923c !important;
+            --border-color: #e5e7eb !important;
+            --border-radius: 8px !important;
+            --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1) !important;
+            --transition: all 0.3s ease !important;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8) !important;
+            color: white !important;
+        }
+        
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1d4ed8, #2563eb) !important;
+        }
+        
+        .btn-outline:hover {
+            background: linear-gradient(135deg, #2563eb, #f97316) !important;
+            color: white !important;
+        }
+        
+        .hero-background {
+            background: linear-gradient(135deg, #2563eb, #f97316), url('images/1980x1090-en-1 (1).webp') center/cover !important;
+        }
+        
+        .feature-icon {
+            background: linear-gradient(135deg, #2563eb, #f97316) !important;
+        }
+        
+        .route-badge {
+            background: linear-gradient(135deg, #f97316, #ea580c) !important;
+        }
+        
+        .route-price .price {
+            color: #f97316 !important;
+        }
+        
+        .fleet-feature i {
+            background: linear-gradient(135deg, #f97316, #ea580c) !important;
+        }
+        
+        .about {
+            background: linear-gradient(135deg, #2563eb, #f97316) !important;
+        }
+        
+        .stat h3 {
+            color: #fb923c !important;
+        }
+        
+        .contact-item i {
+            background: linear-gradient(135deg, #f97316, #ea580c) !important;
+        }
+        
+        .social-links a:hover {
+            background: #f97316 !important;
+        }
+        
+        .nav-link:hover,
+        .nav-link.active {
+            color: #2563eb !important;
+        }
+        
+        .nav-link::after {
+            background: linear-gradient(90deg, #2563eb, #f97316) !important;
+        }
+        
+        .header {
+            border-bottom: 3px solid #f97316 !important;
+        }
+        
+        .nav-brand .logo {
+            color: #2563eb !important;
+        }
+        
+        .app-feature i {
+            background: linear-gradient(135deg, #2563eb, #f97316) !important;
+        }
+        
+        .map-feature {
+            border-left: 4px solid #f97316 !important;
+        }
+        
+        /* Error and Success Styles */
+        .error {
+            border-color: #ef4444 !important;
+            box-shadow: 0 0 0 2px rgba(239, 68, 68, 0.2) !important;
+        }
+        
+        .success-message {
+            background: #10b981;
+            color: white;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        /* Animation Classes */
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+        
+        .scroll-animate.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        .rotating-slow {
+            animation: rotate 20s linear infinite;
+        }
+        
+        .wave {
+            animation: wave 2s ease-in-out infinite;
+        }
+    </style>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="manifest.json">
+    
+    <!-- iOS PWA Support -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="نورث وست باص">
+    
+    <!-- Windows PWA Support -->
+    <meta name="msapplication-TileImage" content="images/colored-logo-arabic-1.svg">
+    <meta name="msapplication-TileColor" content="#1e40af">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="نورث وست باص - رحلتك المميزة">
+    <meta property="og:description" content="خدمة نقل متميزة تجمع بين الراحة والأمان والالتزام بالمواعيد">
+    <meta property="og:image" content="images/1980x1090-en-1 (1).webp">
+    <meta property="og:url" content="https://nwbus.sa">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="ar_SA">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="نورث وست باص - رحلتك المميزة">
+    <meta name="twitter:description" content="خدمة نقل متميزة تجمع بين الراحة والأمان والالتزام بالمواعيد">
+    <meta name="twitter:image" content="images/1980x1090-en-1 (1).webp">
+    
+    <!-- DNS Prefetch -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#1e40af">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <div class="logo">
+                        <img src="images/colored-logo-arabic-1.svg" alt="نورث وست باص" style="height: 40px;">
+                    </div>
+                </div>
+                
+                <div class="nav-menu" id="navMenu">
+                    <ul class="nav-list">
+                        <li><a href="#home" class="nav-link active">الرئيسية</a></li>
+                        <li class="dropdown">
+                            <a href="#routes" class="nav-link">الطرق</a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#jeddah-riyadh">جدة - الرياض</a></li>
+                                <li><a href="#jeddah-medina">جدة - المدينة المنورة</a></li>
+                                <li><a href="#jeddah-tabuk">جدة - تبوك</a></li>
+                                <li><a href="#mecca-yanbu">مكة - ينبع</a></li>
+                                <li><a href="#riyadh-taif">الرياض - الطائف</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#about" class="nav-link">من نحن</a></li>
+                        <li><a href="#fleet" class="nav-link">أسطولنا</a></li>
+                        <li><a href="#faq" class="nav-link">الأسئلة الشائعة</a></li>
+                        <li><a href="#contact" class="nav-link">تواصل معنا</a></li>
+                    </ul>
+                </div>
+
+                <div class="nav-actions">
+                    <div class="language-selector">
+                        <button class="lang-btn">العربية <i class="fas fa-globe"></i></button>
+                        <ul class="lang-menu">
+                            <li><a href="#ar">العربية</a></li>
+                            <li><a href="#en">English</a></li>
+                            <li><a href="#ur">اردو</a></li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-primary booking-btn" onclick="initializeBookingSystem()">احجز الآن</button>
+                    <button class="btn btn-outline" onclick="window.location.href='login.html'">تسجيل دخول</button>
+                </div>
+
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content scroll-animate" id="main-content">
+                <div class="hero-logo floating">
+                    <img src="images/colored-logo-arabic-1.svg" alt="نورث وست باص" style="width: 120px; height: 120px; margin-bottom: 2rem; opacity: 0.9;">
+                </div>
+                <h1 class="hero-title">استمتع بالوصول إلى وجهتك في رحلة سلسة</h1>
+                <p class="hero-subtitle">خدمة نقل متميزة تجمع بين الراحة والأمان والالتزام بالمواعيد</p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary btn-large pulse">احجز رحلتك الآن</button>
+                    <button class="btn btn-secondary btn-large">جدول الرحلات</button>
+                </div>
+            </div>
+
+        </div>
+        <div class="scroll-indicator">
+        </div>
+    </section>
+
+    <!-- Booking Widget -->
+    <section class="booking-widget">
+        <div class="container">
+            <div class="booking-card scroll-animate">
+                <div class="booking-header">
+                    <div class="header-logo">
+                        <img src="images/colored-logo-arabic-1.svg" alt="نورث وست باص" class="logo-icon floating">
+                        <div class="header-text">
+                            <h3>احجز رحلتك</h3>
+                            <p>سافر بثقة مع نورث وست</p>
+                        </div>
+                    </div>
+                    <div class="booking-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-users pulse"></i>
+                            <span>+2M راكب</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-star pulse"></i>
+                            <span>4.9 تقييم</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <form class="booking-form" action="#" method="POST">
+                    <div class="form-row">
+                        <div class="form-group from-group">
+                            <label><i class="fas fa-map-marker-alt"></i> من</label>
+                            <div class="select-wrapper">
+                                <select class="form-control" required>
+                                    <option value="">اختر المدينة</option>
+                                    <option value="riyadh">الرياض</option>
+                                    <option value="jeddah">جدة</option>
+                                    <option value="makkah">مكة المكرمة</option>
+                                    <option value="madinah">المدينة المنورة</option>
+                                    <option value="taif">الطائف</option>
+                                    <option value="tabuk">تبوك</option>
+                                    <option value="yanbu">ينبع</option>
+                                </select>
+                                <i class="select-arrow"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group to-group">
+                            <label><i class="fas fa-map-marker-alt"></i> إلى</label>
+                            <div class="select-wrapper">
+                                <select class="form-control" required>
+                                    <option value="">اختر المدينة</option>
+                                    <option value="riyadh">الرياض</option>
+                                    <option value="jeddah">جدة</option>
+                                    <option value="makkah">مكة المكرمة</option>
+                                    <option value="madinah">المدينة المنورة</option>
+                                    <option value="taif">الطائف</option>
+                                    <option value="tabuk">تبوك</option>
+                                    <option value="yanbu">ينبع</option>
+                                </select>
+                                <i class="select-arrow"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group date-group">
+                            <label><i class="fas fa-calendar-alt"></i> تاريخ السفر</label>
+                            <div class="date-wrapper">
+                                <input type="date" class="form-control" required min="">
+                                <i class="fas fa-calendar date-icon"></i>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group passengers-group">
+                            <label><i class="fas fa-user-friends"></i> عدد الركاب</label>
+                            <div class="passengers-wrapper">
+                                <div class="passenger-counter">
+                                    <button type="button" class="counter-btn minus" onclick="changePassengers(-1)">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                    <span class="passenger-count" id="passengerCount">1</span>
+                                    <button type="button" class="counter-btn plus" onclick="changePassengers(1)">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                                <span class="passenger-label">راكب</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group search-group">
+                            <button type="submit" class="btn btn-primary btn-search pulse" onclick="searchTrips()">
+                                <i class="fas fa-search"></i>
+                                <span>البحث عن الرحلات</span>
+                                <div class="search-loading">
+                                    <i class="fas fa-spinner fa-spin"></i>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="form-extras">
+                        <div class="extra-options">
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" class="form-checkbox">
+                                <span class="checkmark"></span>
+                                <i class="fas fa-wheelchair"></i>
+                                مقعد خاص
+                            </label>
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" class="form-checkbox">
+                                <span class="checkmark"></span>
+                                <i class="fas fa-baby"></i>
+                                طفل
+                            </label>
+                            <label class="checkbox-wrapper">
+                                <input type="checkbox" class="form-checkbox">
+                                <span class="checkmark"></span>
+                                <i class="fas fa-suitcase"></i>
+                                أمتعة إضافية
+                            </label>
+                        </div>
+                    </div>
+                </form>
+                
+                <div class="booking-features">
+                    <div class="feature-item scroll-animate">
+                        <div class="feature-icon">
+                            <img src="images/yellowvipbus (1).webp" alt="باص فاخر" class="rotating-slow">
+                        </div>
+                        <div class="feature-text">
+                            <span class="feature-title">باصات فاخرة</span>
+                            <span class="feature-desc">أحدث الباصات مع جميع وسائل الراحة</span>
+                        </div>
+                    </div>
+                    <div class="feature-item scroll-animate">
+                        <div class="feature-icon">
+                            <img src="images/Map (1).png" alt="طرق متنوعة" class="pulse">
+                        </div>
+                        <div class="feature-text">
+                            <span class="feature-title">طرق متنوعة</span>
+                            <span class="feature-desc">تغطية شاملة لأهم المدن السعودية</span>
+                        </div>
+                    </div>
+                    <div class="feature-item scroll-animate">
+                        <div class="feature-icon">
+                            <img src="images/arrows (1).svg" alt="رحلات يومية" class="wave">
+                        </div>
+                        <div class="feature-text">
+                            <span class="feature-title">رحلات يومية</span>
+                            <span class="feature-desc">رحلات منتظمة على مدار الساعة</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="booking-footer">
+                    <div class="quick-actions">
+                        <button class="quick-btn" onclick="showSchedule()">
+                            <i class="fas fa-clock"></i>
+                            جدول الرحلات
+                        </button>
+                        <button class="quick-btn" onclick="showTracking()">
+                            <i class="fas fa-location-arrow"></i>
+                            تتبع الرحلة
+                        </button>
+                        <button class="quick-btn" onclick="showSupport()">
+                            <i class="fas fa-headset"></i>
+                            خدمة العملاء
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Popular Routes -->
+    <section class="popular-routes">
+        <div class="container">
+            <div class="section-header">
+                <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                    <img src="images/yellowvipbus (1).webp" alt="الطرق" style="width: 50px; height: 50px; margin-left: 1rem; border-radius: 10px; object-fit: cover;">
+                    <h2>الطرق الأكثر شعبية</h2>
+                </div>
+                <p>اكتشف أهم وجهاتنا مع رحلات يومية مريحة</p>
+            </div>
+            <div class="routes-grid">
+                <div class="route-card scroll-animate">
+                    <div class="route-image">
+                        <img src="images/yellowvipbus (1).webp" alt="جدة - الرياض" style="object-fit: cover; height: 200px;">
+                        <div class="route-badge">الأكثر شعبية</div>
+                    </div>
+                    <div class="route-content">
+                        <h3>جدة ← الرياض</h3>
+                        <div class="route-details">
+                            <span class="route-duration"><i class="fas fa-clock"></i> 10 ساعات</span>
+                            <span class="route-distance"><i class="fas fa-road"></i> 950 كم</span>
+                        </div>
+                        <div class="route-price">
+                            <span class="price">من 120 ريال</span>
+                            <span class="price-note">للشخص الواحد</span>
+                        </div>
+                        <div class="route-schedule">
+                            <span>رحلات يومية: 6:00 ص - 11:00 م</span>
+                        </div>
+                        <button class="btn btn-outline">احجز الآن</button>
+                    </div>
+                </div>
+
+                <div class="route-card scroll-animate">
+                    <div class="route-image">
+                        <img src="images/1980x1090-en-1 (1).webp" alt="جدة - المدينة المنورة" style="object-fit: cover; height: 200px;">
+                    </div>
+                    <div class="route-content">
+                        <h3>جدة ← المدينة المنورة</h3>
+                        <div class="route-details">
+                            <span class="route-duration"><i class="fas fa-clock"></i> 4.5 ساعات</span>
+                            <span class="route-distance"><i class="fas fa-road"></i> 420 كم</span>
+                        </div>
+                        <div class="route-price">
+                            <span class="price">من 80 ريال</span>
+                            <span class="price-note">للشخص الواحد</span>
+                        </div>
+                        <div class="route-schedule">
+                            <span>رحلات يومية: 5:30 ص - 10:30 م</span>
+                        </div>
+                        <button class="btn btn-outline">احجز الآن</button>
+                    </div>
+                </div>
+
+                <div class="route-card scroll-animate">
+                    <div class="route-image">
+                        <img src="images/yellowvipbus (1).webp" alt="الرياض - الطائف" style="object-fit: cover; height: 200px;">
+                    </div>
+                    <div class="route-content">
+                        <h3>الرياض ← الطائف</h3>
+                        <div class="route-details">
+                            <span class="route-duration"><i class="fas fa-clock"></i> 8 ساعات</span>
+                            <span class="route-distance"><i class="fas fa-road"></i> 750 كم</span>
+                        </div>
+                        <div class="route-price">
+                            <span class="price">من 100 ريال</span>
+                            <span class="price-note">للشخص الواحد</span>
+                        </div>
+                        <div class="route-schedule">
+                            <span>رحلات يومية: 7:00 ص - 9:00 م</span>
+                        </div>
+                        <button class="btn btn-outline">احجز الآن</button>
+                    </div>
+                </div>
+
+                <div class="route-card scroll-animate">
+                    <div class="route-image">
+                        <img src="images/1980x1090-en-1 (1).webp" alt="مكة - ينبع" style="object-fit: cover; height: 200px;">
+                    </div>
+                    <div class="route-content">
+                        <h3>مكة المكرمة ← ينبع</h3>
+                        <div class="route-details">
+                            <span class="route-duration"><i class="fas fa-clock"></i> 5 ساعات</span>
+                            <span class="route-distance"><i class="fas fa-road"></i> 350 كم</span>
+                        </div>
+                        <div class="route-price">
+                            <span class="price">من 70 ريال</span>
+                            <span class="price-note">للشخص الواحد</span>
+                        </div>
+                        <div class="route-schedule">
+                            <span>رحلات يومية: 6:00 ص - 8:00 م</span>
+                        </div>
+                        <button class="btn btn-outline">احجز الآن</button>
+                    </div>
+                </div>
+                <div class="route-card scroll-animate">
+                    <div class="route-image">
+                        <img src="images/yellowvipbus (1).webp" alt="جدة - تبوك" style="object-fit: cover; height: 200px;">
+                    </div>
+                    <div class="route-content">
+                        <h3>جدة ← تبوك</h3>
+                        <div class="route-details">
+                            <span class="route-duration"><i class="fas fa-clock"></i> 12 ساعة</span>
+                            <span class="route-distance"><i class="fas fa-road"></i> 1200 كم</span>
+                        </div>
+                        <div class="route-price">
+                            <span class="price">من 150 ريال</span>
+                            <span class="price-note">للشخص الواحد</span>
+                        </div>
+                        <div class="route-schedule">
+                            <span>رحلات يومية: 7:00 ص - 9:00 م</span>
+                        </div>
+                        <button class="btn btn-outline">احجز الآن</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fleet Section -->
+    <section class="fleet" id="fleet">
+        <div class="container">
+            <div class="section-header">
+                <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                    <img src="images/yellowvipbus (1).webp" alt="الأسطول" style="width: 50px; height: 50px; margin-left: 1rem; border-radius: 10px; object-fit: cover;">
+                    <h2>أسطولنا المتطور</h2>
+                </div>
+                <p>باصات حديثة مجهزة بأحدث التقنيات لضمان راحتك وأمانك</p>
+            </div>
+            <div class="fleet-showcase">
+                <div class="fleet-image">
+                    <img src="images/yellowvipbus (1).webp" alt="أسطول نورث وست" style="object-fit: cover; height: 300px; border-radius: 15px;">
+                </div>
+                <div class="fleet-features">
+                    <div class="fleet-feature scroll-animate">
+                        <img src="images/1980x1090-en-1 (1).webp" alt="واي فاي مجاني" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover;">
+                        <div>
+                            <h4>واي فاي مجاني</h4>
+                            <p>إنترنت عالي السرعة طوال الرحلة</p>
+                        </div>
+                    </div>
+                    <div class="fleet-feature">
+                        <img src="images/1980x1090-en-1 (1).webp" alt="شواحن USB" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover;">
+                        <div>
+                            <h4>شواحن USB</h4>
+                            <p>منافذ شحن في كل مقعد</p>
+                        </div>
+                    </div>
+                    <div class="fleet-feature">
+                        <img src="images/yellowvipbus (1).webp" alt="تكييف متطور" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover;">
+                        <div>
+                            <h4>تكييف متطور</h4>
+                            <p>درجة حرارة مثالية في جميع الأوقات</p>
+                        </div>
+                    </div>
+                    <div class="fleet-feature">
+                        <img src="images/Website_2M_AR_740x1920px (1).png" alt="شاشات ترفيهية" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover;">
+                        <div>
+                            <h4>شاشات ترفيهية</h4>
+                            <p>أفلام ومسلسلات متنوعة</p>
+                        </div>
+                    </div>
+                    <div class="fleet-feature">
+                        <img src="images/225A9478 (1).jpg" alt="خدمة الوجبات" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover;">
+                        <div>
+                            <h4>خدمة الوجبات</h4>
+                            <p>وجبات طازجة ومشروبات مجانية</p>
+                        </div>
+                    </div>
+                    <div class="fleet-feature">
+                        <img src="images/1980x1090-en-1 (1).webp" alt="مقاعد مريحة" style="width: 50px; height: 50px; border-radius: 8px; object-fit: cover;">
+                        <div>
+                            <h4>مقاعد قابلة للإمالة</h4>
+                            <p>راحة قصوى للنوم أثناء الرحلة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <div style="display: flex; align-items: center; margin-bottom: 2rem;">
+                        <img src="images/colored-logo-arabic-1.svg" alt="نورث وست باص" style="width: 60px; height: 60px; margin-left: 1rem;">
+                        <h2>معلومات عنا</h2>
+                    </div>
+                    <p class="lead">أهلاً وسهلاً بكم في عالم نورث وست باص، حيث نضع للسفر مفهوم التميز والرقي.</p>
+                    <p>باعتبارنا شركة حديثة ومتطورة جاءت نتاجاً لدمج خبرات اثنين من رواد المجال وهما شركتي القائد السعودية وموفنتيس مما يعني توفير الموثوقية، الالتزام بالمواعيد والتواصل المفتوح مع الجميع من أجل تقديم خدمة نقل استثنائية.</p>
+                    <div class="stats">
+                        <div class="stat scroll-animate">
+                            <img src="images/Website_2M_AR_740x1920px (1).png" alt="2 مليون راكب" style="width: 80px; height: 80px; border-radius: 10px; object-fit: cover; margin-bottom: 1rem;" class="pulse">
+                            <h3 data-target="2000000">2M+</h3>
+                            <p>راكب سعيد</p>
+                        </div>
+                        <div class="stat scroll-animate">
+                            <img src="images/yellowvipbus (1).webp" alt="50+ باص" style="width: 80px; height: 80px; border-radius: 10px; object-fit: cover; margin-bottom: 1rem;" class="pulse">
+                            <h3 data-target="50">50+</h3>
+                            <p>باص حديث</p>
+                        </div>
+                        <div class="stat scroll-animate">
+                            <img src="images/Map (1).png" alt="15+ مدينة" style="width: 80px; height: 80px; border-radius: 10px; object-fit: cover; margin-bottom: 1rem;" class="pulse">
+                            <h3 data-target="15">15+</h3>
+                            <p>مدينة</p>
+                        </div>
+                        <div class="stat scroll-animate">
+                            <img src="images/WhatsApp-Image-2025-06-30-at-12.55.34-PM-1 (1).jpeg" alt="24/7 خدمة عملاء" style="width: 80px; height: 80px; border-radius: 10px; object-fit: cover; margin-bottom: 1rem;" class="pulse">
+                            <h3 data-target="24">24/7</h3>
+                            <p>خدمة عملاء</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image floating">
+                    <img src="images/WhatsApp-Image-2025-06-30-at-12.55.34-PM-1 (1).jpeg" alt="فريق نورث وست" style="object-fit: cover; height: 300px; border-radius: 15px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Branches Section -->
+    <section class="branches">
+        <div class="container">
+            <div class="section-header">
+                <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                    <img src="images/location-icon-1 (1).svg" alt="الفروع" style="width: 50px; height: 50px; margin-left: 1rem;">
+                    <h2>فروعنا ومحطات التوقف</h2>
+                </div>
+                <p>نغطي أهم المدن في المملكة العربية السعودية</p>
+            </div>
+            <div class="branches-grid">
+                <div class="branch-card">
+                    <img src="images/225A9481-1 (1).webp" alt="المنطقة الغربية" style="width: 60px; height: 60px; border-radius: 10px; object-fit: cover; margin-bottom: 1rem;">
+                    <h3>المنطقة الغربية</h3>
+                    <div class="branch-image">
+                        <img src="images/1980x1090-en-1 (1).webp" alt="المنطقة الغربية" style="width: 100%; height: 120px; border-radius: 8px; object-fit: cover; margin-bottom: 1rem;">
+                    </div>
+                    <ul>
+                        <li>جدة (المحطة الرئيسية)</li>
+                        <li>مكة المكرمة</li>
+                        <li>المدينة المنورة</li>
+                        <li>ينبع</li>
+                        <li>الطائف</li>
+                    </ul>
+                </div>
+                <div class="branch-card">
+                    <img src="images/yellowvipbus (1).webp" alt="المنطقة الوسطى" style="width: 60px; height: 60px; border-radius: 10px; object-fit: cover; margin-bottom: 1rem;">
+                    <h3>المنطقة الوسطى</h3>
+                    <div class="branch-image">
+                        <img src="images/Website_2M_AR_740x1920px (1).png" alt="المنطقة الوسطى" style="width: 100%; height: 120px; border-radius: 8px; object-fit: cover; margin-bottom: 1rem;">
+                    </div>
+                    <ul>
+                        <li>الرياض</li>
+                        <li>القصيم</li>
+                        <li>حائل</li>
+                    </ul>
+                </div>
+                <div class="branch-card">
+                    <img src="images/1980x1090-en-1 (1).webp" alt="المنطقة الشمالية" style="width: 60px; height: 60px; border-radius: 10px; object-fit: cover; margin-bottom: 1rem;">
+                    <h3>المنطقة الشمالية</h3>
+                    <div class="branch-image">
+                        <img src="images/225A9478 (1).jpg" alt="المنطقة الشمالية" style="width: 100%; height: 120px; border-radius: 8px; object-fit: cover; margin-bottom: 1rem;">
+                    </div>
+                    <ul>
+                        <li>تبوك</li>
+                        <li>العلا</li>
+                    </ul>
+                </div>
+                <div class="branch-card">
+                    <img src="images/1980x1090-en-1 (1).webp" alt="المنطقة الجنوبية" style="width: 60px; height: 60px; border-radius: 10px; object-fit: cover; margin-bottom: 1rem;">
+                    <h3>المنطقة الجنوبية</h3>
+                    <div class="branch-image">
+                        <img src="images/yellowvipbus (1).webp" alt="المنطقة الجنوبية" style="width: 100%; height: 120px; border-radius: 8px; object-fit: cover; margin-bottom: 1rem;">
+                    </div>
+                    <ul>
+                        <li>الباحة</li>
+                        <li>خميس مشيط</li>
+                        <li>جازان</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="container">
+            <div class="section-header">
+                <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                    <img src="images/Screenshot-2025-07-30-130400 (1).png" alt="الخريطة" style="width: 50px; height: 50px; margin-left: 1rem; border-radius: 10px; object-fit: cover;">
+                    <h2>موقعنا على الخريطة</h2>
+                </div>
+                <p>تعرف على مواقع فروعنا ومحطاتنا في جميع أنحاء المملكة</p>
+            </div>
+            <div class="map-content">
+                <div class="map-image">
+                    <img src="images/Screenshot-2025-07-30-130400 (1).png" alt="خريطة مواقع نورث وست باص" style="object-fit: cover; height: 400px; border-radius: 15px;">
+                </div>
+                <div class="map-info">
+                    <h3>شبكة واسعة من الفروع</h3>
+                    <p>نفخر بتغطيتنا الشاملة لأهم المدن والمناطق في المملكة العربية السعودية، مما يوفر لك سهولة الوصول إلى خدماتنا أينما كنت.</p>
+                    
+                    <div class="map-features">
+                        <div class="map-feature">
+                            <img src="images/location-icon-1 (1).svg" alt="المواقع" style="width: 40px; height: 40px;">
+                            <div>
+                                <h4>15+ موقع</h4>
+                                <p>فروع في جميع أنحاء المملكة</p>
+                            </div>
+                        </div>
+                        <div class="map-feature">
+                            <img src="images/arrows (1).svg" alt="الطرق" style="width: 40px; height: 40px;">
+                            <div>
+                                <h4>25+ طريق</h4>
+                                <p>طرق متنوعة تربط المدن الرئيسية</p>
+                            </div>
+                        </div>
+                        <div class="map-feature">
+                            <img src="images/g148 (1).svg" alt="الراحة" style="width: 40px; height: 40px;">
+                            <div>
+                                <h4>24/7 خدمة</h4>
+                                <p>خدمة على مدار الساعة طوال أيام الأسبوع</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promotional Section -->
+    <section class="promotional-section">
+        <div class="container">
+            <div class="section-header">
+                <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 1rem;">
+                    <img src="images/yellowvipbus (1).webp" alt="العروض" style="width: 50px; height: 50px; margin-left: 1rem; border-radius: 10px; object-fit: cover;">
+                    <h2>العروض والخصومات</h2>
+                </div>
+                <p>اكتشف أحدث عروضنا وخصوماتنا المميزة</p>
+            </div>
+            <div class="promotional-grid">
+                <div class="promo-card">
+                    <img src="images/Summer-Sale_AR_Popup_450x650 (1).png" alt="عروض الصيف" style="object-fit: cover; height: 250px; border-radius: 10px;">
+                    <div class="promo-content">
+                        <div class="promo-icon">
+                            <img src="images/colored-logo-arabic-1.svg" alt="نورث وست" style="width: 30px; height: 30px;">
+                        </div>
+                        <h3>عروض الصيف المميزة</h3>
+                        <p>خصومات تصل إلى 30% على جميع الرحلات</p>
+                        <button class="btn btn-primary">اكتشف العرض</button>
+                    </div>
+                </div>
+                
+                <div class="promo-card">
+                    <img src="images/225A9478 (1).jpg" alt="إنجاز 2 مليون راكب" style="object-fit: cover; height: 250px; border-radius: 10px;">
+                    <div class="promo-content">
+                        <div class="promo-icon">
+                            <img src="images/Website_2M_AR_740x1920px (1).png" alt="2 مليون" style="width: 30px; height: 30px; border-radius: 5px; object-fit: cover;">
+                        </div>
+                        <h3>2 مليون راكب سعيد</h3>
+                        <p>نحتفل معكم بتجاوز حاجز الـ 2 مليون راكب</p>
+                        <button class="btn btn-outline">اقرأ المزيد</button>
+                    </div>
+                </div>
+                <div class="promo-card">
+                    <img src="images/1980x1090-en-1 (1).webp" alt="خدمة VIP" style="object-fit: cover; height: 250px; border-radius: 10px;">
+                    <div class="promo-content">
+                        <div class="promo-icon">
+                            <img src="images/yellowvipbus (1).webp" alt="VIP" style="width: 30px; height: 30px; border-radius: 5px; object-fit: cover;">
+                        </div>
+                        <h3>خدمة VIP المميزة</h3>
+                        <p>استمتع برحلات فاخرة مع أفضل الخدمات</p>
+                        <button class="btn btn-primary">احجز VIP</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Screenshot Section -->
+    <section class="app-section">
+        <div class="container">
+            <div class="section-header">
+                <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+                    <img src="images/colored-logo-arabic-1.svg" alt="تطبيق نورث وست باص" style="width: 60px; height: 60px; margin-left: 1rem;">
+                    <h2>تطبيق نورث وست باص</h2>
+                </div>
+                <p>احجز رحلتك بسهولة من خلال تطبيقنا المتطور</p>
+            </div>
+            <div class="app-showcase">
+                <div class="app-info">
+                    <h3>تطبيق ذكي لحجز سهل</h3>
+                    <p>مع تطبيق نورث وست باص، يمكنك حجز تذاكرك وتتبع رحلاتك ومراجعة جدولك بكل سهولة من هاتفك المحمول.</p>
+                    
+                    <div class="app-features">
+                        <div class="app-feature">
+                            <img src="images/Screenshot-2025-07-30-130400 (1).png" alt="حجز سريع" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;">
+                            <span>حجز سريع ومبسط</span>
+                        </div>
+                        <div class="app-feature">
+                            <img src="images/1980x1090-en-1 (1).webp" alt="تنبيهات" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;">
+                            <span>تنبيهات الرحلات</span>
+                        </div>
+                        <div class="app-feature">
+                            <img src="images/Map (1).png" alt="تتبع" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;">
+                            <span>تتبع مباشر للباص</span>
+                        </div>
+                        <div class="app-feature">
+                            <img src="images/yellowvipbus (1).webp" alt="دفع" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;">
+                            <span>دفع آمن ومتنوع</span>
+                        </div>
+                        <div class="app-feature">
+                            <img src="images/1980x1090-en-1 (1).webp" alt="تطبيق ذكي" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;">
+                            <span>واجهة سهلة الاستخدام</span>
+                        </div>
+                        <div class="app-feature">
+                            <img src="images/225A9481-1 (1).webp" alt="دعم فني" style="width: 40px; height: 40px; border-radius: 8px; object-fit: cover;">
+                            <span>دعم فني 24/7</span>
+                        </div>
+                    </div>
+                    
+                    <div class="download-buttons">
+                        <button class="btn btn-primary">تحميل للأندرويد</button>
+                        <button class="btn btn-secondary">تحميل للآيفون</button>
+                    </div>
+                </div>
+                <div class="app-screenshot">
+                    <img src="images/1980x1090-en-1 (1).webp" alt="لقطة شاشة التطبيق" style="object-fit: cover; height: 400px; border-radius: 15px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+                    <img src="images/arrows (1).svg" alt="تواصل معنا" style="width: 60px; height: 60px; margin-left: 1rem;">
+                    <h2>تواصل معنا</h2>
+                </div>
+                <p>نحن هنا لمساعدتك في رحلتك القادمة</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                                    <div class="contact-item">
+                    <img src="images/WhatsApp-Image-2025-06-30-at-12.55.34-PM-1 (1).jpeg" alt="اتصل بنا" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+                    <div>
+                        <h4>اتصل بنا</h4>
+                        <p>920003344</p>
+                        <p>+966 50 123 4567</p>
+                    </div>
+                </div>
+                    
+                    <div class="contact-item">
+                        <img src="images/1980x1090-en-1 (1).webp" alt="راسلنا" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+                        <div>
+                            <h4>راسلنا عبر البريد</h4>
+                            <p>info@nwbus.sa</p>
+                            <p>support@nwbus.sa</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <img src="images/location-icon-1 (1).svg" alt="موقعنا" style="width: 50px; height: 50px; border-radius: 50%; object-fit: cover;">
+                        <div>
+                            <h4>موقعنا</h4>
+                            <p>الرياض، المملكة العربية السعودية</p>
+                            <p>شارع الملك فهد</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <div>
+                            <h4>ساعات العمل</h4>
+                            <p>الأحد - الخميس: 8:00 ص - 8:00 م</p>
+                            <p>الجمعة - السبت: 9:00 ص - 6:00 م</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form">
+                    <form id="contactForm" action="#" method="POST">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="الاسم الكامل" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="البريد الإلكتروني" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="tel" id="phone" name="phone" placeholder="رقم الهاتف" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <select id="subject" name="subject" required>
+                                <option value="">اختر الموضوع</option>
+                                <option value="booking">حجز رحلة</option>
+                                <option value="inquiry">استفسار عام</option>
+                                <option value="complaint">شكوى</option>
+                                <option value="suggestion">اقتراح</option>
+                                <option value="partnership">شراكة تجارية</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="رسالتك" rows="5" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            إرسال الرسالة
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq">
+        <div class="container">
+            <div class="section-header">
+                <div style="display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;">
+                    <img src="images/g148 (1).svg" alt="الأسئلة الشائعة" style="width: 60px; height: 60px; margin-left: 1rem;">
+                    <h2>الأسئلة الشائعة</h2>
+                </div>
+                <p>إجابات على أكثر الأسئلة شيوعاً</p>
+            </div>
+            
+            <div class="faq-content">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <img src="images/colored-logo-arabic-1.svg" alt="حجز" style="width: 30px; height: 30px;">
+                            <h4>كيف يمكنني حجز رحلة؟</h4>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                            <img src="images/1980x1090-en-1 (1).webp" alt="حجز إلكتروني" style="width: 60px; height: 40px; border-radius: 5px; object-fit: cover;">
+                            <span>حجز إلكتروني سريع</span>
+                        </div>
+                        <p>يمكنك الحجز عبر الهاتف على الرقم 920003344، أو عبر موقعنا الإلكتروني، أو زيارة أحد مكاتبنا المنتشرة في المملكة.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <img src="images/arrows (1).svg" alt="سياسة" style="width: 30px; height: 30px;">
+                            <h4>ما هي سياسة الإلغاء والتعديل؟</h4>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>يمكن إلغاء أو تعديل الحجز قبل 24 ساعة من موعد الرحلة بدون رسوم. الإلغاء في نفس اليوم يخضع لرسوم إدارية.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <img src="images/225A9481-1 (1).webp" alt="أطفال" style="width: 30px; height: 30px; border-radius: 5px; object-fit: cover;">
+                            <h4>هل تقدمون خدمات للأطفال؟</h4>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، نقدم مقاعد خاصة للأطفال مع أسعار مخفضة للأطفال دون سن 12 عاماً. الأطفال دون سن 3 سنوات يسافرون مجاناً.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <img src="images/g148 (1).svg" alt="ساعات العمل" style="width: 30px; height: 30px;">
+                            <h4>ما هي ساعات العمل؟</h4>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعمل من الأحد إلى الخميس من 8:00 صباحاً إلى 8:00 مساءً، والجمعة والسبت من 9:00 صباحاً إلى 6:00 مساءً.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <img src="images/yellowvipbus (1).webp" alt="خدمات الشركات" style="width: 30px; height: 30px;">
+                            <h4>هل تقدمون خدمات للشركات؟</h4>
+                        </div>
+                    </div>
+                    <div class="faq-answer">
+                        <p>نعم، نقدم خدمات خاصة للشركات والمؤسسات مع عروض خاصة وأسعار مخفضة للرحلات الجماعية والمنتظمة.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <img src="images/colored-logo-arabic-1.svg" alt="نورث وست باص" style="height: 35px;">
+                    </div>
+                    <p>رحلتك المميزة تبدأ معنا. نقدم أفضل خدمات النقل في المملكة العربية السعودية.</p>
+                    <div class="footer-features">
+                        <div class="footer-feature">
+                            <img src="images/yellowvipbus (1).webp" alt="باصات فاخرة" style="width: 25px; height: 25px; border-radius: 5px; object-fit: cover;">
+                            <span>باصات فاخرة</span>
+                        </div>
+                        <div class="footer-feature">
+                            <img src="images/Map (1).png" alt="طرق متنوعة" style="width: 25px; height: 25px; border-radius: 5px; object-fit: cover;">
+                            <span>طرق متنوعة</span>
+                        </div>
+                        <div class="footer-feature">
+                            <img src="images/arrows (1).svg" alt="رحلات يومية" style="width: 25px; height: 25px;">
+                            <span>رحلات يومية</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="wave"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="wave"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="wave"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="wave"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="wave"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul>
+                        <li><a href="#home">الرئيسية</a></li>
+                        <li><a href="#about">من نحن</a></li>
+                        <li><a href="#fleet">أسطولنا</a></li>
+                        <li><a href="#contact">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>الخدمات</h3>
+                    <ul>
+                        <li><a href="#">حجز التذاكر</a></li>
+                        <li><a href="#">جدول الرحلات</a></li>
+                        <li><a href="#">تتبع الرحلة</a></li>
+                        <li><a href="#">إلغاء الحجز</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>الدعم</h3>
+                    <ul>
+                        <li><a href="#">مركز المساعدة</a></li>
+                        <li><a href="#">الأسئلة الشائعة</a></li>
+                        <li><a href="#">سياسة الخصوصية</a></li>
+                        <li><a href="#">الشروط والأحكام</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 نورث وست باص. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+    
+    <!-- Service Worker Registration -->
+    <script>
+        // Register Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                        console.log('Service Worker registered successfully:', registration.scope);
+                        
+                        // Check for updates
+                        registration.addEventListener('updatefound', function() {
+                            const newWorker = registration.installing;
+                            newWorker.addEventListener('statechange', function() {
+                                if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                                    // New version available
+                                    showUpdateNotification();
+                                }
+                            });
+                        });
+                    })
+                    .catch(function(error) {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+        
+        // Show update notification
+        function showUpdateNotification() {
+            const notification = document.createElement('div');
+            notification.className = 'update-notification';
+            notification.innerHTML = `
+                <div class="update-content">
+                    <span>تتوفر نسخة جديدة من الموقع</span>
+                    <button onclick="updateApp()" class="update-btn">تحديث</button>
+                    <button onclick="dismissUpdate(this)" class="dismiss-btn">×</button>
+                </div>
+            `;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.classList.add('show');
+            }, 100);
+        }
+        
+        // Update app
+        function updateApp() {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.getRegistration().then(function(registration) {
+                    if (registration && registration.waiting) {
+                        registration.waiting.postMessage({ type: 'SKIP_WAITING' });
+                        window.location.reload();
+                    }
+                });
+            }
+        }
+        
+        // Dismiss update notification
+        function dismissUpdate(button) {
+            const notification = button.closest('.update-notification');
+            notification.classList.remove('show');
+            setTimeout(() => {
+                notification.remove();
+            }, 300);
+        }
+        
+
+        
+        // Analytics (placeholder)
+        function trackEvent(category, action, label) {
+            console.log('Analytics:', { category, action, label });
+            // Here you would integrate with your analytics service
+        }
+        
+        // Track page view
+        trackEvent('Page', 'View', 'Home');
+    </script>
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "نورث وست باص",
+        "alternateName": "Northwest Bus",
+        "url": "https://nwbus.sa",
+        "logo": "https://nwbus.sa/icons/icon-512x512.png",
+        "description": "خدمة نقل متميزة تجمع بين الراحة والأمان والالتزام بالمواعيد",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "جدة",
+            "addressCountry": "SA"
+        },
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+966920003344",
+            "contactType": "customer service",
+            "availableLanguage": ["Arabic", "English", "Urdu"]
+        },
+        "sameAs": [
+            "https://facebook.com/nwbus",
+            "https://twitter.com/nwbus",
+            "https://instagram.com/nwbus"
+        ],
+        "serviceArea": {
+            "@type": "Country",
+            "name": "Saudi Arabia"
+        },
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "خدمات النقل",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "نقل الركاب بين المدن",
+                        "description": "خدمة نقل مريحة وآمنة بين مختلف مدن المملكة"
+                    }
+                }
+            ]
+        }
+    }
+    </script>
+    
+    <style>
+        .update-notification {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-lg);
+            z-index: 10000;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            max-width: 350px;
+        }
+        
+        .update-notification.show {
+            transform: translateX(0);
+        }
+        
+        .update-content {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+        }
+        
+        .update-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+        
+        .dismiss-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.25rem;
+            opacity: 0.5;
+            margin-right: auto;
+        }
+        
+        .install-btn {
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-dark));
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 0.875rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+        
+        .install-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        @media (max-width: 768px) {
+            .update-notification {
+                right: 1rem;
+                left: 1rem;
+                max-width: none;
+            }
+            
+            .install-btn {
+                display: none;
+            }
+        }
+    </style>
+    
+    <script>
+        // PWA Install Handler
+        let deferredPrompt;
+        
+        window.addEventListener('beforeinstallprompt', (e) => {
+            // Prevent the mini-infobar from appearing on mobile
+            e.preventDefault();
+            // Stash the event so it can be triggered later
+            deferredPrompt = e;
+            
+            // Show install button if available
+            const installBtn = document.querySelector('.install-btn');
+            if (installBtn) {
+                installBtn.style.display = 'flex';
+                installBtn.addEventListener('click', () => {
+                    if (deferredPrompt) {
+                        deferredPrompt.prompt();
+                        deferredPrompt.userChoice.then((choiceResult) => {
+                            if (choiceResult.outcome === 'accepted') {
+                                console.log('User accepted the install prompt');
+                            } else {
+                                console.log('User dismissed the install prompt');
+                            }
+                            deferredPrompt = null;
+                        });
+                    }
+                });
+            }
+        });
+
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then((registration) => {
+                        console.log('Service Worker registered successfully:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            });
+        }
+
+        // Carousel functionality
+        class Carousel {
+            constructor() {
+                this.track = document.getElementById('carouselTrack');
+                this.slides = document.querySelectorAll('.carousel-slide');
+                this.prevBtn = document.getElementById('carouselPrev');
+                this.nextBtn = document.getElementById('carouselNext');
+                this.indicators = document.querySelectorAll('.indicator');
+                
+                this.currentSlide = 0;
+                this.slideCount = this.slides.length;
+                this.isTransitioning = false;
+                
+                this.init();
+            }
+            
+            init() {
+                // Set initial position
+                this.updateTrack();
+                
+                // Add event listeners
+                if (this.prevBtn) this.prevBtn.addEventListener('click', () => this.prev());
+                if (this.nextBtn) this.nextBtn.addEventListener('click', () => this.next());
+                
+                // Add indicator event listeners
+                this.indicators.forEach((indicator, index) => {
+                    indicator.addEventListener('click', () => this.goToSlide(index));
+                });
+                
+                // Add keyboard navigation
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') this.next();
+                    if (e.key === 'ArrowRight') this.prev();
+                });
+                
+                // Add touch/swipe support
+                this.addTouchSupport();
+                
+                // Auto-play (optional)
+                this.startAutoPlay();
+            }
+            
+            updateTrack() {
+                if (!this.track) return;
+                const translateX = -this.currentSlide * 100;
+                this.track.style.transform = `translateX(${translateX}%)`;
+                this.updateIndicators();
+            }
+            
+            updateIndicators() {
+                this.indicators.forEach((indicator, index) => {
+                    indicator.classList.toggle('active', index === this.currentSlide);
+                });
+            }
+            
+            next() {
+                if (this.isTransitioning) return;
+                this.isTransitioning = true;
+                this.currentSlide = (this.currentSlide + 1) % this.slideCount;
+                this.updateTrack();
+                setTimeout(() => this.isTransitioning = false, 500);
+            }
+            
+            prev() {
+                if (this.isTransitioning) return;
+                this.isTransitioning = true;
+                this.currentSlide = this.currentSlide === 0 ? this.slideCount - 1 : this.currentSlide - 1;
+                this.updateTrack();
+                setTimeout(() => this.isTransitioning = false, 500);
+            }
+            
+            goToSlide(index) {
+                if (this.isTransitioning || index === this.currentSlide) return;
+                this.isTransitioning = true;
+                this.currentSlide = index;
+                this.updateTrack();
+                setTimeout(() => this.isTransitioning = false, 500);
+            }
+            
+            addTouchSupport() {
+                if (!this.track) return;
+                let startX = 0;
+                let endX = 0;
+                
+                this.track.addEventListener('touchstart', (e) => {
+                    startX = e.touches[0].clientX;
+                });
+                
+                this.track.addEventListener('touchend', (e) => {
+                    endX = e.changedTouches[0].clientX;
+                    const diff = startX - endX;
+                    
+                    if (Math.abs(diff) > 50) { // Minimum swipe distance
+                        if (diff > 0) {
+                            this.next();
+                        } else {
+                            this.prev();
+                        }
+                    }
+                });
+            }
+            
+            startAutoPlay() {
+                setInterval(() => {
+                    if (!this.isTransitioning) {
+                        this.next();
+                    }
+                }, 5000); // Change slide every 5 seconds
+            }
+        }
+        
+        // Initialize carousel when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            if (document.getElementById('carouselTrack')) {
+                new Carousel();
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Enhanced error handling for images
+        document.querySelectorAll('img').forEach(img => {
+            img.addEventListener('error', function() {
+                console.warn('Image failed to load:', this.src);
+                // Try to load a fallback image
+                if (!this.src.includes('fallback')) {
+                    this.src = 'images/colored-logo-arabic-1.svg';
+                    this.alt = 'صورة بديلة';
+                } else {
+                    this.style.display = 'none';
+                }
+            });
+            
+            // Add loading state
+            img.addEventListener('load', function() {
+                this.style.opacity = '1';
+            });
+        });
+
+        // Performance monitoring with analytics
+        window.addEventListener('load', () => {
+            const loadTime = performance.now();
+            console.log(`Page loaded in ${loadTime.toFixed(2)}ms`);
+            
+            // Send analytics data
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'page_load', {
+                    'load_time': loadTime,
+                    'page_title': document.title
+                });
+            }
+        });
+
+        // Mobile menu functionality
+        const mobileMenuBtn = document.querySelector('.hamburger');
+        const navMenu = document.querySelector('.nav-menu');
+        
+        if (mobileMenuBtn && navMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenuBtn.classList.toggle('active');
+                navMenu.classList.toggle('active');
+            });
+            
+            // Close menu when clicking on links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenuBtn.classList.remove('active');
+                    navMenu.classList.remove('active');
+                });
+            });
+        }
+
+        // Accessibility improvements
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                // Close any open modals or menus
+                const activeElements = document.querySelectorAll('.active');
+                activeElements.forEach(el => el.classList.remove('active'));
+            }
+        });
+
+        // Form validation and handling
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Basic validation
+                const requiredFields = form.querySelectorAll('[required]');
+                let isValid = true;
+                
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.classList.add('error');
+                    } else {
+                        field.classList.remove('error');
+                    }
+                });
+                
+                if (isValid) {
+                    // Show success message
+                    const successMsg = document.createElement('div');
+                    successMsg.className = 'success-message';
+                    successMsg.textContent = 'تم إرسال البيانات بنجاح!';
+                    form.appendChild(successMsg);
+                    
+                    // Reset form after 2 seconds
+                    setTimeout(() => {
+                        form.reset();
+                        successMsg.remove();
+                    }, 2000);
+                }
+            });
+        });
+
+        // Missing Functions
+        function changePassengers(change) {
+            const passengerCount = document.getElementById('passengerCount');
+            let currentCount = parseInt(passengerCount.textContent);
+            let newCount = currentCount + change;
+            
+            // Ensure count stays between 1 and 10
+            if (newCount >= 1 && newCount <= 10) {
+                passengerCount.textContent = newCount;
+            }
+        }
+
+        function showSchedule() {
+            alert('سيتم فتح جدول الرحلات قريباً');
+        }
+
+        function showTracking() {
+            alert('سيتم فتح خدمة تتبع الرحلة قريباً');
+        }
+
+        function showSupport() {
+            alert('سيتم فتح خدمة العملاء قريباً');
+        }
+    </script>
+</body>
+</html>

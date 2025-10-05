@@ -1,0 +1,58 @@
+{
+  "name": "northwest-bus-website",
+  "version": "1.0.0",
+  "description": "موقع إلكتروني احترافي لشركة نورث وست باص",
+  "main": "index.html",
+  "scripts": {
+    "start": "live-server --port=3000 --open=/",
+    "build": "echo 'No build process needed for static site'",
+    "test": "echo 'No tests specified'",
+    "lint": "echo 'No linting configured'",
+    "optimize-images": "echo 'Image optimization needed'",
+    "minify-css": "echo 'CSS minification needed'",
+    "minify-js": "echo 'JS minification needed'",
+    "deploy": "echo 'Deploy to server'"
+  },
+  "keywords": [
+    "bus",
+    "transportation",
+    "saudi-arabia",
+    "pwa",
+    "responsive",
+    "arabic",
+    "travel"
+  ],
+  "author": "Northwest Bus Company",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/northwest-bus/website.git"
+  },
+  "bugs": {
+    "url": "https://github.com/northwest-bus/website/issues"
+  },
+  "homepage": "https://nwbus.sa",
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "npm": ">=6.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "pwa": {
+    "name": "نورث وست باص",
+    "short_name": "نورث وست",
+    "description": "خدمة نقل متميزة في المملكة العربية السعودية",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#1e40af",
+    "theme_color": "#1e40af"
+  }
+}
+

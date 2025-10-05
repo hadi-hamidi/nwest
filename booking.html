@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="حجز رحلة - نورث وست باص">
+    <title>حجز الرحلة - نورث وست باص</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/colored-logo-arabic-1.svg">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .booking-page {
+            padding: 2rem 0;
+            background: var(--light-color);
+            min-height: 100vh;
+        }
+        
+        .booking-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+        
+        .booking-header {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .booking-header h1 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .booking-steps {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .step {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            background: var(--border-color);
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+        
+        .step.active {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .step.completed {
+            background: var(--success-color);
+            color: white;
+        }
+        
+        .booking-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+        
+        .booking-form-section {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+        
+        .booking-summary {
+            background: white;
+            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            height: fit-content;
+            position: sticky;
+            top: 2rem;
+        }
+        
+        .form-section {
+            margin-bottom: 2rem;
+        }
+        
+        .form-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .passenger-details {
+            border: 1px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .passenger-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .passenger-header h4 {
+            color: var(--primary-color);
+            margin: 0;
+        }
+        
+        .remove-passenger {
+            background: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .payment-method {
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .payment-method:hover {
+            border-color: var(--primary-color);
+        }
+        
+        .payment-method.selected {
+            border-color: var(--primary-color);
+            background: rgba(37, 99, 235, 0.1);
+        }
+        
+        .payment-method i {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .trip-info {
+            background: var(--light-color);
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+        }
+        
+        .trip-info h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .trip-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .price-breakdown {
+            border-top: 1px solid var(--border-color);
+            padding-top: 1rem;
+        }
+        
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+        }
+        
+        .price-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            border-top: 2px solid var(--primary-color);
+            padding-top: 0.5rem;
+            margin-top: 0.5rem;
+        }
+        
+        .btn-complete {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            border: none;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 1rem;
+        }
+        
+        .btn-complete:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .btn-complete:disabled {
+            background: var(--text-light);
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .add-passenger {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            margin-bottom: 1rem;
+        }
+        
+        .add-passenger:hover {
+            background: var(--accent-dark);
+        }
+        
+        @media (max-width: 768px) {
+            .booking-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .booking-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar">
+            <div class="container">
+                <div class="nav-brand">
+                    <div class="logo">
+                        <img src="images/colored-logo-arabic-1.svg" alt="نورث وست باص" style="height: 40px;">
+                    </div>
+                </div>
+                
+                <div class="nav-actions">
+                    <button class="btn btn-outline" onclick="window.location.href='index.html'">العودة للرئيسية</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Booking Page -->
+    <section class="booking-page">
+        <div class="booking-container">
+            <!-- Booking Header -->
+            <div class="booking-header">
+                <h1>حجز رحلتك</h1>
+                <p>أكمل بياناتك لتأكيد الحجز</p>
+                
+                <div class="booking-steps">
+                    <div class="step active">
+                        <i class="fas fa-user"></i>
+                        <span>بيانات الراكب</span>
+                    </div>
+                    <div class="step">
+                        <i class="fas fa-credit-card"></i>
+                        <span>الدفع</span>
+                    </div>
+                    <div class="step">
+                        <i class="fas fa-check"></i>
+                        <span>التأكيد</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="booking-content">
+                <!-- Booking Form -->
+                <div class="booking-form-section">
+                    <form id="bookingForm">
+                        <!-- Trip Selection -->
+                        <div class="form-section">
+                            <h3>تفاصيل الرحلة</h3>
+                            <div class="trip-info">
+                                <h4>جدة ← الرياض</h4>
+                                <div class="trip-details">
+                                    <div><strong>التاريخ:</strong> 25 ديسمبر 2024</div>
+                                    <div><strong>الوقت:</strong> 08:00 ص</div>
+                                    <div><strong>المدة:</strong> 10 ساعات</div>
+                                    <div><strong>نوع الباص:</strong> VIP</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Passenger Details -->
+                        <div class="form-section">
+                            <h3>بيانات الركاب</h3>
+                            
+                            <div id="passengersContainer">
+                                <!-- Passenger 1 -->
+                                <div class="passenger-details" data-passenger="1">
+                                    <div class="passenger-header">
+                                        <h4>الراكب 1</h4>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>الاسم الأول</label>
+                                            <input type="text" name="firstName[]" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>الاسم الأخير</label>
+                                            <input type="text" name="lastName[]" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>رقم الهوية</label>
+                                            <input type="text" name="idNumber[]" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>رقم الهاتف</label>
+                                            <input type="tel" name="phone[]" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>البريد الإلكتروني</label>
+                                        <input type="email" name="email[]" required>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button type="button" class="add-passenger" onclick="addPassenger()">
+                                <i class="fas fa-plus"></i> إضافة راكب آخر
+                            </button>
+                        </div>
+
+                        <!-- Contact Information -->
+                        <div class="form-section">
+                            <h3>معلومات الاتصال</h3>
+                            <div class="form-group">
+                                <label>رقم الهاتف للطوارئ</label>
+                                <input type="tel" name="emergencyPhone" required>
+                            </div>
+                            <div class="form-group">
+                                <label>ملاحظات خاصة (اختياري)</label>
+                                <textarea name="specialNotes" rows="3" placeholder="أي ملاحظات أو طلبات خاصة..."></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Payment Method -->
+                        <div class="form-section">
+                            <h3>طريقة الدفع</h3>
+                            <div class="payment-methods">
+                                <div class="payment-method" onclick="selectPayment('credit')">
+                                    <i class="fas fa-credit-card"></i>
+                                    <div>بطاقة ائتمان</div>
+                                </div>
+                                <div class="payment-method" onclick="selectPayment('debit')">
+                                    <i class="fas fa-credit-card"></i>
+                                    <div>بطاقة خصم</div>
+                                </div>
+                                <div class="payment-method" onclick="selectPayment('apple')">
+                                    <i class="fab fa-apple-pay"></i>
+                                    <div>Apple Pay</div>
+                                </div>
+                                <div class="payment-method" onclick="selectPayment('stc')">
+                                    <i class="fas fa-mobile-alt"></i>
+                                    <div>STC Pay</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Terms and Conditions -->
+                        <div class="form-section">
+                            <div class="form-group">
+                                <label style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <input type="checkbox" name="terms" required>
+                                    <span>أوافق على <a href="#" style="color: var(--primary-color);">الشروط والأحكام</a> و <a href="#" style="color: var(--primary-color);">سياسة الخصوصية</a></span>
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Booking Summary -->
+                <div class="booking-summary">
+                    <h3>ملخص الحجز</h3>
+                    
+                    <div class="trip-info">
+                        <h4>جدة ← الرياض</h4>
+                        <div class="trip-details">
+                            <div><strong>التاريخ:</strong> 25 ديسمبر 2024</div>
+                            <div><strong>الوقت:</strong> 08:00 ص</div>
+                            <div><strong>المدة:</strong> 10 ساعات</div>
+                            <div><strong>نوع الباص:</strong> VIP</div>
+                        </div>
+                    </div>
+
+                    <div class="price-breakdown">
+                        <div class="price-item">
+                            <span>تذكرة الراكب (1 × 120 ريال)</span>
+                            <span>120 ريال</span>
+                        </div>
+                        <div class="price-item">
+                            <span>رسوم الخدمة</span>
+                            <span>5 ريال</span>
+                        </div>
+                        <div class="price-item">
+                            <span>ضريبة القيمة المضافة (15%)</span>
+                            <span>18.75 ريال</span>
+                        </div>
+                        <div class="price-total">
+                            <span>المجموع</span>
+                            <span>143.75 ريال</span>
+                        </div>
+                    </div>
+
+                    <button class="btn-complete" onclick="completeBooking()">
+                        <i class="fas fa-lock"></i>
+                        تأكيد الحجز والدفع
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>تم الحجز بنجاح!</h3>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; padding: 2rem;">
+                    <i class="fas fa-check-circle" style="font-size: 4rem; color: var(--success-color); margin-bottom: 1rem;"></i>
+                    <h4>رقم الحجز: #NW2024001</h4>
+                    <p>تم إرسال تأكيد الحجز إلى بريدك الإلكتروني</p>
+                    <p>يمكنك تتبع رحلتك من خلال رقم الحجز</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeSuccessModal()">إغلاق</button>
+                <button class="btn btn-primary" onclick="window.location.href='my-bookings.html'">عرض حجوزاتي</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let passengerCount = 1;
+        let selectedPayment = '';
+
+        function addPassenger() {
+            if (passengerCount >= 5) {
+                alert('لا يمكن إضافة أكثر من 5 ركاب');
+                return;
+            }
+            
+            passengerCount++;
+            const container = document.getElementById('passengersContainer');
+            const newPassenger = document.createElement('div');
+            newPassenger.className = 'passenger-details';
+            newPassenger.setAttribute('data-passenger', passengerCount);
+            newPassenger.innerHTML = `
+                <div class="passenger-header">
+                    <h4>الراكب ${passengerCount}</h4>
+                    <button type="button" class="remove-passenger" onclick="removePassenger(${passengerCount})">
+                        <i class="fas fa-trash"></i> حذف
+                    </button>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>الاسم الأول</label>
+                        <input type="text" name="firstName[]" required>
+                    </div>
+                    <div class="form-group">
+                        <label>الاسم الأخير</label>
+                        <input type="text" name="lastName[]" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>رقم الهوية</label>
+                        <input type="text" name="idNumber[]" required>
+                    </div>
+                    <div class="form-group">
+                        <label>رقم الهاتف</label>
+                        <input type="tel" name="phone[]" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" name="email[]" required>
+                </div>
+            `;
+            container.appendChild(newPassenger);
+            
+            // Update price
+            updatePrice();
+        }
+
+        function removePassenger(passengerNum) {
+            if (passengerCount <= 1) {
+                alert('يجب أن يكون هناك راكب واحد على الأقل');
+                return;
+            }
+            
+            const passenger = document.querySelector(`[data-passenger="${passengerNum}"]`);
+            passenger.remove();
+            passengerCount--;
+            
+            // Update passenger numbers
+            updatePassengerNumbers();
+            updatePrice();
+        }
+
+        function updatePassengerNumbers() {
+            const passengers = document.querySelectorAll('.passenger-details');
+            passengers.forEach((passenger, index) => {
+                const header = passenger.querySelector('h4');
+                header.textContent = `الراكب ${index + 1}`;
+                passenger.setAttribute('data-passenger', index + 1);
+            });
+        }
+
+        function selectPayment(method) {
+            // Remove selected class from all payment methods
+            document.querySelectorAll('.payment-method').forEach(method => {
+                method.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked method
+            event.target.closest('.payment-method').classList.add('selected');
+            selectedPayment = method;
+        }
+
+        function updatePrice() {
+            const basePrice = 120;
+            const serviceFee = 5;
+            const vatRate = 0.15;
+            
+            const totalBasePrice = basePrice * passengerCount;
+            const vat = (totalBasePrice + serviceFee) * vatRate;
+            const totalPrice = totalBasePrice + serviceFee + vat;
+            
+            // Update price display
+            document.querySelector('.price-item:first-child span:first-child').textContent = 
+                `تذكرة الراكب (${passengerCount} × ${basePrice} ريال)`;
+            document.querySelector('.price-item:first-child span:last-child').textContent = 
+                `${totalBasePrice} ريال`;
+            document.querySelector('.price-item:last-child span:last-child').textContent = 
+                `${vat.toFixed(2)} ريال`;
+            document.querySelector('.price-total span:last-child').textContent = 
+                `${totalPrice.toFixed(2)} ريال`;
+        }
+
+        function completeBooking() {
+            // Validate form
+            const form = document.getElementById('bookingForm');
+            const formData = new FormData(form);
+            
+            // Check if payment method is selected
+            if (!selectedPayment) {
+                alert('يرجى اختيار طريقة الدفع');
+                return;
+            }
+            
+            // Check if terms are accepted
+            if (!formData.get('terms')) {
+                alert('يرجى الموافقة على الشروط والأحكام');
+                return;
+            }
+            
+            // Simulate booking process
+            const btn = document.querySelector('.btn-complete');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> جاري المعالجة...';
+            
+            setTimeout(() => {
+                // Show success modal
+                document.getElementById('successModal').style.display = 'block';
+            }, 2000);
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('successModal').style.display = 'none';
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            updatePrice();
+        });
+    </script>
+
+    <style>
+        .modal {
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 0;
+            border-radius: var(--border-radius);
+            width: 80%;
+            max-width: 500px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .modal-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: var(--success-color);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .modal-footer {
+            padding: 1rem 1.5rem;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+    </style>
+</body>
+</html>
