@@ -503,12 +503,32 @@
                 password: 'admin123',
                 role: 'admin',
                 name: 'المدير',
+                email: 'admin@northwestbus.com',
+                phone: '+966500000001',
                 permissions: ['all']
             },
             'user': {
                 password: 'user123',
                 role: 'user',
-                name: 'مستخدم عادي',
+                name: 'أحمد محمد',
+                email: 'ahmed@example.com',
+                phone: '+966500000002',
+                permissions: ['book', 'view_bookings']
+            },
+            'customer1': {
+                password: '123456',
+                role: 'user',
+                name: 'سارة أحمد',
+                email: 'sara@example.com',
+                phone: '+966500000003',
+                permissions: ['book', 'view_bookings']
+            },
+            'customer2': {
+                password: '123456',
+                role: 'user',
+                name: 'محمد علي',
+                email: 'mohammed@example.com',
+                phone: '+966500000004',
                 permissions: ['book', 'view_bookings']
             }
         };
@@ -536,13 +556,44 @@
                 const account = demoAccounts[username];
                 
                 // Store user data
-                localStorage.setItem('user', JSON.stringify({
+                const userData = {
+                    id: username,
                     username: username,
                     name: account.name,
+                    email: account.email,
+                    phone: account.phone,
                     role: account.role,
                     permissions: account.permissions,
-                    loginTime: new Date().toISOString()
-                }));
+                    loginTime: new Date().toISOString(),
+                    lastLogin: new Date().toISOString(),
+                    profileComplete: true,
+                    totalLogins: 1,
+                    preferences: {
+                        language: 'ar',
+                        notifications: true,
+                        theme: 'light'
+                    },
+                    stats: {
+                        totalBookings: 0,
+                        completedBookings: 0,
+                        totalSpent: 0
+                    }
+                };
+                
+                // Check if user exists and update stats
+                const existingUser = localStorage.getItem('user');
+                if (existingUser) {
+                    try {
+                        const existingData = JSON.parse(existingUser);
+                        userData.totalLogins = (existingData.totalLogins || 0) + 1;
+                        userData.stats = existingData.stats || userData.stats;
+                        userData.preferences = existingData.preferences || userData.preferences;
+                    } catch (e) {
+                        console.log('New user, using default stats');
+                    }
+                }
+                
+                localStorage.setItem('user', JSON.stringify(userData));
                 
                 if (remember) {
                     localStorage.setItem('rememberUser', 'true');
@@ -555,7 +606,7 @@
                     if (account.role === 'admin') {
                         window.location.href = 'admin-dashboard.html';
                     } else {
-                        window.location.href = 'my-bookings.html';
+                        window.location.href = 'customer-dashboard.html';
                     }
                 }, 1500);
                 
@@ -653,7 +704,7 @@
                 if (userData.role === 'admin') {
                     window.location.href = 'admin-dashboard.html';
                 } else {
-                    window.location.href = 'my-bookings.html';
+                    window.location.href = 'customer-dashboard.html';
                 }
             }
     });

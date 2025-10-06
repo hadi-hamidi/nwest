@@ -23,6 +23,7 @@
             display: flex;
             min-height: 100vh;
             background: #f8fafc;
+            position: relative;
         }
         
         .sidebar {
@@ -30,6 +31,8 @@
             background: white;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
             position: fixed;
+            top: 0;
+            right: 0;
             height: 100vh;
             overflow-y: auto;
             z-index: 1000;
@@ -87,6 +90,8 @@
             flex: 1;
             margin-right: 280px;
             padding: 2rem;
+            position: relative;
+            z-index: 1;
         }
         
         .dashboard-header {
@@ -98,6 +103,8 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
+            z-index: 10;
         }
         
         .header-left h1 {
@@ -211,6 +218,8 @@
             border-radius: 12px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
             margin-bottom: 2rem;
+            position: relative;
+            z-index: 5;
         }
         
         .section-header {
@@ -640,21 +649,23 @@
         /* Mobile Responsive */
         @media (max-width: 768px) {
             .sidebar {
-                transform: translateX(-100%);
+                transform: translateX(100%);
                 transition: transform 0.3s ease;
                 width: 280px;
                 z-index: 1000;
                 position: fixed;
+                top: 0;
+                right: 0;
             }
             
             .sidebar.open {
                 transform: translateX(0);
-                display: block;
             }
             
             .main-content {
                 margin-right: 0;
                 padding: 1rem;
+                width: 100%;
             }
             
             .dashboard-header {
@@ -758,6 +769,127 @@
         
         .detail-row .value {
             color: #6b7280;
+        }
+        
+        /* Edit Profile Form Styles */
+        .edit-profile-form {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-top: 2rem;
+            padding: 2rem;
+        }
+        
+        .form-section h3 {
+            color: #374151;
+            margin-bottom: 1.5rem;
+            font-size: 1.25rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #374151;
+            font-weight: 600;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus {
+            outline: none;
+            border-color: #1d4ed8;
+            box-shadow: 0 0 0 3px rgba(29, 78, 216, 0.1);
+        }
+        
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 2rem;
+        }
+        
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .profile-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex: 1;
+        }
+        
+        .user-avatar-large {
+            width: 80px;
+            height: 80px;
+        }
+        
+        .user-avatar-large .avatar {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1d4ed8, #ea580c);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .profile-details h3 {
+            margin: 0 0 0.5rem 0;
+            color: #374151;
+            font-size: 1.5rem;
+        }
+        
+        .profile-details p {
+            margin: 0.25rem 0;
+            color: #6b7280;
+        }
+        
+        .profile-actions {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        /* Ensure proper layout */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+        
+        /* Fix for dashboard layout */
+        .customer-dashboard {
+            width: 100%;
+            min-height: 100vh;
+        }
+        
+        /* Ensure main content is properly positioned */
+        .main-content {
+            width: calc(100% - 280px);
+            min-height: 100vh;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -962,6 +1094,37 @@
                             </button>
                         </div>
                     </div>
+                    
+                    <!-- Edit Profile Form -->
+                    <div id="editProfileForm" class="edit-profile-form" style="display: none;">
+                        <div class="form-section">
+                            <h3>تحديث المعلومات الشخصية</h3>
+                            <form id="profileUpdateForm">
+                                <div class="form-group">
+                                    <label for="editName">الاسم الكامل</label>
+                                    <input type="text" id="editName" name="name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editEmail">البريد الإلكتروني</label>
+                                    <input type="email" id="editEmail" name="email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="editPhone">رقم الهاتف</label>
+                                    <input type="tel" id="editPhone" name="phone" required>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">
+                                        <i class="fas fa-save"></i>
+                                        حفظ التغييرات
+                                    </button>
+                                    <button type="button" class="btn btn-secondary" onclick="cancelEditProfile()">
+                                        <i class="fas fa-times"></i>
+                                        إلغاء
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -1022,13 +1185,52 @@
             const profilePhone = document.getElementById('profilePhone');
             const profileAvatar = document.getElementById('profileAvatar');
             
+            // Update header user info
             if (userName) userName.textContent = userData.name || userData.fullName || 'العميل';
             if (userEmail) userEmail.textContent = userData.email || 'customer@email.com';
             if (userAvatar) userAvatar.textContent = (userData.name || userData.fullName || 'ع').charAt(0);
+            
+            // Update profile section
             if (profileName) profileName.textContent = userData.name || userData.fullName || 'اسم العميل';
             if (profileEmail) profileEmail.textContent = userData.email || 'البريد الإلكتروني';
             if (profilePhone) profilePhone.textContent = userData.phone || 'رقم الهاتف';
             if (profileAvatar) profileAvatar.textContent = (userData.name || userData.fullName || 'ع').charAt(0);
+            
+            // Update dashboard header with welcome message
+            const dashboardHeader = document.querySelector('.header-left h1');
+            if (dashboardHeader && userData.name) {
+                dashboardHeader.textContent = `مرحباً ${userData.name}!`;
+            }
+            
+            // Show last login time if available
+            if (userData.lastLogin) {
+                const lastLoginDate = new Date(userData.lastLogin);
+                const lastLoginElement = document.querySelector('.header-left p');
+                if (lastLoginElement) {
+                    lastLoginElement.textContent = `آخر دخول: ${lastLoginDate.toLocaleDateString('ar-SA')} في ${lastLoginDate.toLocaleTimeString('ar-SA')}`;
+                }
+            }
+            
+            // Update user stats if available
+            if (userData.stats) {
+                const totalBookings = userData.stats.totalBookings || 0;
+                const completedBookings = userData.stats.completedBookings || 0;
+                const totalSpent = userData.stats.totalSpent || 0;
+                
+                // Update stats in dashboard
+                const totalBookingsElement = document.getElementById('totalBookings');
+                const completedBookingsElement = document.getElementById('completedBookings');
+                const totalSpentElement = document.getElementById('totalSpent');
+                
+                if (totalBookingsElement) totalBookingsElement.textContent = totalBookings;
+                if (completedBookingsElement) completedBookingsElement.textContent = completedBookings;
+                if (totalSpentElement) totalSpentElement.textContent = totalSpent + ' ريال';
+            }
+            
+            // Show login count if available
+            if (userData.totalLogins) {
+                console.log(`إجمالي مرات الدخول: ${userData.totalLogins}`);
+            }
         }
         
         // Load user bookings
@@ -1312,6 +1514,62 @@
             }
         }
         
+        // Edit profile function
+        function editProfile() {
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            const editForm = document.getElementById('editProfileForm');
+            
+            // Fill form with current data
+            document.getElementById('editName').value = user.name || '';
+            document.getElementById('editEmail').value = user.email || '';
+            document.getElementById('editPhone').value = user.phone || '';
+            
+            // Show edit form
+            editForm.style.display = 'block';
+            
+            // Scroll to form
+            editForm.scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Cancel edit profile
+        function cancelEditProfile() {
+            document.getElementById('editProfileForm').style.display = 'none';
+        }
+        
+        // Update profile function
+        function updateProfile() {
+            const user = JSON.parse(localStorage.getItem('user') || '{}');
+            
+            // Get form data
+            const name = document.getElementById('editName').value;
+            const email = document.getElementById('editEmail').value;
+            const phone = document.getElementById('editPhone').value;
+            
+            // Validate form
+            if (!name || !email || !phone) {
+                alert('يرجى ملء جميع الحقول المطلوبة');
+                return;
+            }
+            
+            // Update user data
+            user.name = name;
+            user.email = email;
+            user.phone = phone;
+            user.lastUpdated = new Date().toISOString();
+            
+            // Save to localStorage
+            localStorage.setItem('user', JSON.stringify(user));
+            
+            // Update UI
+            updateUserInfo(user);
+            
+            // Hide edit form
+            document.getElementById('editProfileForm').style.display = 'none';
+            
+            // Show success message
+            alert('تم تحديث الملف الشخصي بنجاح!');
+        }
+        
         // Initialize dashboard
         document.addEventListener('DOMContentLoaded', function() {
             checkUserLogin();
@@ -1319,6 +1577,15 @@
             // Check if URL has #bookings hash
             if (window.location.hash === '#bookings') {
                 showSection('bookings');
+            }
+            
+            // Add form submit handler for profile update
+            const profileForm = document.getElementById('profileUpdateForm');
+            if (profileForm) {
+                profileForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    updateProfile();
+                });
             }
         });
     </script>
