@@ -550,7 +550,7 @@
                 return;
             }
             
-            // Check demo accounts
+            // Check demo accounts first
             if (demoAccounts[username] && demoAccounts[username].password === password) {
                 // Successful login
                 const account = demoAccounts[username];
@@ -611,7 +611,56 @@
                 }, 1500);
                 
             } else {
-                showError('اسم المستخدم أو كلمة المرور غير صحيحة');
+                // Check registered users
+                const users = JSON.parse(localStorage.getItem('users') || '[]');
+                const user = users.find(u => u.email === username || u.username === username);
+                
+                if (user && user.password === password) {
+                    // Update user login info
+                    user.lastLogin = new Date().toISOString();
+                    user.totalLogins = (user.totalLogins || 0) + 1;
+                    
+                    // Update users list
+                    const updatedUsers = users.map(u => u.id === user.id ? user : u);
+                    localStorage.setItem('users', JSON.stringify(updatedUsers));
+                    
+                    // Store user data for session
+                    const userData = {
+                        id: user.id,
+                        username: user.username,
+                        name: user.name,
+                        email: user.email,
+                        phone: user.phone,
+                        role: user.role,
+                        permissions: user.permissions,
+                        loginTime: new Date().toISOString(),
+                        lastLogin: user.lastLogin,
+                        profileComplete: true,
+                        totalLogins: user.totalLogins,
+                        preferences: user.preferences,
+                        stats: user.stats
+                    };
+                    
+                    localStorage.setItem('user', JSON.stringify(userData));
+                    
+                    if (remember) {
+                        localStorage.setItem('rememberUser', 'true');
+                    }
+                    
+                    showSuccess(`مرحباً ${user.name}! تم تسجيل الدخول بنجاح`);
+                    
+                    // Redirect based on role
+                    setTimeout(() => {
+                        if (user.role === 'admin') {
+                            window.location.href = 'admin-dashboard.html';
+                        } else {
+                            window.location.href = 'customer-dashboard.html';
+                        }
+                    }, 1500);
+                    
+                } else {
+                    showError('اسم المستخدم أو كلمة المرور غير صحيحة');
+                }
             }
         });
 
@@ -635,7 +684,195 @@
         }
 
         function socialLogin(provider) {
-            alert(`سيتم تسجيل الدخول باستخدام ${provider}`);
+            if (provider === 'google') {
+                // Simulate Google login
+                showGoogleLoginModal();
+            } else {
+                alert(`سيتم تسجيل الدخول باستخدام ${provider}`);
+            }
+        }
+        
+        // Google login modal
+        function showGoogleLoginModal() {
+            const modal = document.createElement('div');
+            modal.className = 'modal-overlay';
+            modal.innerHTML = `
+                <div class="modal-content google-login-modal">
+                    <div class="modal-header">
+                        <h3>تسجيل الدخول عبر Google</h3>
+                        <button class="close-btn" onclick="closeGoogleModal()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="google-accounts">
+                            <h4>اختر حساب Google:</h4>
+                            <div class="google-account-list">
+                                <div class="google-account" onclick="loginWithGoogleAccount('ahmed@gmail.com')">
+                                    <div class="google-avatar">أ</div>
+                                    <div class="google-info">
+                                        <h5>أحمد محمد</h5>
+                                        <p>ahmed@gmail.com</p>
+                                    </div>
+                                </div>
+                                <div class="google-account" onclick="loginWithGoogleAccount('sara@gmail.com')">
+                                    <div class="google-avatar">س</div>
+                                    <div class="google-info">
+                                        <h5>سارة أحمد</h5>
+                                        <p>sara@gmail.com</p>
+                                    </div>
+                                </div>
+                                <div class="google-account" onclick="loginWithGoogleAccount('mohammed@gmail.com')">
+                                    <div class="google-avatar">م</div>
+                                    <div class="google-info">
+                                        <h5>محمد علي</h5>
+                                        <p>mohammed@gmail.com</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // Add styles
+            const style = document.createElement('style');
+            style.textContent = `
+                .google-login-modal {
+                    max-width: 400px;
+                }
+                .google-accounts h4 {
+                    margin-bottom: 1rem;
+                    color: #374151;
+                }
+                .google-account-list {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 0.5rem;
+                }
+                .google-account {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                    padding: 1rem;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 8px;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+                }
+                .google-account:hover {
+                    background: #f9fafb;
+                    border-color: #1d4ed8;
+                }
+                .google-avatar {
+                    width: 40px;
+                    height: 40px;
+                    background: linear-gradient(135deg, #1d4ed8, #ea580c);
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    color: white;
+                    font-weight: bold;
+                    font-size: 1.2rem;
+                }
+                .google-info h5 {
+                    margin: 0 0 0.25rem 0;
+                    color: #374151;
+                    font-size: 1rem;
+                }
+                .google-info p {
+                    margin: 0;
+                    color: #6b7280;
+                    font-size: 0.9rem;
+                }
+            `;
+            document.head.appendChild(style);
+            
+            document.body.appendChild(modal);
+        }
+        
+        // Close Google modal
+        function closeGoogleModal() {
+            const modal = document.querySelector('.modal-overlay');
+            if (modal) {
+                modal.remove();
+            }
+        }
+        
+        // Login with Google account
+        function loginWithGoogleAccount(email) {
+            // Google accounts data
+            const googleAccounts = {
+                'ahmed@gmail.com': {
+                    name: 'أحمد محمد',
+                    email: 'ahmed@gmail.com',
+                    phone: '+966500000001',
+                    role: 'user',
+                    permissions: ['book', 'view_bookings'],
+                    provider: 'google'
+                },
+                'sara@gmail.com': {
+                    name: 'سارة أحمد',
+                    email: 'sara@gmail.com',
+                    phone: '+966500000002',
+                    role: 'user',
+                    permissions: ['book', 'view_bookings'],
+                    provider: 'google'
+                },
+                'mohammed@gmail.com': {
+                    name: 'محمد علي',
+                    email: 'mohammed@gmail.com',
+                    phone: '+966500000003',
+                    role: 'user',
+                    permissions: ['book', 'view_bookings'],
+                    provider: 'google'
+                }
+            };
+            
+            const account = googleAccounts[email];
+            if (account) {
+                // Store user data
+                const userData = {
+                    id: email,
+                    username: email,
+                    name: account.name,
+                    email: account.email,
+                    phone: account.phone,
+                    role: account.role,
+                    permissions: account.permissions,
+                    provider: account.provider,
+                    loginTime: new Date().toISOString(),
+                    lastLogin: new Date().toISOString(),
+                    profileComplete: true,
+                    totalLogins: 1,
+                    preferences: {
+                        language: 'ar',
+                        notifications: true,
+                        theme: 'light'
+                    },
+                    stats: {
+                        totalBookings: 0,
+                        completedBookings: 0,
+                        totalSpent: 0
+                    }
+                };
+                
+                localStorage.setItem('user', JSON.stringify(userData));
+                localStorage.setItem('rememberUser', 'true');
+                
+                showSuccess(`مرحباً ${account.name}! تم تسجيل الدخول عبر Google بنجاح`);
+                
+                // Close modal
+                closeGoogleModal();
+                
+                // Redirect based on role
+                setTimeout(() => {
+                    if (account.role === 'admin') {
+                        window.location.href = 'admin-dashboard.html';
+                    } else {
+                        window.location.href = 'customer-dashboard.html';
+                    }
+                }, 1500);
+            }
         }
 
         function showRegister() {
@@ -650,14 +887,94 @@
             const form = document.getElementById('registerForm');
             const formData = new FormData(form);
             
+            // Get form data
+            const fullName = formData.get('fullName');
+            const email = formData.get('email');
+            const phone = formData.get('phone');
+            const password = formData.get('password');
+            const confirmPassword = formData.get('confirmPassword');
+            
             // Basic validation
-            if (formData.get('password') !== formData.get('confirmPassword')) {
+            if (!fullName || !email || !phone || !password) {
+                alert('يرجى ملء جميع الحقول المطلوبة');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
                 alert('كلمة المرور وتأكيد كلمة المرور غير متطابقين');
                 return;
             }
             
-            alert('تم إنشاء الحساب بنجاح! يمكنك الآن تسجيل الدخول');
+            if (password.length < 6) {
+                alert('كلمة المرور يجب أن تكون 6 أحرف على الأقل');
+                return;
+            }
+            
+            // Check if user already exists
+            const existingUsers = JSON.parse(localStorage.getItem('users') || '[]');
+            const existingUser = existingUsers.find(user => user.email === email);
+            
+            if (existingUser) {
+                alert('هذا البريد الإلكتروني مسجل مسبقاً');
+                return;
+            }
+            
+            // Create new user
+            const newUser = {
+                id: 'user_' + Date.now(),
+                username: email,
+                name: fullName,
+                email: email,
+                phone: phone,
+                password: password, // In real app, this should be hashed
+                role: 'user',
+                permissions: ['book', 'view_bookings'],
+                status: 'active',
+                registrationDate: new Date().toISOString(),
+                lastLogin: null,
+                totalLogins: 0,
+                preferences: {
+                    language: 'ar',
+                    notifications: true,
+                    theme: 'light'
+                },
+                stats: {
+                    totalBookings: 0,
+                    completedBookings: 0,
+                    totalSpent: 0
+                }
+            };
+            
+            // Save user to users list
+            existingUsers.push(newUser);
+            localStorage.setItem('users', JSON.stringify(existingUsers));
+            
+            // Also save to customers list for admin dashboard
+            const existingCustomers = JSON.parse(localStorage.getItem('customers') || '[]');
+            const newCustomer = {
+                id: newUser.id,
+                name: newUser.name,
+                email: newUser.email,
+                phone: newUser.phone,
+                status: 'active',
+                registrationDate: newUser.registrationDate,
+                lastLogin: null,
+                totalBookings: 0,
+                totalSpent: 0,
+                source: 'website'
+            };
+            
+            existingCustomers.push(newCustomer);
+            localStorage.setItem('customers', JSON.stringify(existingCustomers));
+            
+            // Show success message
+            showSuccess(`مرحباً ${fullName}! تم إنشاء الحساب بنجاح`);
+            
+            // Close modal
             closeRegisterModal();
+            
+            // Clear form
+            form.reset();
         }
 
         function showError(message) {
