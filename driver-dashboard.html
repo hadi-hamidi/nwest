@@ -628,7 +628,7 @@
             }
             
             const userData = JSON.parse(user);
-            if (userData.role !== 'driver_manager') {
+            if (userData.role !== 'driver_manager' && userData.userType !== 'driver_manager') {
                 alert('ليس لديك صلاحية للوصول إلى هذه الصفحة');
                 window.location.href = 'login.html';
                 return;
@@ -640,9 +640,9 @@
         });
 
         function updateUserInfo(userData) {
-            document.getElementById('userName').textContent = userData.name || 'مدير السائقين';
+            document.getElementById('userName').textContent = userData.name || userData.fullName || 'مدير السائقين';
             document.getElementById('userEmail').textContent = userData.email || 'driver@nwbus.sa';
-            document.getElementById('userAvatar').textContent = (userData.name || 'م').charAt(0);
+            document.getElementById('userAvatar').textContent = (userData.name || userData.fullName || 'د').charAt(0);
             document.getElementById('driverName').textContent = 'إدارة السائقين';
             document.getElementById('currentDriver').textContent = 'مدير السائقين';
         }

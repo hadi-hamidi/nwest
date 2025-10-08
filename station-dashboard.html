@@ -659,7 +659,7 @@
             }
             
             const userData = JSON.parse(user);
-            if (userData.role !== 'station_manager') {
+            if (userData.role !== 'station_manager' && userData.userType !== 'station_manager') {
                 alert('ليس لديك صلاحية للوصول إلى هذه الصفحة');
                 window.location.href = 'login.html';
                 return;
@@ -671,9 +671,9 @@
         });
 
         function updateUserInfo(userData) {
-            document.getElementById('userName').textContent = userData.name || 'مدير المحطة';
-            document.getElementById('userEmail').textContent = userData.email || 'hadi.@gmail.com';
-            document.getElementById('userAvatar').textContent = (userData.name || 'ح').charAt(0);
+            document.getElementById('userName').textContent = userData.name || userData.fullName || 'مدير المحطة';
+            document.getElementById('userEmail').textContent = userData.email || 'user@nwbus.sa';
+            document.getElementById('userAvatar').textContent = (userData.name || userData.fullName || 'م').charAt(0);
             document.getElementById('stationName').textContent = getStationLabel(userData.station);
             document.getElementById('currentStation').textContent = getStationLabel(userData.station);
         }

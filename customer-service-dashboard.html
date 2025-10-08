@@ -1154,7 +1154,7 @@
             }
             
             const userData = JSON.parse(user);
-            if (userData.role !== 'customer_service') {
+            if (userData.role !== 'customer_service' && userData.userType !== 'customer_service') {
                 alert('ليس لديك صلاحية للوصول إلى هذه الصفحة');
                 window.location.href = 'login.html';
                 return;
@@ -1166,9 +1166,9 @@
         });
 
         function updateUserInfo(userData) {
-            document.getElementById('userName').textContent = userData.name || 'موظف خدمة العملاء';
+            document.getElementById('userName').textContent = userData.name || userData.fullName || 'موظف خدمة العملاء';
             document.getElementById('userEmail').textContent = userData.email || 'service@nwbus.sa';
-            document.getElementById('userAvatar').textContent = (userData.name || 'خ').charAt(0);
+            document.getElementById('userAvatar').textContent = (userData.name || userData.fullName || 'خ').charAt(0);
             document.getElementById('serviceName').textContent = 'مركز خدمة العملاء';
             document.getElementById('currentService').textContent = 'مركز خدمة العملاء';
         }

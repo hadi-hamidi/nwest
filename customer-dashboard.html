@@ -902,7 +902,7 @@
                     <img src="images/colored-logo-arabic-1.svg" alt="نورث وست باص" style="height: 40px;">
                 </div>
                 <h3>لوحة تحكم العميل</h3>
-                <p>مرحباً بك في حسابك الشخصي</p>
+                <p>مرحباً بك في حسابك الشخصي - <span id="customerName">العميل</span></p>
             </div>
             
             <nav class="sidebar-menu">
@@ -1189,6 +1189,10 @@
             if (userName) userName.textContent = userData.name || userData.fullName || 'العميل';
             if (userEmail) userEmail.textContent = userData.email || 'customer@email.com';
             if (userAvatar) userAvatar.textContent = (userData.name || userData.fullName || 'ع').charAt(0);
+            
+            // Update customer name in header
+            const customerName = document.getElementById('customerName');
+            if (customerName) customerName.textContent = userData.name || userData.fullName || 'العميل';
             
             // Update profile section
             if (profileName) profileName.textContent = userData.name || userData.fullName || 'اسم العميل';

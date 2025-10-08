@@ -409,7 +409,7 @@
             <div class="dashboard-header">
                 <div class="dashboard-title">
                     <h1>لوحة تحكم المدير الإقليمي</h1>
-                    <p>مرحباً بك في لوحة التحكم الإقليمية</p>
+                    <p>مرحباً بك في لوحة التحكم الإقليمية - <span id="regionName">المنطقة</span></p>
                 </div>
                 <div class="user-info">
                     <div class="user-avatar" id="userAvatar">أ</div>
@@ -754,7 +754,7 @@
             }
             
             const userData = JSON.parse(user);
-            if (userData.role !== 'regional_manager') {
+            if (userData.role !== 'regional_manager' && userData.userType !== 'regional_manager') {
                 alert('ليس لديك صلاحية للوصول إلى هذه الصفحة');
                 window.location.href = 'login.html';
                 return;
@@ -918,9 +918,9 @@
         }
 
         function updateUserInfo(userData) {
-            document.getElementById('userName').textContent = userData.name;
-            document.getElementById('userEmail').textContent = userData.email;
-            document.getElementById('userAvatar').textContent = userData.name.charAt(0);
+            document.getElementById('userName').textContent = userData.name || userData.fullName || 'المدير الإقليمي';
+            document.getElementById('userEmail').textContent = userData.email || 'user@nwbus.sa';
+            document.getElementById('userAvatar').textContent = (userData.name || userData.fullName || 'أ').charAt(0);
             document.getElementById('regionName').textContent = getRegionLabel(userData.region);
             document.getElementById('currentRegion').textContent = getRegionLabel(userData.region);
         }
