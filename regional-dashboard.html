@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم المدير الإقليمي - نورث وست باص</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .regional-dashboard {
+            display: flex;
+            min-height: 100vh;
+            background: #f8fafc;
+        }
+        
+        .sidebar {
+            width: 280px;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            color: white;
+            padding: 2rem 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        
+        .sidebar-header {
+            padding: 0 2rem 2rem;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .sidebar-header h2 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        
+        .sidebar-header p {
+            margin: 0.5rem 0 0 0;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+        
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem 2rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-left: 3px solid transparent;
+        }
+        
+        .menu-item:hover {
+            background: rgba(255,255,255,0.1);
+            border-left-color: #fbbf24;
+        }
+        
+        .menu-item.active {
+            background: rgba(255,255,255,0.15);
+            border-left-color: #fbbf24;
+        }
+        
+        .menu-item i {
+            width: 20px;
+            text-align: center;
+        }
+        
+        .main-content {
+            flex: 1;
+            margin-right: 280px;
+            padding: 2rem;
+        }
+        
+        .header {
+            background: white;
+            padding: 1.5rem 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .header h1 {
+            margin: 0;
+            color: #1e40af;
+            font-size: 1.8rem;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: #1e40af;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+        
+        .user-details h4 {
+            margin: 0;
+            color: #1e40af;
+        }
+        
+        .user-details p {
+            margin: 0;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+        }
+        
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .stat-icon.blue { background: #3b82f6; }
+        .stat-icon.green { background: #10b981; }
+        .stat-icon.yellow { background: #f59e0b; }
+        .stat-icon.purple { background: #8b5cf6; }
+        
+        .stat-content h3 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1e40af;
+        }
+        
+        .stat-content p {
+            margin: 0.25rem 0 0 0;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+        
+        .content-section {
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .section-header h2 {
+            margin: 0;
+            color: #1e40af;
+            font-size: 1.5rem;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: #1e40af;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #1d4ed8;
+        }
+        
+        .btn-secondary {
+            background: #64748b;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #475569;
+        }
+        
+        .region-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: #dbeafe;
+            color: #1e40af;
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-right: 0;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="regional-dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <h2><i class="fas fa-map-marker-alt"></i> المدير الإقليمي</h2>
+                <p id="regionName">المنطقة</p>
+            </div>
+            
+            <nav>
+                <a href="#dashboard" class="menu-item active" onclick="showSection('dashboard')">
+                    <i class="fas fa-tachometer-alt"></i>
+                    لوحة التحكم
+                </a>
+                <a href="#trips" class="menu-item" onclick="showSection('trips')">
+                    <i class="fas fa-route"></i>
+                    إدارة الرحلات
+                </a>
+                <a href="#customers" class="menu-item" onclick="showSection('customers')">
+                    <i class="fas fa-users"></i>
+                    العملاء
+                </a>
+                <a href="#drivers" class="menu-item" onclick="showSection('drivers')">
+                    <i class="fas fa-user-tie"></i>
+                    السائقين
+                </a>
+                <a href="#reports" class="menu-item" onclick="showSection('reports')">
+                    <i class="fas fa-chart-bar"></i>
+                    التقارير
+                </a>
+                <a href="#settings" class="menu-item" onclick="showSection('settings')">
+                    <i class="fas fa-cog"></i>
+                    الإعدادات
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <h1>لوحة تحكم المدير الإقليمي</h1>
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar">أ</div>
+                    <div class="user-details">
+                        <h4 id="userName">المدير الإقليمي</h4>
+                        <p id="userEmail">user@nwbus.sa</p>
+                    </div>
+                    <button class="btn btn-secondary" onclick="logout()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        تسجيل الخروج
+                    </button>
+                </div>
+            </div>
+
+            <!-- Dashboard Section -->
+            <div id="dashboard" class="content-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-tachometer-alt"></i> نظرة عامة</h2>
+                </div>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon blue">
+                            <i class="fas fa-route"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalTrips">0</h3>
+                            <p>إجمالي الرحلات</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon green">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalCustomers">0</h3>
+                            <p>إجمالي العملاء</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon yellow">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="totalDrivers">0</h3>
+                            <p>إجمالي السائقين</p>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon purple">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stat-content">
+                            <h3 id="revenue">0 ريال</h3>
+                            <p>الإيرادات</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="region-info">
+                    <h3>معلومات المنطقة</h3>
+                    <div class="region-badge" id="currentRegion">المنطقة الحالية</div>
+                    <p>أنت مسؤول عن إدارة جميع العمليات في هذه المنطقة</p>
+                </div>
+            </div>
+
+            <!-- Trips Section -->
+            <div id="trips" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h2><i class="fas fa-route"></i> إدارة الرحلات</h2>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus"></i> إضافة رحلة جديدة
+                    </button>
+                </div>
+                <p>إدارة الرحلات في منطقتك</p>
+            </div>
+
+            <!-- Customers Section -->
+            <div id="customers" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h2><i class="fas fa-users"></i> العملاء</h2>
+                </div>
+                <p>إدارة عملاء منطقتك</p>
+            </div>
+
+            <!-- Drivers Section -->
+            <div id="drivers" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h2><i class="fas fa-user-tie"></i> السائقين</h2>
+                </div>
+                <p>إدارة سائقين منطقتك</p>
+            </div>
+
+            <!-- Reports Section -->
+            <div id="reports" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h2><i class="fas fa-chart-bar"></i> التقارير</h2>
+                </div>
+                <p>تقارير منطقتك</p>
+            </div>
+
+            <!-- Settings Section -->
+            <div id="settings" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h2><i class="fas fa-cog"></i> الإعدادات</h2>
+                </div>
+                <p>إعدادات منطقتك</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is logged in and is regional manager
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = localStorage.getItem('user');
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            const userData = JSON.parse(user);
+            if (userData.role !== 'regional_manager') {
+                alert('ليس لديك صلاحية للوصول إلى هذه الصفحة');
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Update user info
+            updateUserInfo(userData);
+            loadDashboardData();
+        });
+
+        function updateUserInfo(userData) {
+            document.getElementById('userName').textContent = userData.name;
+            document.getElementById('userEmail').textContent = userData.email;
+            document.getElementById('userAvatar').textContent = userData.name.charAt(0);
+            document.getElementById('regionName').textContent = getRegionLabel(userData.region);
+            document.getElementById('currentRegion').textContent = getRegionLabel(userData.region);
+        }
+
+        function getRegionLabel(region) {
+            const labels = {
+                'riyadh': 'الرياض',
+                'jeddah': 'جدة',
+                'dammam': 'الدمام',
+                'makkah': 'مكة المكرمة',
+                'medina': 'المدينة المنورة',
+                'taif': 'الطائف',
+                'abha': 'أبها',
+                'tabuk': 'تبوك',
+                'hail': 'حائل'
+            };
+            return labels[region] || region;
+        }
+
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Remove active class from all menu items
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).style.display = 'block';
+            
+            // Add active class to clicked menu item
+            event.target.classList.add('active');
+        }
+
+        function loadDashboardData() {
+            // Load regional data based on user's region
+            const userData = JSON.parse(localStorage.getItem('user'));
+            const region = userData.region;
+            
+            // Simulate loading data for the region
+            document.getElementById('totalTrips').textContent = Math.floor(Math.random() * 100) + 50;
+            document.getElementById('totalCustomers').textContent = Math.floor(Math.random() * 500) + 200;
+            document.getElementById('totalDrivers').textContent = Math.floor(Math.random() * 50) + 20;
+            document.getElementById('revenue').textContent = (Math.floor(Math.random() * 100000) + 50000).toLocaleString() + ' ريال';
+        }
+
+        function logout() {
+            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                localStorage.removeItem('user');
+                window.location.href = 'login.html';
+            }
+        }
+    </script>
+</body>
+</html>

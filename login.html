@@ -550,7 +550,66 @@
                 return;
             }
             
-            // Check demo accounts first
+            // Check system users first (regional managers, etc.)
+            const systemUsers = JSON.parse(localStorage.getItem('systemUsers') || '[]');
+            const systemUser = systemUsers.find(user => 
+                (user.email === username || user.phone === username) && 
+                user.password === password && 
+                user.status === 'active'
+            );
+            
+            if (systemUser) {
+                // Update last login
+                systemUser.lastLogin = new Date().toISOString();
+                const updatedSystemUsers = systemUsers.map(u => u.id === systemUser.id ? systemUser : u);
+                localStorage.setItem('systemUsers', JSON.stringify(updatedSystemUsers));
+                
+                const userData = {
+                    id: systemUser.id,
+                    username: systemUser.email,
+                    name: systemUser.fullName,
+                    email: systemUser.email,
+                    phone: systemUser.phone,
+                    role: systemUser.userType,
+                    region: systemUser.region,
+                    permissions: systemUser.permissions,
+                    loginTime: new Date().toISOString(),
+                    lastLogin: new Date().toISOString(),
+                    profileComplete: true,
+                    totalLogins: 1,
+                    preferences: {
+                        language: 'ar',
+                        notifications: true,
+                        theme: 'light'
+                    }
+                };
+                
+                localStorage.setItem('user', JSON.stringify(userData));
+                
+                if (remember) {
+                    localStorage.setItem('rememberUser', 'true');
+                }
+                
+                showSuccess(`مرحباً ${systemUser.fullName}! تم تسجيل الدخول بنجاح`);
+                
+                setTimeout(() => {
+                    if (systemUser.userType === 'regional_manager') {
+                        window.location.href = 'regional-dashboard.html';
+                    } else if (systemUser.userType === 'station_manager') {
+                        window.location.href = 'station-dashboard.html';
+                    } else if (systemUser.userType === 'customer_service') {
+                        window.location.href = 'customer-service-dashboard.html';
+                    } else if (systemUser.userType === 'driver_manager') {
+                        window.location.href = 'driver-dashboard.html';
+                    } else {
+                        window.location.href = 'customer-dashboard.html';
+                    }
+                }, 1500);
+                
+                return;
+            }
+            
+            // Check demo accounts
             if (demoAccounts[username] && demoAccounts[username].password === password) {
                 // Successful login
                 const account = demoAccounts[username];

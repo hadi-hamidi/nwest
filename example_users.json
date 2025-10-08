@@ -1,0 +1,83 @@
+[
+  {
+    "id": "user_1703123456789",
+    "fullName": "أحمد محمد العلي",
+    "email": "ahmed.ali@nwbus.sa",
+    "phone": "+966501234567",
+    "nationalId": "1234567890",
+    "userType": "regional_manager",
+    "region": "riyadh",
+    "password": "securePassword123",
+    "permissions": [
+      "view_customers",
+      "edit_customers",
+      "view_trips",
+      "create_trips",
+      "edit_trips",
+      "view_reports"
+    ],
+    "status": "active",
+    "createdAt": "2024-01-15T10:30:00.000Z",
+    "lastLogin": "2024-01-20T08:15:00.000Z",
+    "createdBy": "admin_user_id"
+  },
+  {
+    "id": "user_1703123456790",
+    "fullName": "فاطمة أحمد السعد",
+    "email": "fatima.saad@nwbus.sa",
+    "phone": "+966502345678",
+    "nationalId": "0987654321",
+    "userType": "station_manager",
+    "region": "jeddah",
+    "password": "stationManager456",
+    "permissions": [
+      "view_customers",
+      "view_trips",
+      "create_trips",
+      "view_reports"
+    ],
+    "status": "active",
+    "createdAt": "2024-01-16T14:20:00.000Z",
+    "lastLogin": "2024-01-19T16:45:00.000Z",
+    "createdBy": "admin_user_id"
+  },
+  {
+    "id": "user_1703123456791",
+    "fullName": "محمد عبدالله القحطاني",
+    "email": "mohammed.qhtani@nwbus.sa",
+    "phone": "+966503456789",
+    "nationalId": "1122334455",
+    "userType": "customer_service",
+    "region": "dammam",
+    "password": "customerService789",
+    "permissions": [
+      "view_customers",
+      "edit_customers",
+      "view_trips"
+    ],
+    "status": "active",
+    "createdAt": "2024-01-17T09:15:00.000Z",
+    "lastLogin": "2024-01-20T11:30:00.000Z",
+    "createdBy": "admin_user_id"
+  },
+  {
+    "id": "user_1703123456792",
+    "fullName": "سارة محمد الزهراني",
+    "email": "sara.zahrani@nwbus.sa",
+    "phone": "+966504567890",
+    "nationalId": "5566778899",
+    "userType": "driver_manager",
+    "region": "makkah",
+    "password": "driverManager012",
+    "permissions": [
+      "view_trips",
+      "create_trips",
+      "edit_trips",
+      "view_reports"
+    ],
+    "status": "active",
+    "createdAt": "2024-01-18T13:45:00.000Z",
+    "lastLogin": "2024-01-20T07:20:00.000Z",
+    "createdBy": "admin_user_id"
+  }
+]
