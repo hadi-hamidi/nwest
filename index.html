@@ -64,6 +64,32 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="images/colored-logo-arabic-1.svg">
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX', {
+            'page_title': 'نورث وست باص - الصفحة الرئيسية',
+            'page_location': window.location.href,
+            'custom_map': {
+                'custom_parameter_1': 'bus_company',
+                'custom_parameter_2': 'saudi_arabia'
+            }
+        });
+        
+        // تتبع الأحداث المخصصة
+        function trackEvent(eventName, parameters = {}) {
+            gtag('event', eventName, {
+                'event_category': 'User Interaction',
+                'event_label': parameters.label || '',
+                'value': parameters.value || 0,
+                ...parameters
+            });
+        }
+    </script>
     <link rel="icon" type="image/png" sizes="32x32" href="images/colored-logo-arabic-1.svg">
     <link rel="icon" type="image/png" sizes="16x16" href="images/colored-logo-arabic-1.svg">
     <link rel="apple-touch-icon" href="images/colored-logo-arabic-1.svg">
@@ -2699,7 +2725,38 @@
                     // Buttons
                     'btn-book': 'احجز الآن',
                     'btn-login': 'تسجيل دخول',
-                    'btn-logout': 'تسجيل الخروج'
+                    'btn-logout': 'تسجيل الخروج',
+                    
+                    // FAQ Section
+                    'faq-question-1': 'كيف يمكنني حجز رحلة ؟',
+                    'faq-question-2': 'ما هي سياسة الإلغاء والتعديل؟',
+                    'faq-question-3': 'هل تقدمون خدمات للأطفال؟',
+                    'faq-question-4': 'ما هي ساعات العمل؟',
+                    'faq-question-5': 'هل تقدمون خدمات للشركات؟',
+                    
+                    // App Section
+                    'app-title': 'تطبيق نورث وست باص',
+                    'app-subtitle': 'احجز رحلتك بسهولة من خلال تطبيقنا المتطور',
+                    'app-smart-title': 'تطبيق ذكي لحجز سهل',
+                    'app-smart-desc': 'مع تطبيق نورث وست باص، يمكنك حجز تذاكرك وتتبع رحلاتك ومراجعة جدولك بكل سهولة من هاتفك المحمول',
+                    'app-feature-1': 'حجز سريع ومبسط',
+                    'app-feature-2': 'تنبيهات الرحلات',
+                    'app-feature-3': 'تتبع مباشر للباص',
+                    'app-feature-4': 'دفع أمن ومتنوع',
+                    'app-feature-5': 'واجهة سهلة الاستخدام',
+                    
+                    // Offers Section
+                    'offers-title': 'العروض والخصومات',
+                    'offers-subtitle': 'اكتشف أحدث عروضنا وخصوماتنا المميزة',
+                    'summer-offers-title': 'عروض الصيف المميزة',
+                    'summer-offers-desc': 'خصومات تصل إلى 30% على جميع الرحلات',
+                    'summer-offers-btn': 'اكتشف العرض',
+                    'million-passenger-title': 'مليون راكب سعيد 2',
+                    'million-passenger-desc': 'نحتفل معكم بتجاوز حاجز الـ 2 مليون راكب',
+                    'million-passenger-btn': 'اقرأ المزيد',
+                    'vip-service-title': 'المميزة VIP خدمة',
+                    'vip-service-desc': 'استمتع برحلات فاخرة مع أفضل الخدمات',
+                    'vip-service-btn': 'VIP احجز'
                 },
                 'en': {
                     // Navigation
@@ -2821,7 +2878,38 @@
                     // Buttons
                     'btn-book': 'Book Now',
                     'btn-login': 'Login',
-                    'btn-logout': 'Logout'
+                    'btn-logout': 'Logout',
+                    
+                    // FAQ Section
+                    'faq-question-1': 'How can I book a trip?',
+                    'faq-question-2': 'What is the cancellation and modification policy?',
+                    'faq-question-3': 'Do you offer services for children?',
+                    'faq-question-4': 'What are the working hours?',
+                    'faq-question-5': 'Do you offer services for companies?',
+                    
+                    // App Section
+                    'app-title': 'North West Bus App',
+                    'app-subtitle': 'Book your trip easily through our advanced application',
+                    'app-smart-title': 'Smart app for easy booking',
+                    'app-smart-desc': 'With the North West Bus app, you can book your tickets, track your trips, and review your schedule easily from your mobile phone',
+                    'app-feature-1': 'Quick and simplified booking',
+                    'app-feature-2': 'Trip alerts',
+                    'app-feature-3': 'Live bus tracking',
+                    'app-feature-4': 'Secure and diverse payment',
+                    'app-feature-5': 'Easy-to-use interface',
+                    
+                    // Offers Section
+                    'offers-title': 'Offers and Discounts',
+                    'offers-subtitle': 'Discover our latest special offers and discounts',
+                    'summer-offers-title': 'Special Summer Offers',
+                    'summer-offers-desc': 'Discounts up to 30% on all trips',
+                    'summer-offers-btn': 'Discover Offer',
+                    'million-passenger-title': 'Happy Million Passenger 2',
+                    'million-passenger-desc': 'We celebrate with you exceeding the 2 million passenger mark',
+                    'million-passenger-btn': 'Read More',
+                    'vip-service-title': 'Distinguished VIP Service',
+                    'vip-service-desc': 'Enjoy luxurious trips with the best services',
+                    'vip-service-btn': 'Book VIP'
                 },
                 'ur': {
                     // Navigation
@@ -2943,7 +3031,38 @@
                     // Buttons
                     'btn-book': 'ابھی بک کریں',
                     'btn-login': 'لاگ ان',
-                    'btn-logout': 'لاگ آؤٹ'
+                    'btn-logout': 'لاگ آؤٹ',
+                    
+                    // FAQ Section
+                    'faq-question-1': 'میں سفر کیسے بک کروں؟',
+                    'faq-question-2': 'منسوخی اور تبدیلی کی پالیسی کیا ہے؟',
+                    'faq-question-3': 'کیا آپ بچوں کے لیے خدمات فراہم کرتے ہیں؟',
+                    'faq-question-4': 'کام کے اوقات کیا ہیں؟',
+                    'faq-question-5': 'کیا آپ کمپنیوں کے لیے خدمات فراہم کرتے ہیں؟',
+                    
+                    // App Section
+                    'app-title': 'نارتھ ویسٹ بس ایپ',
+                    'app-subtitle': 'ہمارے جدید ایپلیکیشن کے ذریعے آسانی سے اپنا سفر بک کریں',
+                    'app-smart-title': 'آسان بکنگ کے لیے سمارٹ ایپ',
+                    'app-smart-desc': 'نارتھ ویسٹ بس ایپ کے ساتھ، آپ اپنے ٹکٹ بک کر سکتے ہیں، اپنے سفر کو ٹریک کر سکتے ہیں اور اپنے شیڈول کا جائزہ آسانی سے اپنے موبائل فون سے لے سکتے ہیں',
+                    'app-feature-1': 'تیز اور آسان بکنگ',
+                    'app-feature-2': 'سفر کی الرٹس',
+                    'app-feature-3': 'لائیو بس ٹریکنگ',
+                    'app-feature-4': 'محفوظ اور متنوع ادائیگی',
+                    'app-feature-5': 'استعمال میں آسان انٹرفیس',
+                    
+                    // Offers Section
+                    'offers-title': 'آفرز اور ڈسکاؤنٹس',
+                    'offers-subtitle': 'ہمارے تازہ خصوصی آفرز اور ڈسکاؤنٹس دریافت کریں',
+                    'summer-offers-title': 'خصوصی سمر آفرز',
+                    'summer-offers-desc': 'تمام سفر پر 30% تک ڈسکاؤنٹ',
+                    'summer-offers-btn': 'آفر دریافت کریں',
+                    'million-passenger-title': 'خوش کن ملین پاسنجر 2',
+                    'million-passenger-desc': 'ہم آپ کے ساتھ 2 ملین پاسنجر کے نشان کو عبور کرنے کا جشن مناتے ہیں',
+                    'million-passenger-btn': 'مزید پڑھیں',
+                    'vip-service-title': 'ممتاز VIP سروس',
+                    'vip-service-desc': 'بہترین خدمات کے ساتھ شاندار سفر کا لطف اٹھائیں',
+                    'vip-service-btn': 'VIP بک کریں'
                 }
             };
             
@@ -3306,6 +3425,87 @@
             
             // Update cities names in all sections
             updateCitiesNames(currentContent);
+            
+            // Update FAQ questions
+            const faqQuestions = document.querySelectorAll('.faq-item .faq-question');
+            if (faqQuestions.length >= 5) {
+                faqQuestions[0].textContent = currentContent['faq-question-1'] || 'كيف يمكنني حجز رحلة ؟';
+                faqQuestions[1].textContent = currentContent['faq-question-2'] || 'ما هي سياسة الإلغاء والتعديل؟';
+                faqQuestions[2].textContent = currentContent['faq-question-3'] || 'هل تقدمون خدمات للأطفال؟';
+                faqQuestions[3].textContent = currentContent['faq-question-4'] || 'ما هي ساعات العمل؟';
+                faqQuestions[4].textContent = currentContent['faq-question-5'] || 'هل تقدمون خدمات للشركات؟';
+            }
+            
+            // Update app section
+            const appTitle = document.querySelector('.app-section h2');
+            const appSubtitle = document.querySelector('.app-section .lead');
+            const appSmartTitle = document.querySelector('.app-section h3');
+            const appSmartDesc = document.querySelector('.app-section p:not(.lead)');
+            
+            if (appTitle) appTitle.textContent = currentContent['app-title'] || 'تطبيق نورث وست باص';
+            if (appSubtitle) appSubtitle.textContent = currentContent['app-subtitle'] || 'احجز رحلتك بسهولة من خلال تطبيقنا المتطور';
+            if (appSmartTitle) appSmartTitle.textContent = currentContent['app-smart-title'] || 'تطبيق ذكي لحجز سهل';
+            if (appSmartDesc) appSmartDesc.textContent = currentContent['app-smart-desc'] || 'مع تطبيق نورث وست باص، يمكنك حجز تذاكرك وتتبع رحلاتك ومراجعة جدولك بكل سهولة من هاتفك المحمول';
+            
+            // Update app features
+            const appFeatures = document.querySelectorAll('.app-feature');
+            appFeatures.forEach((feature, index) => {
+                const text = feature.querySelector('span');
+                if (text) {
+                    switch(index) {
+                        case 0:
+                            text.textContent = currentContent['app-feature-1'] || 'حجز سريع ومبسط';
+                            break;
+                        case 1:
+                            text.textContent = currentContent['app-feature-2'] || 'تنبيهات الرحلات';
+                            break;
+                        case 2:
+                            text.textContent = currentContent['app-feature-3'] || 'تتبع مباشر للباص';
+                            break;
+                        case 3:
+                            text.textContent = currentContent['app-feature-4'] || 'دفع أمن ومتنوع';
+                            break;
+                        case 4:
+                            text.textContent = currentContent['app-feature-5'] || 'واجهة سهلة الاستخدام';
+                            break;
+                    }
+                }
+            });
+            
+            // Update offers section
+            const offersTitle = document.querySelector('.offers-section h2');
+            const offersSubtitle = document.querySelector('.offers-section .lead');
+            
+            if (offersTitle) offersTitle.textContent = currentContent['offers-title'] || 'العروض والخصومات';
+            if (offersSubtitle) offersSubtitle.textContent = currentContent['offers-subtitle'] || 'اكتشف أحدث عروضنا وخصوماتنا المميزة';
+            
+            // Update offer cards
+            const offerCards = document.querySelectorAll('.offer-card');
+            offerCards.forEach((card, index) => {
+                const title = card.querySelector('h3');
+                const desc = card.querySelector('p');
+                const btn = card.querySelector('.btn');
+                
+                if (title && desc && btn) {
+                    switch(index) {
+                        case 0: // Summer offers
+                            title.textContent = currentContent['summer-offers-title'] || 'عروض الصيف المميزة';
+                            desc.textContent = currentContent['summer-offers-desc'] || 'خصومات تصل إلى 30% على جميع الرحلات';
+                            btn.textContent = currentContent['summer-offers-btn'] || 'اكتشف العرض';
+                            break;
+                        case 1: // Million passenger
+                            title.textContent = currentContent['million-passenger-title'] || 'مليون راكب سعيد 2';
+                            desc.textContent = currentContent['million-passenger-desc'] || 'نحتفل معكم بتجاوز حاجز الـ 2 مليون راكب';
+                            btn.textContent = currentContent['million-passenger-btn'] || 'اقرأ المزيد';
+                            break;
+                        case 2: // VIP service
+                            title.textContent = currentContent['vip-service-title'] || 'المميزة VIP خدمة';
+                            desc.textContent = currentContent['vip-service-desc'] || 'استمتع برحلات فاخرة مع أفضل الخدمات';
+                            btn.textContent = currentContent['vip-service-btn'] || 'VIP احجز';
+                            break;
+                    }
+                }
+            });
             
             // Update all buttons
             document.querySelectorAll('button').forEach(btn => {

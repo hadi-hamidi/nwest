@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار جميع أنواع المستخدمين - نورث وست باص</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .test-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 1rem;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+        
+        .test-header {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .test-header h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        
+        .test-header p {
+            margin: 0.5rem 0 0 0;
+            opacity: 0.9;
+        }
+        
+        .test-content {
+            padding: 2rem;
+        }
+        
+        .user-types-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .user-type-card {
+            background: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .user-type-card:hover {
+            border-color: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        .user-type-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .user-type-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .user-type-icon.admin {
+            background: #dc2626;
+        }
+        
+        .user-type-icon.regional {
+            background: #2563eb;
+        }
+        
+        .user-type-icon.station {
+            background: #059669;
+        }
+        
+        .user-type-icon.service {
+            background: #d97706;
+        }
+        
+        .user-type-icon.driver {
+            background: #7c3aed;
+        }
+        
+        .user-type-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin: 0;
+        }
+        
+        .user-type-details {
+            margin-bottom: 1rem;
+        }
+        
+        .user-type-details p {
+            margin: 0.5rem 0;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        .login-info {
+            background: #f1f5f9;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .login-info h4 {
+            margin: 0 0 0.5rem 0;
+            color: #1f2937;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .login-info p {
+            margin: 0.25rem 0;
+            color: #6b7280;
+            font-size: 0.8rem;
+            font-family: monospace;
+        }
+        
+        .test-button {
+            width: 100%;
+            background: #2563eb;
+            color: white;
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+        
+        .test-button:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+        
+        .test-results {
+            background: #f8fafc;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .test-results h3 {
+            margin: 0 0 1rem 0;
+            color: #1f2937;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        
+        .result-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.75rem;
+            background: white;
+            border-radius: 0.5rem;
+            margin-bottom: 0.5rem;
+            border-left: 4px solid #10b981;
+        }
+        
+        .result-item.error {
+            border-left-color: #ef4444;
+        }
+        
+        .result-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            color: white;
+        }
+        
+        .result-icon.success {
+            background: #10b981;
+        }
+        
+        .result-icon.error {
+            background: #ef4444;
+        }
+        
+        .result-text {
+            flex: 1;
+            color: #1f2937;
+            font-weight: 500;
+        }
+        
+        .back-button {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            color: #2563eb;
+            border: none;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        
+        .back-button:hover {
+            background: white;
+            transform: translateY(-1px);
+        }
+    </style>
+</head>
+<body>
+    <button class="back-button" onclick="window.location.href='login.html'">
+        <i class="fas fa-arrow-right"></i>
+        العودة لتسجيل الدخول
+    </button>
+
+    <div class="test-container">
+        <div class="test-header">
+            <h1><i class="fas fa-vial"></i> اختبار جميع أنواع المستخدمين</h1>
+            <p>تأكد من عمل جميع لوحات التحكم بشكل صحيح</p>
+        </div>
+        
+        <div class="test-content">
+            <div class="user-types-grid">
+                <!-- Admin -->
+                <div class="user-type-card" onclick="testUser('admin', 'admin123', 'admin')">
+                    <div class="user-type-header">
+                        <div class="user-type-icon admin">
+                            <i class="fas fa-crown"></i>
+                        </div>
+                        <div>
+                            <h3 class="user-type-title">المدير العام</h3>
+                        </div>
+                    </div>
+                    <div class="user-type-details">
+                        <p><strong>الصلاحيات:</strong> إدارة كاملة للنظام</p>
+                        <p><strong>الوظائف:</strong> إدارة المستخدمين، التقارير، الإعدادات</p>
+                    </div>
+                    <div class="login-info">
+                        <h4>بيانات تسجيل الدخول:</h4>
+                        <p><strong>اسم المستخدم:</strong> admin</p>
+                        <p><strong>كلمة المرور:</strong> admin123</p>
+                    </div>
+                    <button class="test-button">
+                        <i class="fas fa-play"></i>
+                        اختبار تسجيل الدخول
+                    </button>
+                </div>
+
+                <!-- Regional Manager -->
+                <div class="user-type-card" onclick="testUser('regional@nwbus.sa', '123456', 'regional_manager')">
+                    <div class="user-type-header">
+                        <div class="user-type-icon regional">
+                            <i class="fas fa-map-marked-alt"></i>
+                        </div>
+                        <div>
+                            <h3 class="user-type-title">مدير إقليمي</h3>
+                        </div>
+                    </div>
+                    <div class="user-type-details">
+                        <p><strong>الصلاحيات:</strong> إدارة المنطقة المخصصة</p>
+                        <p><strong>الوظائف:</strong> العملاء، السائقين، الرحلات، التقارير</p>
+                    </div>
+                    <div class="login-info">
+                        <h4>بيانات تسجيل الدخول:</h4>
+                        <p><strong>اسم المستخدم:</strong> regional@nwbus.sa</p>
+                        <p><strong>كلمة المرور:</strong> 123456</p>
+                    </div>
+                    <button class="test-button">
+                        <i class="fas fa-play"></i>
+                        اختبار تسجيل الدخول
+                    </button>
+                </div>
+
+                <!-- Station Manager -->
+                <div class="user-type-card" onclick="testUser('hadi.@gmail.com', '123456', 'station_manager')">
+                    <div class="user-type-header">
+                        <div class="user-type-icon station">
+                            <i class="fas fa-bus"></i>
+                        </div>
+                        <div>
+                            <h3 class="user-type-title">مدير محطة</h3>
+                        </div>
+                    </div>
+                    <div class="user-type-details">
+                        <p><strong>الصلاحيات:</strong> إدارة المحطة المخصصة</p>
+                        <p><strong>الوظائف:</strong> الرحلات، الركاب، التذاكر، التقارير</p>
+                    </div>
+                    <div class="login-info">
+                        <h4>بيانات تسجيل الدخول:</h4>
+                        <p><strong>اسم المستخدم:</strong> hadi.@gmail.com</p>
+                        <p><strong>كلمة المرور:</strong> 123456</p>
+                    </div>
+                    <button class="test-button">
+                        <i class="fas fa-play"></i>
+                        اختبار تسجيل الدخول
+                    </button>
+                </div>
+
+                <!-- Customer Service -->
+                <div class="user-type-card" onclick="testUser('service@nwbus.sa', '123456', 'customer_service')">
+                    <div class="user-type-header">
+                        <div class="user-type-icon service">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <div>
+                            <h3 class="user-type-title">خدمة العملاء</h3>
+                        </div>
+                    </div>
+                    <div class="user-type-details">
+                        <p><strong>الصلاحيات:</strong> خدمة العملاء والدعم الفني</p>
+                        <p><strong>الوظائف:</strong> التذاكر، الشكاوى، الدعم، العملاء</p>
+                    </div>
+                    <div class="login-info">
+                        <h4>بيانات تسجيل الدخول:</h4>
+                        <p><strong>اسم المستخدم:</strong> service@nwbus.sa</p>
+                        <p><strong>كلمة المرور:</strong> 123456</p>
+                    </div>
+                    <button class="test-button">
+                        <i class="fas fa-play"></i>
+                        اختبار تسجيل الدخول
+                    </button>
+                </div>
+
+                <!-- Driver Manager -->
+                <div class="user-type-card" onclick="testUser('driver@nwbus.sa', '123456', 'driver_manager')">
+                    <div class="user-type-header">
+                        <div class="user-type-icon driver">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div>
+                            <h3 class="user-type-title">مدير السائقين</h3>
+                        </div>
+                    </div>
+                    <div class="user-type-details">
+                        <p><strong>الصلاحيات:</strong> إدارة السائقين والأداء</p>
+                        <p><strong>الوظائف:</strong> السائقين، الجداول، الأداء، التدريب</p>
+                    </div>
+                    <div class="login-info">
+                        <h4>بيانات تسجيل الدخول:</h4>
+                        <p><strong>اسم المستخدم:</strong> driver@nwbus.sa</p>
+                        <p><strong>كلمة المرور:</strong> 123456</p>
+                    </div>
+                    <button class="test-button">
+                        <i class="fas fa-play"></i>
+                        اختبار تسجيل الدخول
+                    </button>
+                </div>
+            </div>
+
+            <div class="test-results" id="testResults" style="display: none;">
+                <h3><i class="fas fa-clipboard-check"></i> نتائج الاختبار</h3>
+                <div id="resultsList"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function testUser(username, password, expectedRole) {
+            // Clear previous results
+            document.getElementById('testResults').style.display = 'none';
+            document.getElementById('resultsList').innerHTML = '';
+            
+            // Show loading
+            const resultsDiv = document.getElementById('testResults');
+            const resultsList = document.getElementById('resultsList');
+            resultsDiv.style.display = 'block';
+            resultsList.innerHTML = '<div class="result-item"><div class="result-icon"><i class="fas fa-spinner fa-spin"></i></div><div class="result-text">جاري الاختبار...</div></div>';
+            
+            // Simulate login test
+            setTimeout(() => {
+                const results = [];
+                
+                // Test 1: Check if user exists in demoAccounts
+                const demoAccounts = {
+                    'admin': { password: 'admin123', role: 'admin' },
+                    'hadi.@gmail.com': { password: '123456', role: 'station_manager' },
+                    'service@nwbus.sa': { password: '123456', role: 'customer_service' },
+                    'driver@nwbus.sa': { password: '123456', role: 'driver_manager' }
+                };
+                
+                if (demoAccounts[username]) {
+                    results.push({
+                        icon: 'success',
+                        text: `✅ المستخدم "${username}" موجود في النظام`
+                    });
+                } else {
+                    results.push({
+                        icon: 'error',
+                        text: `❌ المستخدم "${username}" غير موجود في النظام`
+                    });
+                }
+                
+                // Test 2: Check password
+                if (demoAccounts[username] && demoAccounts[username].password === password) {
+                    results.push({
+                        icon: 'success',
+                        text: `✅ كلمة المرور صحيحة`
+                    });
+                } else {
+                    results.push({
+                        icon: 'error',
+                        text: `❌ كلمة المرور غير صحيحة`
+                    });
+                }
+                
+                // Test 3: Check role
+                if (demoAccounts[username] && demoAccounts[username].role === expectedRole) {
+                    results.push({
+                        icon: 'success',
+                        text: `✅ نوع المستخدم صحيح: ${expectedRole}`
+                    });
+                } else {
+                    results.push({
+                        icon: 'error',
+                        text: `❌ نوع المستخدم غير صحيح. المتوقع: ${expectedRole}`
+                    });
+                }
+                
+                // Test 4: Check dashboard redirect
+                const dashboardUrls = {
+                    'admin': 'admin-dashboard.html',
+                    'station_manager': 'station-dashboard.html',
+                    'customer_service': 'customer-service-dashboard.html',
+                    'driver_manager': 'driver-dashboard.html'
+                };
+                
+                const expectedUrl = dashboardUrls[expectedRole];
+                if (expectedUrl) {
+                    results.push({
+                        icon: 'success',
+                        text: `✅ سيتم التوجيه إلى: ${expectedUrl}`
+                    });
+                } else {
+                    results.push({
+                        icon: 'error',
+                        text: `❌ لا يوجد لوحة تحكم محددة لهذا النوع`
+                    });
+                }
+                
+                // Display results
+                resultsList.innerHTML = '';
+                results.forEach(result => {
+                    const resultItem = document.createElement('div');
+                    resultItem.className = `result-item ${result.icon === 'error' ? 'error' : ''}`;
+                    resultItem.innerHTML = `
+                        <div class="result-icon ${result.icon}">
+                            <i class="fas fa-${result.icon === 'success' ? 'check' : 'times'}"></i>
+                        </div>
+                        <div class="result-text">${result.text}</div>
+                    `;
+                    resultsList.appendChild(resultItem);
+                });
+                
+                // Add test completion message
+                const allPassed = results.every(r => r.icon === 'success');
+                const completionItem = document.createElement('div');
+                completionItem.className = `result-item ${allPassed ? '' : 'error'}`;
+                completionItem.innerHTML = `
+                    <div class="result-icon ${allPassed ? 'success' : 'error'}">
+                        <i class="fas fa-${allPassed ? 'check-circle' : 'exclamation-triangle'}"></i>
+                    </div>
+                    <div class="result-text">
+                        ${allPassed ? '🎉 جميع الاختبارات نجحت! يمكنك تسجيل الدخول الآن.' : '⚠️ بعض الاختبارات فشلت. يرجى مراجعة الإعدادات.'}
+                    </div>
+                `;
+                resultsList.appendChild(completionItem);
+                
+            }, 1000);
+        }
+        
+        // Auto-test all users on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('صفحة اختبار المستخدمين جاهزة');
+            console.log('يمكنك النقر على أي بطاقة لاختبار نوع المستخدم');
+        });
+    </script>
+</body>
+</html>

@@ -1,9 +1,113 @@
 // Northwest Bus Website - Main JavaScript
 // Version: 1.0.0
 
+// معالجة الأخطاء العامة
+window.addEventListener('error', function(event) {
+    console.error('خطأ JavaScript:', event.error);
+    
+    // إرسال تقرير الخطأ إلى Google Analytics
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'exception', {
+            'description': event.error.message,
+            'fatal': false
+        });
+    }
+});
+
+// معالجة الأخطاء غير المعالجة
+window.addEventListener('unhandledrejection', function(event) {
+    console.error('خطأ Promise غير معالج:', event.reason);
+    
+    // إرسال تقرير الخطأ إلى Google Analytics
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'exception', {
+            'description': event.reason.toString(),
+            'fatal': false
+        });
+    }
+});
+
+// وظيفة عرض رسائل الخطأ
+function showErrorMessage(message) {
+    const errorDiv = document.createElement('div');
+    errorDiv.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: linear-gradient(135deg, #ef4444, #dc2626);
+        color: white;
+        padding: 1rem 1.5rem;
+        border-radius: 0.75rem;
+        box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);
+        z-index: 10001;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        font-weight: 600;
+        animation: slideInRight 0.3s ease;
+        max-width: 350px;
+    `;
+    errorDiv.innerHTML = `
+        <i class="fas fa-exclamation-circle" style="font-size: 1.2rem;"></i>
+        <span>${message}</span>
+    `;
+    document.body.appendChild(errorDiv);
+    
+    setTimeout(() => {
+        errorDiv.style.animation = 'slideOutRight 0.3s ease';
+        setTimeout(() => errorDiv.remove(), 300);
+    }, 5000);
+}
+
+// وظيفة فحص الاتصال بالإنترنت
+function checkInternetConnection() {
+    if (!navigator.onLine) {
+        showErrorMessage('لا يوجد اتصال بالإنترنت. يرجى التحقق من الاتصال.');
+        return false;
+    }
+    return true;
+}
+
+// مراقبة حالة الاتصال
+window.addEventListener('online', function() {
+    if (typeof showSuccessMessage !== 'undefined') {
+        showSuccessMessage('تم استعادة الاتصال بالإنترنت!');
+    }
+});
+
+window.addEventListener('offline', function() {
+    showErrorMessage('فقدان الاتصال بالإنترنت. بعض الميزات قد لا تعمل.');
+});
+
+// وظيفة فحص دعم المتصفح
+function checkBrowserSupport() {
+    const isOldBrowser = !window.fetch || !window.Promise || !window.localStorage;
+    
+    if (isOldBrowser) {
+        showErrorMessage('متصفحك قديم. يرجى تحديث المتصفح للحصول على أفضل تجربة.');
+    }
+}
+
+// فحص دعم PWA
+function checkPWASupport() {
+    if ('serviceWorker' in navigator) {
+        console.log('PWA مدعوم');
+    } else {
+        console.warn('PWA غير مدعوم في هذا المتصفح');
+    }
+}
+
 // DOM Content Loaded
 document.addEventListener('DOMContentLoaded', function() {
-    initializeApp();
+    try {
+        initializeApp();
+        checkBrowserSupport();
+        checkPWASupport();
+        checkInternetConnection();
+    } catch (error) {
+        console.error('خطأ في تحميل الموقع:', error);
+        showErrorMessage('حدث خطأ في تحميل الموقع. يرجى إعادة تحميل الصفحة.');
+    }
     // === Language Switcher ===
     document.querySelectorAll('.lang-menu a').forEach(function(link) {
         link.addEventListener('click', function(e) {

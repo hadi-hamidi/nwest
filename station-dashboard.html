@@ -1,0 +1,1559 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم محطة الباص - نورث وست باص</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/colored-logo-arabic-1.svg">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .station-dashboard {
+            display: flex;
+            min-height: 100vh;
+            background: #ffffff;
+        }
+        
+        .sidebar {
+            width: 250px;
+            background: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+        }
+        
+        .sidebar-header .logo {
+            margin-bottom: 1rem;
+        }
+        
+        .sidebar-header h3 {
+            color: var(--primary-color);
+            margin: 0;
+        }
+        
+        .sidebar-menu {
+            padding: 1rem 0;
+        }
+        
+        .menu-item {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+            border-right: 3px solid transparent;
+        }
+        
+        .menu-item:hover,
+        .menu-item.active {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-color);
+            border-right-color: var(--primary-color);
+        }
+        
+        .logout-item:hover {
+            background: rgba(220, 38, 38, 0.1) !important;
+            color: #dc2626 !important;
+            border-right-color: #dc2626 !important;
+        }
+        
+        .menu-item i {
+            width: 20px;
+            margin-left: 0.5rem;
+        }
+        
+        .main-content {
+            flex: 1;
+            margin-right: 250px;
+            padding: 2rem;
+        }
+        
+        .dashboard-header {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .station-dashboard {
+            display: flex;
+            min-height: 100vh;
+            background: var(--background-color);
+        }
+        
+        .sidebar {
+            width: 250px;
+            background: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+        }
+        
+        .sidebar-header .logo {
+            margin-bottom: 1rem;
+        }
+        
+        .sidebar-header h3 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        
+        .sidebar-header p {
+            color: var(--text-light);
+            margin: 0.5rem 0 0 0;
+            font-size: 0.9rem;
+        }
+        
+        .sidebar-menu {
+            padding: 1rem 0;
+        }
+        
+        .menu-item {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+            border-right: 3px solid transparent;
+        }
+        
+        .menu-item:hover,
+        .menu-item.active {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-color);
+            border-right-color: var(--primary-color);
+        }
+        
+        .logout-item:hover {
+            background: rgba(220, 38, 38, 0.1) !important;
+            color: #dc2626 !important;
+            border-right-color: #dc2626 !important;
+        }
+        
+        .menu-item i {
+            width: 20px;
+            margin-left: 0.5rem;
+        }
+        
+        .main-content {
+            flex: 1;
+            margin-right: 250px;
+            padding: 2rem;
+        }
+        
+        .dashboard-header {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .dashboard-title h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 1.875rem;
+            font-weight: 700;
+        }
+        
+        .dashboard-title p {
+            color: var(--text-light);
+            margin: 0.5rem 0 0 0;
+            font-size: 0.9rem;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        
+        .user-details h4 {
+            margin: 0;
+            color: var(--text-color);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .user-details p {
+            margin: 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .logout-btn {
+            background: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .logout-btn:hover {
+            background: #dc2626;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .stat-icon.primary {
+            background: var(--primary-color);
+        }
+        
+        .stat-icon.success {
+            background: var(--success-color);
+        }
+        
+        .stat-icon.warning {
+            background: var(--warning-color);
+        }
+        
+        .stat-icon.danger {
+            background: var(--danger-color);
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .content-section {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .section-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-header h3 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .section-content {
+            padding: 1.5rem;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+        
+        .btn-secondary {
+            background: var(--text-light);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+        
+        .station-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-color);
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .station-info {
+            background: rgba(37, 99, 235, 0.05);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-top: 1.5rem;
+        }
+        
+        .station-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+        
+        .station-info p {
+            color: var(--text-light);
+            margin: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-right: 0;
+                padding: 1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="station-dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-bus" style="font-size: 2rem; color: var(--primary-color);"></i>
+                </div>
+                <h3>مدير المحطة</h3>
+                <p id="stationName">المحطة</p>
+            </div>
+            
+            <nav class="sidebar-menu">
+                <a href="#dashboard" class="menu-item active" onclick="showSection('dashboard')">
+                    <i class="fas fa-tachometer-alt"></i>
+                    لوحة التحكم
+                </a>
+                <a href="#departures" class="menu-item" onclick="showSection('departures')">
+                    <i class="fas fa-plane-departure"></i>
+                    الرحلات المغادرة
+                </a>
+                <a href="#arrivals" class="menu-item" onclick="showSection('arrivals')">
+                    <i class="fas fa-plane-arrival"></i>
+                    الرحلات الواصلة
+                </a>
+                <a href="#passengers" class="menu-item" onclick="showSection('passengers')">
+                    <i class="fas fa-users"></i>
+                    الركاب
+                </a>
+                <a href="#tickets" class="menu-item" onclick="showSection('tickets')">
+                    <i class="fas fa-ticket-alt"></i>
+                    التذاكر
+                </a>
+                <a href="#reports" class="menu-item" onclick="showSection('reports')">
+                    <i class="fas fa-chart-bar"></i>
+                    التقارير
+                </a>
+                <a href="#settings" class="menu-item" onclick="showSection('settings')">
+                    <i class="fas fa-cog"></i>
+                    الإعدادات
+                </a>
+                <a href="#" class="menu-item logout-item" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    تسجيل الخروج
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="dashboard-header">
+                <div class="dashboard-title">
+                    <h1>لوحة تحكم محطة الباص</h1>
+                    <p>مرحباً بك في لوحة التحكم المحلية</p>
+                </div>
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar">ح</div>
+                    <div class="user-details">
+                        <h4 id="userName">مدير المحطة</h4>
+                        <p id="userEmail">hadi.@gmail.com</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Section -->
+            <div id="dashboard" class="content-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-tachometer-alt"></i> نظرة عامة</h3>
+                </div>
+                
+                <div class="section-content">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon primary">
+                                <i class="fas fa-bus"></i>
+                            </div>
+                            <div class="stat-value" id="totalBuses">0</div>
+                            <div class="stat-label">إجمالي الحافلات</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon success">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-value" id="totalPassengers">0</div>
+                            <div class="stat-label">إجمالي الركاب</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon warning">
+                                <i class="fas fa-ticket-alt"></i>
+                            </div>
+                            <div class="stat-value" id="totalTickets">0</div>
+                            <div class="stat-label">إجمالي التذاكر</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon danger">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="stat-value" id="revenue">0 ريال</div>
+                            <div class="stat-label">الإيرادات</div>
+                        </div>
+                    </div>
+                    
+                    <div class="station-info">
+                        <h3>معلومات المحطة</h3>
+                        <div class="station-badge" id="currentStation">المحطة الحالية</div>
+                        <p>أنت مسؤول عن إدارة جميع العمليات في هذه المحطة</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Departures Section -->
+            <div id="departures" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h3><i class="fas fa-plane-departure"></i> الرحلات المغادرة</h3>
+                    <button class="btn btn-primary" onclick="showAddDepartureModal()">
+                        <i class="fas fa-plus"></i> إضافة رحلة مغادرة
+                    </button>
+                </div>
+                <div class="section-content">
+                    <!-- Filters -->
+                    <div class="filters-section" style="margin-bottom: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <input type="text" id="departureSearch" placeholder="البحث في الرحلات..." style="flex: 1; min-width: 200px; padding: 0.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        <select id="departureStatus" style="padding: 0.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                            <option value="">جميع الحالات</option>
+                            <option value="scheduled">مجدولة</option>
+                            <option value="boarding">صعود</option>
+                            <option value="departed">مغادرة</option>
+                            <option value="delayed">متأخرة</option>
+                        </select>
+                        <button class="btn btn-secondary" onclick="filterDepartures()">فلترة</button>
+                        <button class="btn btn-secondary" onclick="resetDepartureFilters()">إعادة تعيين</button>
+                    </div>
+                    
+                    <!-- Departures Table -->
+                    <div class="table-container" style="overflow-x: auto;">
+                        <table class="data-table" style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background: #f8fafc;">
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">رقم الرحلة</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">الوجهة</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">التوقيت</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">الحالة</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">الركاب</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="departuresTableBody">
+                                <!-- Data will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Arrivals Section -->
+            <div id="arrivals" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h3><i class="fas fa-plane-arrival"></i> الرحلات الواصلة</h3>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus"></i> إضافة رحلة واصلة
+                    </button>
+                </div>
+                <div class="section-content">
+                    <p>إدارة الرحلات الواصلة إلى المحطة</p>
+                </div>
+            </div>
+
+            <!-- Passengers Section -->
+            <div id="passengers" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h3><i class="fas fa-users"></i> الركاب</h3>
+                </div>
+                <div class="section-content">
+                    <p>إدارة ركاب المحطة</p>
+                </div>
+            </div>
+
+            <!-- Tickets Section -->
+            <div id="tickets" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h3><i class="fas fa-ticket-alt"></i> التذاكر</h3>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-plus"></i> إصدار تذكرة جديدة
+                    </button>
+                </div>
+                <div class="section-content">
+                    <p>إدارة تذاكر المحطة</p>
+                </div>
+            </div>
+
+            <!-- Reports Section -->
+            <div id="reports" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h3><i class="fas fa-chart-bar"></i> التقارير المحلية</h3>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-download"></i> تصدير التقرير
+                    </button>
+                </div>
+                <div class="section-content">
+                    <p>تقارير المحطة</p>
+                </div>
+            </div>
+
+            <!-- Settings Section -->
+            <div id="settings" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h3><i class="fas fa-cog"></i> الإعدادات</h3>
+                </div>
+                <div class="section-content">
+                    <p>إعدادات المحطة</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is logged in and is station manager
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = localStorage.getItem('user');
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            const userData = JSON.parse(user);
+            if (userData.role !== 'station_manager') {
+                alert('ليس لديك صلاحية للوصول إلى هذه الصفحة');
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Update user info
+            updateUserInfo(userData);
+            loadDashboardData();
+        });
+
+        function updateUserInfo(userData) {
+            document.getElementById('userName').textContent = userData.name || 'مدير المحطة';
+            document.getElementById('userEmail').textContent = userData.email || 'hadi.@gmail.com';
+            document.getElementById('userAvatar').textContent = (userData.name || 'ح').charAt(0);
+            document.getElementById('stationName').textContent = getStationLabel(userData.station);
+            document.getElementById('currentStation').textContent = getStationLabel(userData.station);
+        }
+
+        function getStationLabel(station) {
+            const labels = {
+                'riyadh_station': 'محطة الرياض',
+                'jeddah_station': 'محطة جدة',
+                'dammam_station': 'محطة الدمام',
+                'makkah_station': 'محطة مكة المكرمة',
+                'medina_station': 'محطة المدينة المنورة',
+                'taif_station': 'محطة الطائف',
+                'abha_station': 'محطة أبها',
+                'tabuk_station': 'محطة تبوك',
+                'hail_station': 'محطة حائل'
+            };
+            return labels[station] || station;
+        }
+
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Remove active class from all menu items
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).style.display = 'block';
+            
+            // Add active class to clicked menu item
+            const clickedItem = event.target.closest('.menu-item');
+            if (clickedItem) {
+                clickedItem.classList.add('active');
+            }
+            
+            // Load data for specific sections
+            if (sectionId === 'departures') {
+                loadDepartures();
+            } else if (sectionId === 'arrivals') {
+                loadArrivals();
+            } else if (sectionId === 'passengers') {
+                loadPassengers();
+            } else if (sectionId === 'tickets') {
+                loadTickets();
+            }
+        }
+
+        function loadDashboardData() {
+            // Initialize sample data if not exists
+            initializeStationData();
+            
+            // Load real data
+            const departures = JSON.parse(localStorage.getItem('departures') || '[]');
+            const arrivals = JSON.parse(localStorage.getItem('arrivals') || '[]');
+            const passengers = JSON.parse(localStorage.getItem('passengers') || '[]');
+            const tickets = JSON.parse(localStorage.getItem('tickets') || '[]');
+            
+            document.getElementById('totalBuses').textContent = departures.length + arrivals.length;
+            document.getElementById('totalPassengers').textContent = passengers.length;
+            document.getElementById('totalTickets').textContent = tickets.length;
+            
+            const revenue = tickets.reduce((sum, ticket) => sum + (ticket.price || 0), 0);
+            document.getElementById('revenue').textContent = revenue.toLocaleString() + ' ريال';
+        }
+
+        function initializeStationData() {
+            // Initialize departures
+            let departures = JSON.parse(localStorage.getItem('departures') || '[]');
+            if (departures.length === 0) {
+                departures = [
+                    {
+                        id: 'dep_1',
+                        tripNumber: 'DEP001',
+                        destination: 'جدة',
+                        departureTime: '08:00',
+                        status: 'scheduled',
+                        passengers: 25,
+                        busNumber: 'BUS-001',
+                        driver: 'أحمد محمد',
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 'dep_2',
+                        tripNumber: 'DEP002',
+                        destination: 'الدمام',
+                        departureTime: '10:30',
+                        status: 'boarding',
+                        passengers: 18,
+                        busNumber: 'BUS-002',
+                        driver: 'محمد علي',
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 'dep_3',
+                        tripNumber: 'DEP003',
+                        destination: 'مكة المكرمة',
+                        departureTime: '14:00',
+                        status: 'departed',
+                        passengers: 30,
+                        busNumber: 'BUS-003',
+                        driver: 'سعد أحمد',
+                        createdAt: new Date().toISOString()
+                    }
+                ];
+                localStorage.setItem('departures', JSON.stringify(departures));
+            }
+
+            // Initialize arrivals
+            let arrivals = JSON.parse(localStorage.getItem('arrivals') || '[]');
+            if (arrivals.length === 0) {
+                arrivals = [
+                    {
+                        id: 'arr_1',
+                        tripNumber: 'ARR001',
+                        origin: 'جدة',
+                        arrivalTime: '09:30',
+                        status: 'arrived',
+                        passengers: 22,
+                        busNumber: 'BUS-004',
+                        driver: 'خالد سعد',
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 'arr_2',
+                        tripNumber: 'ARR002',
+                        origin: 'الدمام',
+                        arrivalTime: '12:00',
+                        status: 'delayed',
+                        passengers: 15,
+                        busNumber: 'BUS-005',
+                        driver: 'عبدالله محمد',
+                        createdAt: new Date().toISOString()
+                    }
+                ];
+                localStorage.setItem('arrivals', JSON.stringify(arrivals));
+            }
+
+            // Initialize passengers
+            let passengers = JSON.parse(localStorage.getItem('passengers') || '[]');
+            if (passengers.length === 0) {
+                passengers = [
+                    {
+                        id: 'pass_1',
+                        name: 'أحمد محمد العلي',
+                        phone: '0501234567',
+                        email: 'ahmed@example.com',
+                        ticketNumber: 'TKT001',
+                        tripNumber: 'DEP001',
+                        status: 'active',
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 'pass_2',
+                        name: 'فاطمة أحمد السعيد',
+                        phone: '0507654321',
+                        email: 'fatima@example.com',
+                        ticketNumber: 'TKT002',
+                        tripNumber: 'DEP002',
+                        status: 'active',
+                        createdAt: new Date().toISOString()
+                    }
+                ];
+                localStorage.setItem('passengers', JSON.stringify(passengers));
+            }
+
+            // Initialize tickets
+            let tickets = JSON.parse(localStorage.getItem('tickets') || '[]');
+            if (tickets.length === 0) {
+                tickets = [
+                    {
+                        id: 'tkt_1',
+                        ticketNumber: 'TKT001',
+                        passengerName: 'أحمد محمد العلي',
+                        tripNumber: 'DEP001',
+                        destination: 'جدة',
+                        price: 150,
+                        status: 'active',
+                        createdAt: new Date().toISOString()
+                    },
+                    {
+                        id: 'tkt_2',
+                        ticketNumber: 'TKT002',
+                        passengerName: 'فاطمة أحمد السعيد',
+                        tripNumber: 'DEP002',
+                        destination: 'الدمام',
+                        price: 200,
+                        status: 'active',
+                        createdAt: new Date().toISOString()
+                    }
+                ];
+                localStorage.setItem('tickets', JSON.stringify(tickets));
+            }
+        }
+
+        // Departure functions
+        function showAddDepartureModal() {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; display: flex; align-items: center; justify-content: center;';
+            modal.innerHTML = `
+                <div style="background: white; border-radius: 1rem; padding: 2rem; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3 style="margin: 0; color: #2563eb;">إضافة رحلة مغادرة</h3>
+                        <button onclick="this.closest('.modal').remove()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+                    </div>
+                    <form onsubmit="addDeparture(event)">
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">رقم الرحلة</label>
+                            <input type="text" name="tripNumber" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">الوجهة</label>
+                            <input type="text" name="destination" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">وقت المغادرة</label>
+                            <input type="time" name="departureTime" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">رقم الحافلة</label>
+                            <input type="text" name="busNumber" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">اسم السائق</label>
+                            <input type="text" name="driver" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        </div>
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                            <button type="button" onclick="this.closest('.modal').remove()" style="padding: 0.75rem 1.5rem; border: 1px solid #e5e7eb; background: white; border-radius: 0.5rem; cursor: pointer;">إلغاء</button>
+                            <button type="submit" style="padding: 0.75rem 1.5rem; background: #2563eb; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">إضافة</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        function addDeparture(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const departure = {
+                id: 'dep_' + Date.now(),
+                tripNumber: formData.get('tripNumber'),
+                destination: formData.get('destination'),
+                departureTime: formData.get('departureTime'),
+                status: 'scheduled',
+                passengers: 0,
+                busNumber: formData.get('busNumber'),
+                driver: formData.get('driver'),
+                createdAt: new Date().toISOString()
+            };
+
+            const departures = JSON.parse(localStorage.getItem('departures') || '[]');
+            departures.push(departure);
+            localStorage.setItem('departures', JSON.stringify(departures));
+
+            alert('تم إضافة الرحلة بنجاح!');
+            event.target.closest('.modal').remove();
+            loadDepartures();
+        }
+
+        function loadDepartures() {
+            const departures = JSON.parse(localStorage.getItem('departures') || '[]');
+            const tbody = document.getElementById('departuresTableBody');
+            
+            if (departures.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: #6b7280;">لا توجد رحلات مغادرة</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = departures.map(departure => `
+                <tr>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${departure.tripNumber}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${departure.destination}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${departure.departureTime}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <span style="padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem; background: ${getStatusColor(departure.status)}; color: white;">
+                            ${getStatusLabel(departure.status)}
+                        </span>
+                    </td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${departure.passengers}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <button onclick="editDeparture('${departure.id}')" style="background: #10b981; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">تعديل</button>
+                        <button onclick="deleteDeparture('${departure.id}')" style="background: #ef4444; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">حذف</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function getStatusColor(status) {
+            const colors = {
+                'scheduled': '#3b82f6',
+                'boarding': '#f59e0b',
+                'departed': '#10b981',
+                'delayed': '#ef4444'
+            };
+            return colors[status] || '#6b7280';
+        }
+
+        function getStatusLabel(status) {
+            const labels = {
+                'scheduled': 'مجدولة',
+                'boarding': 'صعود',
+                'departed': 'مغادرة',
+                'delayed': 'متأخرة'
+            };
+            return labels[status] || status;
+        }
+
+        function editDeparture(id) {
+            const departures = JSON.parse(localStorage.getItem('departures') || '[]');
+            const departure = departures.find(d => d.id === id);
+            if (!departure) return;
+
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; display: flex; align-items: center; justify-content: center;';
+            modal.innerHTML = `
+                <div style="background: white; border-radius: 1rem; padding: 2rem; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3 style="margin: 0; color: #2563eb;">تعديل رحلة مغادرة</h3>
+                        <button onclick="this.closest('.modal').remove()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+                    </div>
+                    <form onsubmit="updateDeparture(event, '${id}')">
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">رقم الرحلة</label>
+                            <input type="text" name="tripNumber" value="${departure.tripNumber}" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">الوجهة</label>
+                            <input type="text" name="destination" value="${departure.destination}" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">وقت المغادرة</label>
+                            <input type="time" name="departureTime" value="${departure.departureTime}" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">رقم الحافلة</label>
+                            <input type="text" name="busNumber" value="${departure.busNumber}" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">اسم السائق</label>
+                            <input type="text" name="driver" value="${departure.driver}" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        </div>
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                            <button type="button" onclick="this.closest('.modal').remove()" style="padding: 0.75rem 1.5rem; border: 1px solid #e5e7eb; background: white; border-radius: 0.5rem; cursor: pointer;">إلغاء</button>
+                            <button type="submit" style="padding: 0.75rem 1.5rem; background: #2563eb; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">حفظ</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        function updateDeparture(event, id) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            
+            const departures = JSON.parse(localStorage.getItem('departures') || '[]');
+            const index = departures.findIndex(d => d.id === id);
+            
+            if (index !== -1) {
+                departures[index] = {
+                    ...departures[index],
+                    tripNumber: formData.get('tripNumber'),
+                    destination: formData.get('destination'),
+                    departureTime: formData.get('departureTime'),
+                    busNumber: formData.get('busNumber'),
+                    driver: formData.get('driver')
+                };
+                localStorage.setItem('departures', JSON.stringify(departures));
+                alert('تم تحديث الرحلة بنجاح!');
+                event.target.closest('.modal').remove();
+                loadDepartures();
+            }
+        }
+
+        function deleteDeparture(id) {
+            if (confirm('هل أنت متأكد من حذف هذه الرحلة؟')) {
+                const departures = JSON.parse(localStorage.getItem('departures') || '[]');
+                const filtered = departures.filter(d => d.id !== id);
+                localStorage.setItem('departures', JSON.stringify(filtered));
+                alert('تم حذف الرحلة بنجاح!');
+                loadDepartures();
+            }
+        }
+
+        function filterDepartures() {
+            const search = document.getElementById('departureSearch').value.toLowerCase();
+            const status = document.getElementById('departureStatus').value;
+            
+            const departures = JSON.parse(localStorage.getItem('departures') || '[]');
+            let filtered = departures;
+            
+            if (search) {
+                filtered = filtered.filter(d => 
+                    d.tripNumber.toLowerCase().includes(search) ||
+                    d.destination.toLowerCase().includes(search) ||
+                    d.driver.toLowerCase().includes(search)
+                );
+            }
+            
+            if (status) {
+                filtered = filtered.filter(d => d.status === status);
+            }
+            
+            // Update table with filtered data
+            const tbody = document.getElementById('departuresTableBody');
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: #6b7280;">لا توجد نتائج</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(departure => `
+                <tr>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${departure.tripNumber}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${departure.destination}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${departure.departureTime}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <span style="padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem; background: ${getStatusColor(departure.status)}; color: white;">
+                            ${getStatusLabel(departure.status)}
+                        </span>
+                    </td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${departure.passengers}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <button onclick="editDeparture('${departure.id}')" style="background: #10b981; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">تعديل</button>
+                        <button onclick="deleteDeparture('${departure.id}')" style="background: #ef4444; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">حذف</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function resetDepartureFilters() {
+            document.getElementById('departureSearch').value = '';
+            document.getElementById('departureStatus').value = '';
+            loadDepartures();
+        }
+
+        // Arrival functions
+        function loadArrivals() {
+            const arrivals = JSON.parse(localStorage.getItem('arrivals') || '[]');
+            const tbody = document.getElementById('arrivalsTableBody');
+            
+            if (!tbody) {
+                // Create arrivals table if it doesn't exist
+                const arrivalsSection = document.getElementById('arrivals');
+                const content = arrivalsSection.querySelector('.section-content');
+                content.innerHTML = `
+                    <div class="filters-section" style="margin-bottom: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <input type="text" id="arrivalSearch" placeholder="البحث في الرحلات..." style="flex: 1; min-width: 200px; padding: 0.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        <select id="arrivalStatus" style="padding: 0.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                            <option value="">جميع الحالات</option>
+                            <option value="scheduled">مجدولة</option>
+                            <option value="arriving">قادمة</option>
+                            <option value="arrived">واصلة</option>
+                            <option value="delayed">متأخرة</option>
+                        </select>
+                        <button class="btn btn-secondary" onclick="filterArrivals()">فلترة</button>
+                        <button class="btn btn-secondary" onclick="resetArrivalFilters()">إعادة تعيين</button>
+                    </div>
+                    <div class="table-container" style="overflow-x: auto;">
+                        <table class="data-table" style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background: #f8fafc;">
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">رقم الرحلة</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">المنشأ</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">وقت الوصول</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">الحالة</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">الركاب</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="arrivalsTableBody">
+                                <!-- Data will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            }
+            
+            const arrivalsTableBody = document.getElementById('arrivalsTableBody');
+            if (arrivals.length === 0) {
+                arrivalsTableBody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: #6b7280;">لا توجد رحلات واصلة</td></tr>';
+                return;
+            }
+
+            arrivalsTableBody.innerHTML = arrivals.map(arrival => `
+                <tr>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${arrival.tripNumber}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${arrival.origin}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${arrival.arrivalTime}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <span style="padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem; background: ${getArrivalStatusColor(arrival.status)}; color: white;">
+                            ${getArrivalStatusLabel(arrival.status)}
+                        </span>
+                    </td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${arrival.passengers}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <button onclick="editArrival('${arrival.id}')" style="background: #10b981; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">تعديل</button>
+                        <button onclick="deleteArrival('${arrival.id}')" style="background: #ef4444; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">حذف</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function getArrivalStatusColor(status) {
+            const colors = {
+                'scheduled': '#3b82f6',
+                'arriving': '#f59e0b',
+                'arrived': '#10b981',
+                'delayed': '#ef4444'
+            };
+            return colors[status] || '#6b7280';
+        }
+
+        function getArrivalStatusLabel(status) {
+            const labels = {
+                'scheduled': 'مجدولة',
+                'arriving': 'قادمة',
+                'arrived': 'واصلة',
+                'delayed': 'متأخرة'
+            };
+            return labels[status] || status;
+        }
+
+        function filterArrivals() {
+            const search = document.getElementById('arrivalSearch').value.toLowerCase();
+            const status = document.getElementById('arrivalStatus').value;
+            
+            const arrivals = JSON.parse(localStorage.getItem('arrivals') || '[]');
+            let filtered = arrivals;
+            
+            if (search) {
+                filtered = filtered.filter(a => 
+                    a.tripNumber.toLowerCase().includes(search) ||
+                    a.origin.toLowerCase().includes(search) ||
+                    a.driver.toLowerCase().includes(search)
+                );
+            }
+            
+            if (status) {
+                filtered = filtered.filter(a => a.status === status);
+            }
+            
+            const tbody = document.getElementById('arrivalsTableBody');
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: #6b7280;">لا توجد نتائج</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(arrival => `
+                <tr>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${arrival.tripNumber}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${arrival.origin}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${arrival.arrivalTime}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <span style="padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem; background: ${getArrivalStatusColor(arrival.status)}; color: white;">
+                            ${getArrivalStatusLabel(arrival.status)}
+                        </span>
+                    </td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${arrival.passengers}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <button onclick="editArrival('${arrival.id}')" style="background: #10b981; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">تعديل</button>
+                        <button onclick="deleteArrival('${arrival.id}')" style="background: #ef4444; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">حذف</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function resetArrivalFilters() {
+            document.getElementById('arrivalSearch').value = '';
+            document.getElementById('arrivalStatus').value = '';
+            loadArrivals();
+        }
+
+        function editArrival(id) {
+            const arrivals = JSON.parse(localStorage.getItem('arrivals') || '[]');
+            const arrival = arrivals.find(a => a.id === id);
+            if (!arrival) return;
+
+            alert('وظيفة تعديل الرحلات الواصلة قيد التطوير');
+        }
+
+        function deleteArrival(id) {
+            if (confirm('هل أنت متأكد من حذف هذه الرحلة؟')) {
+                const arrivals = JSON.parse(localStorage.getItem('arrivals') || '[]');
+                const filtered = arrivals.filter(a => a.id !== id);
+                localStorage.setItem('arrivals', JSON.stringify(filtered));
+                alert('تم حذف الرحلة بنجاح!');
+                loadArrivals();
+            }
+        }
+
+        // Passenger functions
+        function loadPassengers() {
+            const passengers = JSON.parse(localStorage.getItem('passengers') || '[]');
+            const tbody = document.getElementById('passengersTableBody');
+            
+            if (!tbody) {
+                // Create passengers table if it doesn't exist
+                const passengersSection = document.getElementById('passengers');
+                const content = passengersSection.querySelector('.section-content');
+                content.innerHTML = `
+                    <div class="filters-section" style="margin-bottom: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <input type="text" id="passengerSearch" placeholder="البحث في الركاب..." style="flex: 1; min-width: 200px; padding: 0.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        <select id="passengerStatus" style="padding: 0.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                            <option value="">جميع الحالات</option>
+                            <option value="active">نشط</option>
+                            <option value="inactive">غير نشط</option>
+                        </select>
+                        <button class="btn btn-secondary" onclick="filterPassengers()">فلترة</button>
+                        <button class="btn btn-secondary" onclick="resetPassengerFilters()">إعادة تعيين</button>
+                    </div>
+                    <div class="table-container" style="overflow-x: auto;">
+                        <table class="data-table" style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background: #f8fafc;">
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">الاسم</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">الهاتف</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">رقم التذكرة</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">رقم الرحلة</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">الحالة</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="passengersTableBody">
+                                <!-- Data will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            }
+            
+            const passengersTableBody = document.getElementById('passengersTableBody');
+            if (passengers.length === 0) {
+                passengersTableBody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: #6b7280;">لا توجد بيانات ركاب</td></tr>';
+                return;
+            }
+
+            passengersTableBody.innerHTML = passengers.map(passenger => `
+                <tr>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${passenger.name}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${passenger.phone}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${passenger.ticketNumber}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${passenger.tripNumber}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <span style="padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem; background: ${passenger.status === 'active' ? '#10b981' : '#6b7280'}; color: white;">
+                            ${passenger.status === 'active' ? 'نشط' : 'غير نشط'}
+                        </span>
+                    </td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <button onclick="viewPassenger('${passenger.id}')" style="background: #3b82f6; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">عرض</button>
+                        <button onclick="editPassenger('${passenger.id}')" style="background: #10b981; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">تعديل</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function filterPassengers() {
+            const search = document.getElementById('passengerSearch').value.toLowerCase();
+            const status = document.getElementById('passengerStatus').value;
+            
+            const passengers = JSON.parse(localStorage.getItem('passengers') || '[]');
+            let filtered = passengers;
+            
+            if (search) {
+                filtered = filtered.filter(p => 
+                    p.name.toLowerCase().includes(search) ||
+                    p.phone.includes(search) ||
+                    p.ticketNumber.toLowerCase().includes(search) ||
+                    p.tripNumber.toLowerCase().includes(search)
+                );
+            }
+            
+            if (status) {
+                filtered = filtered.filter(p => p.status === status);
+            }
+            
+            const tbody = document.getElementById('passengersTableBody');
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: #6b7280;">لا توجد نتائج</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(passenger => `
+                <tr>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${passenger.name}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${passenger.phone}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${passenger.ticketNumber}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${passenger.tripNumber}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <span style="padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem; background: ${passenger.status === 'active' ? '#10b981' : '#6b7280'}; color: white;">
+                            ${passenger.status === 'active' ? 'نشط' : 'غير نشط'}
+                        </span>
+                    </td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <button onclick="viewPassenger('${passenger.id}')" style="background: #3b82f6; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">عرض</button>
+                        <button onclick="editPassenger('${passenger.id}')" style="background: #10b981; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">تعديل</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function resetPassengerFilters() {
+            document.getElementById('passengerSearch').value = '';
+            document.getElementById('passengerStatus').value = '';
+            loadPassengers();
+        }
+
+        function viewPassenger(id) {
+            const passengers = JSON.parse(localStorage.getItem('passengers') || '[]');
+            const passenger = passengers.find(p => p.id === id);
+            if (!passenger) return;
+
+            alert(`عرض بيانات الراكب:\nالاسم: ${passenger.name}\nالهاتف: ${passenger.phone}\nرقم التذكرة: ${passenger.ticketNumber}\nرقم الرحلة: ${passenger.tripNumber}`);
+        }
+
+        function editPassenger(id) {
+            alert('وظيفة تعديل بيانات الركاب قيد التطوير');
+        }
+
+        // Ticket functions
+        function loadTickets() {
+            const tickets = JSON.parse(localStorage.getItem('tickets') || '[]');
+            const tbody = document.getElementById('ticketsTableBody');
+            
+            if (!tbody) {
+                // Create tickets table if it doesn't exist
+                const ticketsSection = document.getElementById('tickets');
+                const content = ticketsSection.querySelector('.section-content');
+                content.innerHTML = `
+                    <div class="filters-section" style="margin-bottom: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <input type="text" id="ticketSearch" placeholder="البحث في التذاكر..." style="flex: 1; min-width: 200px; padding: 0.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        <select id="ticketStatus" style="padding: 0.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                            <option value="">جميع الحالات</option>
+                            <option value="active">نشط</option>
+                            <option value="used">مستخدم</option>
+                            <option value="cancelled">ملغي</option>
+                        </select>
+                        <button class="btn btn-secondary" onclick="filterTickets()">فلترة</button>
+                        <button class="btn btn-secondary" onclick="resetTicketFilters()">إعادة تعيين</button>
+                    </div>
+                    <div class="table-container" style="overflow-x: auto;">
+                        <table class="data-table" style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background: #f8fafc;">
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">رقم التذكرة</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">اسم الراكب</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">رقم الرحلة</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">الوجهة</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">السعر</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">الحالة</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ticketsTableBody">
+                                <!-- Data will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+            }
+            
+            const ticketsTableBody = document.getElementById('ticketsTableBody');
+            if (tickets.length === 0) {
+                ticketsTableBody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 2rem; color: #6b7280;">لا توجد تذاكر</td></tr>';
+                return;
+            }
+
+            ticketsTableBody.innerHTML = tickets.map(ticket => `
+                <tr>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${ticket.ticketNumber}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${ticket.passengerName}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${ticket.tripNumber}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${ticket.destination}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${ticket.price} ريال</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <span style="padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem; background: ${getTicketStatusColor(ticket.status)}; color: white;">
+                            ${getTicketStatusLabel(ticket.status)}
+                        </span>
+                    </td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <button onclick="viewTicket('${ticket.id}')" style="background: #3b82f6; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">عرض</button>
+                        <button onclick="editTicket('${ticket.id}')" style="background: #10b981; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">تعديل</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function getTicketStatusColor(status) {
+            const colors = {
+                'active': '#10b981',
+                'used': '#3b82f6',
+                'cancelled': '#ef4444'
+            };
+            return colors[status] || '#6b7280';
+        }
+
+        function getTicketStatusLabel(status) {
+            const labels = {
+                'active': 'نشط',
+                'used': 'مستخدم',
+                'cancelled': 'ملغي'
+            };
+            return labels[status] || status;
+        }
+
+        function filterTickets() {
+            const search = document.getElementById('ticketSearch').value.toLowerCase();
+            const status = document.getElementById('ticketStatus').value;
+            
+            const tickets = JSON.parse(localStorage.getItem('tickets') || '[]');
+            let filtered = tickets;
+            
+            if (search) {
+                filtered = filtered.filter(t => 
+                    t.ticketNumber.toLowerCase().includes(search) ||
+                    t.passengerName.toLowerCase().includes(search) ||
+                    t.tripNumber.toLowerCase().includes(search) ||
+                    t.destination.toLowerCase().includes(search)
+                );
+            }
+            
+            if (status) {
+                filtered = filtered.filter(t => t.status === status);
+            }
+            
+            const tbody = document.getElementById('ticketsTableBody');
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" style="text-align: center; padding: 2rem; color: #6b7280;">لا توجد نتائج</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(ticket => `
+                <tr>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${ticket.ticketNumber}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${ticket.passengerName}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${ticket.tripNumber}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${ticket.destination}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${ticket.price} ريال</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <span style="padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem; background: ${getTicketStatusColor(ticket.status)}; color: white;">
+                            ${getTicketStatusLabel(ticket.status)}
+                        </span>
+                    </td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <button onclick="viewTicket('${ticket.id}')" style="background: #3b82f6; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">عرض</button>
+                        <button onclick="editTicket('${ticket.id}')" style="background: #10b981; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">تعديل</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function resetTicketFilters() {
+            document.getElementById('ticketSearch').value = '';
+            document.getElementById('ticketStatus').value = '';
+            loadTickets();
+        }
+
+        function viewTicket(id) {
+            const tickets = JSON.parse(localStorage.getItem('tickets') || '[]');
+            const ticket = tickets.find(t => t.id === id);
+            if (!ticket) return;
+
+            alert(`عرض بيانات التذكرة:\nرقم التذكرة: ${ticket.ticketNumber}\nاسم الراكب: ${ticket.passengerName}\nرقم الرحلة: ${ticket.tripNumber}\nالوجهة: ${ticket.destination}\nالسعر: ${ticket.price} ريال`);
+        }
+
+        function editTicket(id) {
+            alert('وظيفة تعديل التذاكر قيد التطوير');
+        }
+
+        function logout() {
+            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                localStorage.removeItem('user');
+                window.location.href = 'login.html';
+            }
+        }
+    </script>
+</body>
+</html>

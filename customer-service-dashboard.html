@@ -1,0 +1,2082 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم خدمة العملاء - نورث وست باص</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="images/colored-logo-arabic-1.svg">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;700;900&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="style.css">
+    
+    <style>
+        .customer-service-dashboard {
+            display: flex;
+            min-height: 100vh;
+            background: #ffffff;
+        }
+        
+        .sidebar {
+            width: 250px;
+            background: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+        }
+        
+        .sidebar-header .logo {
+            margin-bottom: 1rem;
+        }
+        
+        .sidebar-header h3 {
+            color: var(--primary-color);
+            margin: 0;
+        }
+        
+        .sidebar-menu {
+            padding: 1rem 0;
+        }
+        
+        .menu-item {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+            border-right: 3px solid transparent;
+        }
+        
+        .menu-item:hover,
+        .menu-item.active {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-color);
+            border-right-color: var(--primary-color);
+        }
+        
+        .logout-item:hover {
+            background: rgba(220, 38, 38, 0.1) !important;
+            color: #dc2626 !important;
+            border-right-color: #dc2626 !important;
+        }
+        
+        .menu-item i {
+            width: 20px;
+            margin-left: 0.5rem;
+        }
+        
+        .main-content {
+            flex: 1;
+            margin-right: 250px;
+            padding: 2rem;
+        }
+        
+        .dashboard-header {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .customer-service-dashboard {
+            display: flex;
+            min-height: 100vh;
+            background: var(--background-color);
+        }
+        
+        .sidebar {
+            width: 250px;
+            background: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+        
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
+        }
+        
+        .sidebar-header .logo {
+            margin-bottom: 1rem;
+        }
+        
+        .sidebar-header h3 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+        
+        .sidebar-header p {
+            color: var(--text-light);
+            margin: 0.5rem 0 0 0;
+            font-size: 0.9rem;
+        }
+        
+        .sidebar-menu {
+            padding: 1rem 0;
+        }
+        
+        .menu-item {
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-color);
+            text-decoration: none;
+            transition: var(--transition);
+            border-right: 3px solid transparent;
+        }
+        
+        .menu-item:hover,
+        .menu-item.active {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-color);
+            border-right-color: var(--primary-color);
+        }
+        
+        .logout-item:hover {
+            background: rgba(220, 38, 38, 0.1) !important;
+            color: #dc2626 !important;
+            border-right-color: #dc2626 !important;
+        }
+        
+        .menu-item i {
+            width: 20px;
+            margin-left: 0.5rem;
+        }
+        
+        .main-content {
+            flex: 1;
+            margin-right: 250px;
+            padding: 2rem;
+        }
+        
+        .dashboard-header {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .dashboard-title h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 1.875rem;
+            font-weight: 700;
+        }
+        
+        .dashboard-title p {
+            color: var(--text-light);
+            margin: 0.5rem 0 0 0;
+            font-size: 0.9rem;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+        
+        .user-details h4 {
+            margin: 0;
+            color: var(--text-color);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+        
+        .user-details p {
+            margin: 0;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .logout-btn {
+            background: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .logout-btn:hover {
+            background: #dc2626;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .stat-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+        
+        .stat-icon.primary {
+            background: var(--primary-color);
+        }
+        
+        .stat-icon.success {
+            background: var(--success-color);
+        }
+        
+        .stat-icon.warning {
+            background: var(--warning-color);
+        }
+        
+        .stat-icon.danger {
+            background: var(--danger-color);
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+        
+        .content-section {
+            background: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+        
+        .section-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .section-header h3 {
+            margin: 0;
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .section-content {
+            padding: 1.5rem;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .btn-primary {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+        
+        .btn-secondary {
+            background: var(--text-light);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+        
+        .service-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-color);
+            border-radius: 2rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .service-info {
+            background: rgba(37, 99, 235, 0.05);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-top: 1.5rem;
+        }
+        
+        .service-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+        
+        .service-info p {
+            color: var(--text-light);
+            margin: 0;
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .main-content {
+                margin-right: 0;
+                padding: 1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .dashboard-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+        }
+
+        /* Enhanced Design Styles */
+        .dashboard-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .dashboard-header h1 {
+            margin: 0;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border: 1px solid #e5e7eb;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-card .icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 0.75rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-card .icon.tickets { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+        .stat-card .icon.resolved { background: linear-gradient(135deg, #10b981, #059669); color: white; }
+        .stat-card .icon.pending { background: linear-gradient(135deg, #f59e0b, #d97706); color: white; }
+        .stat-card .icon.complaints { background: linear-gradient(135deg, #ef4444, #dc2626); color: white; }
+
+        .stat-card h3 {
+            margin: 0 0 0.5rem 0;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .stat-card .number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2563eb;
+            margin: 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .section-header h3 {
+            margin: 0;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .section-header h3 i {
+            color: #2563eb;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #1d4ed8, #1e40af);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(37, 99, 235, 0.3);
+        }
+
+        .btn-secondary {
+            background: #f8fafc;
+            color: #64748b;
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn-secondary:hover {
+            background: #e2e8f0;
+            color: #475569;
+        }
+
+        .filters-section {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .filters-section input,
+        .filters-section select {
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .filters-section input:focus,
+        .filters-section select:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 0.75rem;
+            overflow: hidden;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            border: 1px solid #e5e7eb;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .data-table thead {
+            background: linear-gradient(135deg, #f8fafc, #e2e8f0);
+        }
+
+        .data-table th {
+            padding: 1rem;
+            text-align: right;
+            font-weight: 600;
+            color: #374151;
+            border-bottom: 2px solid #e5e7eb;
+        }
+
+        .data-table td {
+            padding: 1rem;
+            border-bottom: 1px solid #f3f4f6;
+            color: #4b5563;
+        }
+
+        .data-table tbody tr:hover {
+            background: #f9fafb;
+        }
+
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .status-open { background: #fef2f2; color: #dc2626; }
+        .status-in_progress { background: #fffbeb; color: #d97706; }
+        .status-resolved { background: #f0fdf4; color: #059669; }
+        .status-closed { background: #f9fafb; color: #6b7280; }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn-action {
+            padding: 0.375rem 0.75rem;
+            border: none;
+            border-radius: 0.375rem;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-view { background: #3b82f6; color: white; }
+        .btn-edit { background: #10b981; color: white; }
+        .btn-delete { background: #ef4444; color: white; }
+
+        .btn-action:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(8px);
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 0;
+            max-width: 450px;
+            width: 90%;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 1.5rem 2rem;
+            margin: 0;
+            border-radius: 1.5rem 1.5rem 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .modal-header i {
+            font-size: 1.2rem;
+        }
+
+        .modal-body {
+            padding: 2rem;
+        }
+
+        .modal-footer {
+            padding: 1.5rem 2rem;
+            background: #f8fafc;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+        }
+
+        .btn-modal {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-width: 100px;
+        }
+
+        .btn-modal-primary {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+        }
+
+        .btn-modal-primary:hover {
+            background: linear-gradient(135deg, #1d4ed8, #1e40af);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-modal-secondary {
+            background: #f8fafc;
+            color: #64748b;
+            border: 1px solid #e2e8f0;
+        }
+
+        .btn-modal-secondary:hover {
+            background: #e2e8f0;
+            color: #475569;
+        }
+
+        .btn-modal-danger {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            color: white;
+        }
+
+        .btn-modal-danger:hover {
+            background: linear-gradient(135deg, #dc2626, #b91c1c);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: #1f2937;
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #6b7280;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            transition: all 0.2s ease;
+        }
+
+        .modal-close:hover {
+            background: #f3f4f6;
+            color: #374151;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #374151;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #e5e7eb;
+        }
+    </style>
+</head>
+<body>
+    <div class="customer-service-dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <i class="fas fa-headset" style="font-size: 2rem; color: var(--primary-color);"></i>
+                </div>
+                <h3>خدمة العملاء</h3>
+                <p id="serviceName">مركز الخدمة</p>
+            </div>
+            
+            <nav class="sidebar-menu">
+                <a href="#dashboard" class="menu-item active" onclick="showSection('dashboard')">
+                    <i class="fas fa-tachometer-alt"></i>
+                    لوحة التحكم
+                </a>
+                <a href="#tickets" class="menu-item" onclick="showSection('tickets')">
+                    <i class="fas fa-ticket-alt"></i>
+                    التذاكر
+                </a>
+                <a href="#complaints" class="menu-item" onclick="showSection('complaints')">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    الشكاوى
+                </a>
+                <a href="#support" class="menu-item" onclick="showSection('support')">
+                    <i class="fas fa-life-ring"></i>
+                    الدعم الفني
+                </a>
+                <a href="#customers" class="menu-item" onclick="showSection('customers')">
+                    <i class="fas fa-users"></i>
+                    العملاء
+                </a>
+                <a href="#reports" class="menu-item" onclick="showSection('reports')">
+                    <i class="fas fa-chart-bar"></i>
+                    التقارير
+                </a>
+                <a href="#settings" class="menu-item" onclick="showSection('settings')">
+                    <i class="fas fa-cog"></i>
+                    الإعدادات
+                </a>
+                <a href="#" class="menu-item logout-item" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    تسجيل الخروج
+                </a>
+            </nav>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="dashboard-header">
+                <div class="dashboard-title">
+                    <h1>لوحة تحكم خدمة العملاء</h1>
+                    <p>مرحباً بك في مركز خدمة العملاء</p>
+                </div>
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar">خ</div>
+                    <div class="user-details">
+                        <h4 id="userName">موظف خدمة العملاء</h4>
+                        <p id="userEmail">service@nwbus.sa</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Section -->
+            <div id="dashboard" class="content-section">
+                <div class="section-header">
+                    <h3><i class="fas fa-tachometer-alt"></i> نظرة عامة</h3>
+                </div>
+                
+                <div class="section-content">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="icon tickets">
+                                <i class="fas fa-ticket-alt"></i>
+                            </div>
+                            <h3>إجمالي التذاكر</h3>
+                            <div class="number" id="totalTickets">0</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="icon resolved">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <h3>التذاكر المحلولة</h3>
+                            <div class="number" id="resolvedTickets">0</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="icon pending">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <h3>التذاكر المعلقة</h3>
+                            <div class="number" id="pendingTickets">0</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="icon complaints">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <h3>الشكاوى</h3>
+                            <div class="number" id="complaints">0</div>
+                        </div>
+                    </div>
+                    
+                    <div class="service-info" style="margin-top: 2rem;">
+                        <div class="stat-card" style="text-align: center; padding: 2rem;">
+                            <div class="icon tickets" style="margin: 0 auto 1rem auto;">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h3 style="color: #1f2937; margin-bottom: 1rem;">مركز خدمة العملاء</h3>
+                            <p style="color: #6b7280; font-size: 1.1rem; line-height: 1.6;">أنت مسؤول عن تقديم أفضل خدمة للعملاء وحل مشاكلهم بسرعة وكفاءة</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tickets Section -->
+            <div id="tickets" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h3><i class="fas fa-ticket-alt"></i> إدارة التذاكر</h3>
+                    <button class="btn btn-primary" onclick="showAddTicketModal()">
+                        <i class="fas fa-plus"></i> تذكرة جديدة
+                    </button>
+                </div>
+                <div class="section-content">
+                    <!-- Filters -->
+                    <div class="filters-section" style="margin-bottom: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <input type="text" id="ticketSearch" placeholder="البحث في التذاكر..." style="flex: 1; min-width: 200px; padding: 0.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        <select id="ticketStatus" style="padding: 0.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                            <option value="">جميع الحالات</option>
+                            <option value="open">مفتوح</option>
+                            <option value="in_progress">قيد المعالجة</option>
+                            <option value="resolved">محلول</option>
+                            <option value="closed">مغلق</option>
+                        </select>
+                        <button class="btn btn-secondary" onclick="filterTickets()">فلترة</button>
+                        <button class="btn btn-secondary" onclick="resetTicketFilters()">إعادة تعيين</button>
+                    </div>
+                    
+                    <!-- Tickets Table -->
+                    <div class="table-container" style="overflow-x: auto;">
+                        <table class="data-table" style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background: #f8fafc;">
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">رقم التذكرة</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">اسم العميل</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">نوع المشكلة</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">الحالة</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">تاريخ الإنشاء</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ticketsTableBody">
+                                <!-- Data will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Complaints Section -->
+            <div id="complaints" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h3><i class="fas fa-exclamation-triangle"></i> الشكاوى</h3>
+                    <button class="btn btn-primary" onclick="showAddComplaintModal()">
+                        <i class="fas fa-plus"></i> شكوى جديدة
+                    </button>
+                </div>
+                <div class="section-content">
+                    <!-- Filters -->
+                    <div class="filters-section" style="margin-bottom: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <input type="text" id="complaintSearch" placeholder="البحث في الشكاوى..." style="flex: 1; min-width: 200px; padding: 0.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        <select id="complaintStatus" style="padding: 0.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                            <option value="">جميع الحالات</option>
+                            <option value="open">مفتوح</option>
+                            <option value="in_progress">قيد المعالجة</option>
+                            <option value="resolved">محلول</option>
+                            <option value="closed">مغلق</option>
+                        </select>
+                        <button class="btn btn-secondary" onclick="filterComplaints()">فلترة</button>
+                        <button class="btn btn-secondary" onclick="resetComplaintFilters()">إعادة تعيين</button>
+                    </div>
+                    
+                    <!-- Complaints Table -->
+                    <div class="table-container" style="overflow-x: auto;">
+                        <table class="data-table" style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background: #f8fafc;">
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">رقم الشكوى</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">اسم العميل</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">نوع الشكوى</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">الحالة</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">تاريخ الإنشاء</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="complaintsTableBody">
+                                <!-- Data will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Support Section -->
+            <div id="support" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h3><i class="fas fa-life-ring"></i> الدعم الفني</h3>
+                </div>
+                <div class="section-content">
+                    <p>تقديم الدعم الفني للعملاء</p>
+                </div>
+            </div>
+
+            <!-- Customers Section -->
+            <div id="customers" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h3><i class="fas fa-users"></i> العملاء</h3>
+                    <button class="btn btn-primary" onclick="showAddCustomerModal()">
+                        <i class="fas fa-plus"></i> عميل جديد
+                    </button>
+                </div>
+                <div class="section-content">
+                    <!-- Filters -->
+                    <div class="filters-section" style="margin-bottom: 1.5rem; display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <input type="text" id="customerSearch" placeholder="البحث في العملاء..." style="flex: 1; min-width: 200px; padding: 0.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        <select id="customerStatus" style="padding: 0.5rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                            <option value="">جميع الحالات</option>
+                            <option value="active">نشط</option>
+                            <option value="inactive">غير نشط</option>
+                        </select>
+                        <button class="btn btn-secondary" onclick="filterCustomers()">فلترة</button>
+                        <button class="btn btn-secondary" onclick="resetCustomerFilters()">إعادة تعيين</button>
+                    </div>
+                    
+                    <!-- Customers Table -->
+                    <div class="table-container" style="overflow-x: auto;">
+                        <table class="data-table" style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background: #f8fafc;">
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">الاسم</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">الهاتف</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">البريد الإلكتروني</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">الحالة</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">تاريخ التسجيل</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid #e5e7eb;">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="customersTableBody">
+                                <!-- Data will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Reports Section -->
+            <div id="reports" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h3><i class="fas fa-chart-bar"></i> التقارير</h3>
+                    <button class="btn btn-primary">
+                        <i class="fas fa-download"></i> تصدير التقرير
+                    </button>
+                </div>
+                <div class="section-content">
+                    <p>تقارير خدمة العملاء</p>
+                </div>
+            </div>
+
+            <!-- Settings Section -->
+            <div id="settings" class="content-section" style="display: none;">
+                <div class="section-header">
+                    <h3><i class="fas fa-cog"></i> الإعدادات</h3>
+                </div>
+                <div class="section-content">
+                    <p>إعدادات مركز الخدمة</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check if user is logged in and is customer service
+        document.addEventListener('DOMContentLoaded', function() {
+            const user = localStorage.getItem('user');
+            if (!user) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            const userData = JSON.parse(user);
+            if (userData.role !== 'customer_service') {
+                alert('ليس لديك صلاحية للوصول إلى هذه الصفحة');
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            // Update user info
+            updateUserInfo(userData);
+            loadDashboardData();
+        });
+
+        function updateUserInfo(userData) {
+            document.getElementById('userName').textContent = userData.name || 'موظف خدمة العملاء';
+            document.getElementById('userEmail').textContent = userData.email || 'service@nwbus.sa';
+            document.getElementById('userAvatar').textContent = (userData.name || 'خ').charAt(0);
+            document.getElementById('serviceName').textContent = 'مركز خدمة العملاء';
+            document.getElementById('currentService').textContent = 'مركز خدمة العملاء';
+        }
+
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Remove active class from all menu items
+            document.querySelectorAll('.menu-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(sectionId).style.display = 'block';
+            
+            // Add active class to clicked menu item
+            const clickedItem = event.target.closest('.menu-item');
+            if (clickedItem) {
+                clickedItem.classList.add('active');
+            }
+            
+            // Load data for specific sections
+            if (sectionId === 'tickets') {
+                loadTickets();
+            } else if (sectionId === 'complaints') {
+                loadComplaints();
+            } else if (sectionId === 'customers') {
+                loadCustomers();
+            }
+        }
+
+        function loadDashboardData() {
+            // Initialize sample data if not exists
+            initializeServiceData();
+            
+            // Load real data
+            const tickets = JSON.parse(localStorage.getItem('serviceTickets') || '[]');
+            const complaints = JSON.parse(localStorage.getItem('complaints') || '[]');
+            
+            document.getElementById('totalTickets').textContent = tickets.length;
+            document.getElementById('resolvedTickets').textContent = tickets.filter(t => t.status === 'resolved').length;
+            document.getElementById('pendingTickets').textContent = tickets.filter(t => t.status === 'open' || t.status === 'in_progress').length;
+            document.getElementById('complaints').textContent = complaints.length;
+        }
+
+        function initializeServiceData() {
+            // Initialize service tickets
+            let tickets = JSON.parse(localStorage.getItem('serviceTickets') || '[]');
+            if (tickets.length === 0) {
+                tickets = [
+                    {
+                        id: 'ticket_1',
+                        ticketNumber: 'TKT-001',
+                        customerName: 'أحمد محمد العلي',
+                        customerPhone: '0501234567',
+                        issueType: 'مشكلة في الحجز',
+                        description: 'لا يمكنني حجز تذكرة للرحلة',
+                        status: 'open',
+                        priority: 'high',
+                        createdAt: new Date().toISOString(),
+                        assignedTo: 'service@nwbus.sa'
+                    },
+                    {
+                        id: 'ticket_2',
+                        ticketNumber: 'TKT-002',
+                        customerName: 'فاطمة أحمد السعيد',
+                        customerPhone: '0507654321',
+                        issueType: 'مشكلة في الدفع',
+                        description: 'لم يتم خصم المبلغ من حسابي',
+                        status: 'in_progress',
+                        priority: 'medium',
+                        createdAt: new Date().toISOString(),
+                        assignedTo: 'service@nwbus.sa'
+                    },
+                    {
+                        id: 'ticket_3',
+                        ticketNumber: 'TKT-003',
+                        customerName: 'محمد عبدالله القحطاني',
+                        customerPhone: '0509876543',
+                        issueType: 'تأخير في الرحلة',
+                        description: 'الرحلة تأخرت ساعة كاملة',
+                        status: 'resolved',
+                        priority: 'low',
+                        createdAt: new Date().toISOString(),
+                        assignedTo: 'service@nwbus.sa'
+                    }
+                ];
+                localStorage.setItem('serviceTickets', JSON.stringify(tickets));
+            }
+
+            // Initialize complaints
+            let complaints = JSON.parse(localStorage.getItem('complaints') || '[]');
+            if (complaints.length === 0) {
+                complaints = [
+                    {
+                        id: 'complaint_1',
+                        complaintNumber: 'COMP-001',
+                        customerName: 'سارة محمد الأحمد',
+                        customerPhone: '0501111111',
+                        complaintType: 'خدمة العملاء',
+                        description: 'موظف خدمة العملاء كان غير مهذب',
+                        status: 'open',
+                        priority: 'high',
+                        createdAt: new Date().toISOString(),
+                        assignedTo: 'service@nwbus.sa'
+                    },
+                    {
+                        id: 'complaint_2',
+                        complaintNumber: 'COMP-002',
+                        customerName: 'خالد سعد الشمري',
+                        customerPhone: '0502222222',
+                        complaintType: 'نظافة الحافلة',
+                        description: 'الحافلة كانت غير نظيفة',
+                        status: 'in_progress',
+                        priority: 'medium',
+                        createdAt: new Date().toISOString(),
+                        assignedTo: 'service@nwbus.sa'
+                    }
+                ];
+                localStorage.setItem('complaints', JSON.stringify(complaints));
+            }
+        }
+
+        // Ticket functions
+        function showAddTicketModal() {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-ticket-alt"></i> إضافة تذكرة جديدة</h3>
+                        <button class="modal-close" onclick="this.closest('.modal').remove()">&times;</button>
+                    </div>
+                    <form onsubmit="addTicket(event)">
+                        <div class="form-group">
+                            <label>اسم العميل</label>
+                            <input type="text" name="customerName" required>
+                        </div>
+                        <div class="form-group">
+                            <label>رقم الهاتف</label>
+                            <input type="tel" name="customerPhone" required>
+                        </div>
+                        <div class="form-group">
+                            <label>نوع المشكلة</label>
+                            <select name="issueType" required>
+                                <option value="">اختر نوع المشكلة</option>
+                                <option value="مشكلة في الحجز">مشكلة في الحجز</option>
+                                <option value="مشكلة في الدفع">مشكلة في الدفع</option>
+                                <option value="تأخير في الرحلة">تأخير في الرحلة</option>
+                                <option value="مشكلة في التذكرة">مشكلة في التذكرة</option>
+                                <option value="أخرى">أخرى</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>وصف المشكلة</label>
+                            <textarea name="description" required rows="3"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>الأولوية</label>
+                            <select name="priority" required>
+                                <option value="low">منخفضة</option>
+                                <option value="medium">متوسطة</option>
+                                <option value="high">عالية</option>
+                            </select>
+                        </div>
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-secondary" onclick="this.closest('.modal').remove()">إلغاء</button>
+                            <button type="submit" class="btn btn-primary">إضافة</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        function addTicket(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const ticket = {
+                id: 'ticket_' + Date.now(),
+                ticketNumber: 'TKT-' + String(Date.now()).slice(-3),
+                customerName: formData.get('customerName'),
+                customerPhone: formData.get('customerPhone'),
+                issueType: formData.get('issueType'),
+                description: formData.get('description'),
+                status: 'open',
+                priority: formData.get('priority'),
+                createdAt: new Date().toISOString(),
+                assignedTo: 'service@nwbus.sa'
+            };
+
+            const tickets = JSON.parse(localStorage.getItem('serviceTickets') || '[]');
+            tickets.push(ticket);
+            localStorage.setItem('serviceTickets', JSON.stringify(tickets));
+
+            showSuccessMessage('تم إضافة التذكرة بنجاح!');
+            event.target.closest('.modal').remove();
+            loadTickets();
+        }
+
+        function loadTickets() {
+            const tickets = JSON.parse(localStorage.getItem('serviceTickets') || '[]');
+            const tbody = document.getElementById('ticketsTableBody');
+            
+            if (tickets.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: #6b7280;">لا توجد تذاكر</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = tickets.map(ticket => `
+                <tr>
+                    <td>${ticket.ticketNumber}</td>
+                    <td>${ticket.customerName}</td>
+                    <td>${ticket.issueType}</td>
+                    <td>
+                        <span class="status-badge status-${ticket.status}">
+                            ${getTicketStatusLabel(ticket.status)}
+                        </span>
+                    </td>
+                    <td>${new Date(ticket.createdAt).toLocaleDateString('ar-SA')}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-action btn-view" onclick="viewTicket('${ticket.id}')">عرض</button>
+                            <button class="btn-action btn-edit" onclick="editTicket('${ticket.id}')">تعديل</button>
+                            <button class="btn-action btn-delete" onclick="deleteTicket('${ticket.id}')">حذف</button>
+                        </div>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function getTicketStatusColor(status) {
+            const colors = {
+                'open': '#ef4444',
+                'in_progress': '#f59e0b',
+                'resolved': '#10b981',
+                'closed': '#6b7280'
+            };
+            return colors[status] || '#6b7280';
+        }
+
+        function getTicketStatusLabel(status) {
+            const labels = {
+                'open': 'مفتوح',
+                'in_progress': 'قيد المعالجة',
+                'resolved': 'محلول',
+                'closed': 'مغلق'
+            };
+            return labels[status] || status;
+        }
+
+        function viewTicket(id) {
+            const tickets = JSON.parse(localStorage.getItem('serviceTickets') || '[]');
+            const ticket = tickets.find(t => t.id === id);
+            if (!ticket) return;
+
+            alert(`عرض تفاصيل التذكرة:\nرقم التذكرة: ${ticket.ticketNumber}\nاسم العميل: ${ticket.customerName}\nرقم الهاتف: ${ticket.customerPhone}\nنوع المشكلة: ${ticket.issueType}\nالوصف: ${ticket.description}\nالحالة: ${getTicketStatusLabel(ticket.status)}\nالأولوية: ${ticket.priority}`);
+        }
+
+        function editTicket(id) {
+            const tickets = JSON.parse(localStorage.getItem('serviceTickets') || '[]');
+            const ticket = tickets.find(t => t.id === id);
+            if (!ticket) return;
+
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; display: flex; align-items: center; justify-content: center;';
+            modal.innerHTML = `
+                <div style="background: white; border-radius: 1rem; padding: 2rem; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3 style="margin: 0; color: #2563eb;">تعديل التذكرة</h3>
+                        <button onclick="this.closest('.modal').remove()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+                    </div>
+                    <form onsubmit="updateTicket(event, '${id}')">
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">اسم العميل</label>
+                            <input type="text" name="customerName" value="${ticket.customerName}" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">رقم الهاتف</label>
+                            <input type="tel" name="customerPhone" value="${ticket.customerPhone}" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">نوع المشكلة</label>
+                            <select name="issueType" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                                <option value="مشكلة في الحجز" ${ticket.issueType === 'مشكلة في الحجز' ? 'selected' : ''}>مشكلة في الحجز</option>
+                                <option value="مشكلة في الدفع" ${ticket.issueType === 'مشكلة في الدفع' ? 'selected' : ''}>مشكلة في الدفع</option>
+                                <option value="تأخير في الرحلة" ${ticket.issueType === 'تأخير في الرحلة' ? 'selected' : ''}>تأخير في الرحلة</option>
+                                <option value="مشكلة في التذكرة" ${ticket.issueType === 'مشكلة في التذكرة' ? 'selected' : ''}>مشكلة في التذكرة</option>
+                                <option value="أخرى" ${ticket.issueType === 'أخرى' ? 'selected' : ''}>أخرى</option>
+                            </select>
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">وصف المشكلة</label>
+                            <textarea name="description" required rows="3" style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; resize: vertical;">${ticket.description}</textarea>
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">الحالة</label>
+                            <select name="status" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                                <option value="open" ${ticket.status === 'open' ? 'selected' : ''}>مفتوح</option>
+                                <option value="in_progress" ${ticket.status === 'in_progress' ? 'selected' : ''}>قيد المعالجة</option>
+                                <option value="resolved" ${ticket.status === 'resolved' ? 'selected' : ''}>محلول</option>
+                                <option value="closed" ${ticket.status === 'closed' ? 'selected' : ''}>مغلق</option>
+                            </select>
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">الأولوية</label>
+                            <select name="priority" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                                <option value="low" ${ticket.priority === 'low' ? 'selected' : ''}>منخفضة</option>
+                                <option value="medium" ${ticket.priority === 'medium' ? 'selected' : ''}>متوسطة</option>
+                                <option value="high" ${ticket.priority === 'high' ? 'selected' : ''}>عالية</option>
+                            </select>
+                        </div>
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                            <button type="button" onclick="this.closest('.modal').remove()" style="padding: 0.75rem 1.5rem; border: 1px solid #e5e7eb; background: white; border-radius: 0.5rem; cursor: pointer;">إلغاء</button>
+                            <button type="submit" style="padding: 0.75rem 1.5rem; background: #2563eb; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">حفظ</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        function updateTicket(event, id) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            
+            const tickets = JSON.parse(localStorage.getItem('serviceTickets') || '[]');
+            const index = tickets.findIndex(t => t.id === id);
+            
+            if (index !== -1) {
+                tickets[index] = {
+                    ...tickets[index],
+                    customerName: formData.get('customerName'),
+                    customerPhone: formData.get('customerPhone'),
+                    issueType: formData.get('issueType'),
+                    description: formData.get('description'),
+                    status: formData.get('status'),
+                    priority: formData.get('priority')
+                };
+                localStorage.setItem('serviceTickets', JSON.stringify(tickets));
+                showSuccessMessage('تم تحديث التذكرة بنجاح!');
+                event.target.closest('.modal').remove();
+                loadTickets();
+            }
+        }
+
+        function deleteTicket(id) {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3><i class="fas fa-exclamation-triangle"></i> تأكيد الحذف</h3>
+                        <button class="modal-close" onclick="this.closest('.modal').remove()">&times;</button>
+                    </div>
+                    <div class="modal-body">
+                        <div style="text-align: center; padding: 1rem 0;">
+                            <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #fef2f2, #fee2e2); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto;">
+                                <i class="fas fa-trash-alt" style="font-size: 2rem; color: #ef4444;"></i>
+                            </div>
+                            <h4 style="margin: 0 0 1rem 0; color: #1f2937; font-size: 1.2rem;">هل أنت متأكد من حذف هذه التذكرة؟</h4>
+                            <p style="color: #6b7280; margin: 0; line-height: 1.5;">هذا الإجراء لا يمكن التراجع عنه. سيتم حذف التذكرة نهائياً من النظام.</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn-modal btn-modal-secondary" onclick="this.closest('.modal').remove()">
+                            <i class="fas fa-times"></i> إلغاء
+                        </button>
+                        <button class="btn-modal btn-modal-danger" onclick="confirmDeleteTicket('${id}')">
+                            <i class="fas fa-trash-alt"></i> حذف
+                        </button>
+                    </div>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        function confirmDeleteTicket(id) {
+            const tickets = JSON.parse(localStorage.getItem('serviceTickets') || '[]');
+            const filtered = tickets.filter(t => t.id !== id);
+            localStorage.setItem('serviceTickets', JSON.stringify(filtered));
+            
+            // Show success message
+            showSuccessMessage('تم حذف التذكرة بنجاح!');
+            
+            // Close modal and refresh
+            document.querySelector('.modal').remove();
+            loadTickets();
+        }
+
+        function filterTickets() {
+            const search = document.getElementById('ticketSearch').value.toLowerCase();
+            const status = document.getElementById('ticketStatus').value;
+            
+            const tickets = JSON.parse(localStorage.getItem('serviceTickets') || '[]');
+            let filtered = tickets;
+            
+            if (search) {
+                filtered = filtered.filter(t => 
+                    t.ticketNumber.toLowerCase().includes(search) ||
+                    t.customerName.toLowerCase().includes(search) ||
+                    t.issueType.toLowerCase().includes(search) ||
+                    t.description.toLowerCase().includes(search)
+                );
+            }
+            
+            if (status) {
+                filtered = filtered.filter(t => t.status === status);
+            }
+            
+            const tbody = document.getElementById('ticketsTableBody');
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: #6b7280;">لا توجد نتائج</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(ticket => `
+                <tr>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${ticket.ticketNumber}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${ticket.customerName}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${ticket.issueType}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <span style="padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem; background: ${getTicketStatusColor(ticket.status)}; color: white;">
+                            ${getTicketStatusLabel(ticket.status)}
+                        </span>
+                    </td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${new Date(ticket.createdAt).toLocaleDateString('ar-SA')}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <button onclick="viewTicket('${ticket.id}')" style="background: #3b82f6; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">عرض</button>
+                        <button onclick="editTicket('${ticket.id}')" style="background: #10b981; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">تعديل</button>
+                        <button onclick="deleteTicket('${ticket.id}')" style="background: #ef4444; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">حذف</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function resetTicketFilters() {
+            document.getElementById('ticketSearch').value = '';
+            document.getElementById('ticketStatus').value = '';
+            loadTickets();
+        }
+
+        // Complaint functions
+        function showAddComplaintModal() {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; display: flex; align-items: center; justify-content: center;';
+            modal.innerHTML = `
+                <div style="background: white; border-radius: 1rem; padding: 2rem; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3 style="margin: 0; color: #2563eb;">إضافة شكوى جديدة</h3>
+                        <button onclick="this.closest('.modal').remove()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+                    </div>
+                    <form onsubmit="addComplaint(event)">
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">اسم العميل</label>
+                            <input type="text" name="customerName" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">رقم الهاتف</label>
+                            <input type="tel" name="customerPhone" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">نوع الشكوى</label>
+                            <select name="complaintType" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                                <option value="">اختر نوع الشكوى</option>
+                                <option value="خدمة العملاء">خدمة العملاء</option>
+                                <option value="نظافة الحافلة">نظافة الحافلة</option>
+                                <option value="تأخير في الرحلة">تأخير في الرحلة</option>
+                                <option value="مشكلة في التذكرة">مشكلة في التذكرة</option>
+                                <option value="أخرى">أخرى</option>
+                            </select>
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">وصف الشكوى</label>
+                            <textarea name="description" required rows="3" style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem; resize: vertical;"></textarea>
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">الأولوية</label>
+                            <select name="priority" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                                <option value="low">منخفضة</option>
+                                <option value="medium">متوسطة</option>
+                                <option value="high">عالية</option>
+                            </select>
+                        </div>
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                            <button type="button" onclick="this.closest('.modal').remove()" style="padding: 0.75rem 1.5rem; border: 1px solid #e5e7eb; background: white; border-radius: 0.5rem; cursor: pointer;">إلغاء</button>
+                            <button type="submit" style="padding: 0.75rem 1.5rem; background: #2563eb; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">إضافة</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        function addComplaint(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const complaint = {
+                id: 'complaint_' + Date.now(),
+                complaintNumber: 'COMP-' + String(Date.now()).slice(-3),
+                customerName: formData.get('customerName'),
+                customerPhone: formData.get('customerPhone'),
+                complaintType: formData.get('complaintType'),
+                description: formData.get('description'),
+                status: 'open',
+                priority: formData.get('priority'),
+                createdAt: new Date().toISOString(),
+                assignedTo: 'service@nwbus.sa'
+            };
+
+            const complaints = JSON.parse(localStorage.getItem('complaints') || '[]');
+            complaints.push(complaint);
+            localStorage.setItem('complaints', JSON.stringify(complaints));
+
+            alert('تم إضافة الشكوى بنجاح!');
+            event.target.closest('.modal').remove();
+            loadComplaints();
+        }
+
+        function loadComplaints() {
+            const complaints = JSON.parse(localStorage.getItem('complaints') || '[]');
+            const tbody = document.getElementById('complaintsTableBody');
+            
+            if (complaints.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: #6b7280;">لا توجد شكاوى</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = complaints.map(complaint => `
+                <tr>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${complaint.complaintNumber}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${complaint.customerName}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${complaint.complaintType}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <span style="padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem; background: ${getComplaintStatusColor(complaint.status)}; color: white;">
+                            ${getComplaintStatusLabel(complaint.status)}
+                        </span>
+                    </td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${new Date(complaint.createdAt).toLocaleDateString('ar-SA')}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <button onclick="viewComplaint('${complaint.id}')" style="background: #3b82f6; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">عرض</button>
+                        <button onclick="editComplaint('${complaint.id}')" style="background: #10b981; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">تعديل</button>
+                        <button onclick="deleteComplaint('${complaint.id}')" style="background: #ef4444; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">حذف</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function getComplaintStatusColor(status) {
+            const colors = {
+                'open': '#ef4444',
+                'in_progress': '#f59e0b',
+                'resolved': '#10b981',
+                'closed': '#6b7280'
+            };
+            return colors[status] || '#6b7280';
+        }
+
+        function getComplaintStatusLabel(status) {
+            const labels = {
+                'open': 'مفتوح',
+                'in_progress': 'قيد المعالجة',
+                'resolved': 'محلول',
+                'closed': 'مغلق'
+            };
+            return labels[status] || status;
+        }
+
+        function viewComplaint(id) {
+            const complaints = JSON.parse(localStorage.getItem('complaints') || '[]');
+            const complaint = complaints.find(c => c.id === id);
+            if (!complaint) return;
+
+            alert(`عرض تفاصيل الشكوى:\nرقم الشكوى: ${complaint.complaintNumber}\nاسم العميل: ${complaint.customerName}\nرقم الهاتف: ${complaint.customerPhone}\nنوع الشكوى: ${complaint.complaintType}\nالوصف: ${complaint.description}\nالحالة: ${getComplaintStatusLabel(complaint.status)}\nالأولوية: ${complaint.priority}`);
+        }
+
+        function editComplaint(id) {
+            alert('وظيفة تعديل الشكاوى قيد التطوير');
+        }
+
+        function deleteComplaint(id) {
+            if (confirm('هل أنت متأكد من حذف هذه الشكوى؟')) {
+                const complaints = JSON.parse(localStorage.getItem('complaints') || '[]');
+                const filtered = complaints.filter(c => c.id !== id);
+                localStorage.setItem('complaints', JSON.stringify(filtered));
+                alert('تم حذف الشكوى بنجاح!');
+                loadComplaints();
+            }
+        }
+
+        function filterComplaints() {
+            const search = document.getElementById('complaintSearch').value.toLowerCase();
+            const status = document.getElementById('complaintStatus').value;
+            
+            const complaints = JSON.parse(localStorage.getItem('complaints') || '[]');
+            let filtered = complaints;
+            
+            if (search) {
+                filtered = filtered.filter(c => 
+                    c.complaintNumber.toLowerCase().includes(search) ||
+                    c.customerName.toLowerCase().includes(search) ||
+                    c.complaintType.toLowerCase().includes(search) ||
+                    c.description.toLowerCase().includes(search)
+                );
+            }
+            
+            if (status) {
+                filtered = filtered.filter(c => c.status === status);
+            }
+            
+            const tbody = document.getElementById('complaintsTableBody');
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: #6b7280;">لا توجد نتائج</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(complaint => `
+                <tr>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${complaint.complaintNumber}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${complaint.customerName}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${complaint.complaintType}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <span style="padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem; background: ${getComplaintStatusColor(complaint.status)}; color: white;">
+                            ${getComplaintStatusLabel(complaint.status)}
+                        </span>
+                    </td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${new Date(complaint.createdAt).toLocaleDateString('ar-SA')}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <button onclick="viewComplaint('${complaint.id}')" style="background: #3b82f6; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">عرض</button>
+                        <button onclick="editComplaint('${complaint.id}')" style="background: #10b981; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">تعديل</button>
+                        <button onclick="deleteComplaint('${complaint.id}')" style="background: #ef4444; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">حذف</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function resetComplaintFilters() {
+            document.getElementById('complaintSearch').value = '';
+            document.getElementById('complaintStatus').value = '';
+            loadComplaints();
+        }
+
+        // Customer functions
+        function showAddCustomerModal() {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; display: flex; align-items: center; justify-content: center;';
+            modal.innerHTML = `
+                <div style="background: white; border-radius: 1rem; padding: 2rem; max-width: 500px; width: 90%; max-height: 90vh; overflow-y: auto;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+                        <h3 style="margin: 0; color: #2563eb;">إضافة عميل جديد</h3>
+                        <button onclick="this.closest('.modal').remove()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+                    </div>
+                    <form onsubmit="addCustomer(event)">
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">اسم العميل</label>
+                            <input type="text" name="customerName" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">رقم الهاتف</label>
+                            <input type="tel" name="customerPhone" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">البريد الإلكتروني</label>
+                            <input type="email" name="customerEmail" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600;">الحالة</label>
+                            <select name="status" required style="width: 100%; padding: 0.75rem; border: 1px solid #e5e7eb; border-radius: 0.5rem;">
+                                <option value="active">نشط</option>
+                                <option value="inactive">غير نشط</option>
+                            </select>
+                        </div>
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+                            <button type="button" onclick="this.closest('.modal').remove()" style="padding: 0.75rem 1.5rem; border: 1px solid #e5e7eb; background: white; border-radius: 0.5rem; cursor: pointer;">إلغاء</button>
+                            <button type="submit" style="padding: 0.75rem 1.5rem; background: #2563eb; color: white; border: none; border-radius: 0.5rem; cursor: pointer;">إضافة</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        function addCustomer(event) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            const customer = {
+                id: 'customer_' + Date.now(),
+                customerName: formData.get('customerName'),
+                customerPhone: formData.get('customerPhone'),
+                customerEmail: formData.get('customerEmail'),
+                status: formData.get('status'),
+                createdAt: new Date().toISOString(),
+                createdBy: 'service@nwbus.sa'
+            };
+
+            const customers = JSON.parse(localStorage.getItem('serviceCustomers') || '[]');
+            customers.push(customer);
+            localStorage.setItem('serviceCustomers', JSON.stringify(customers));
+
+            alert('تم إضافة العميل بنجاح!');
+            event.target.closest('.modal').remove();
+            loadCustomers();
+        }
+
+        function loadCustomers() {
+            const customers = JSON.parse(localStorage.getItem('serviceCustomers') || '[]');
+            const tbody = document.getElementById('customersTableBody');
+            
+            if (customers.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: #6b7280;">لا توجد بيانات عملاء</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = customers.map(customer => `
+                <tr>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${customer.customerName}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${customer.customerPhone}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${customer.customerEmail}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <span style="padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem; background: ${customer.status === 'active' ? '#10b981' : '#6b7280'}; color: white;">
+                            ${customer.status === 'active' ? 'نشط' : 'غير نشط'}
+                        </span>
+                    </td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${new Date(customer.createdAt).toLocaleDateString('ar-SA')}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <button onclick="viewCustomer('${customer.id}')" style="background: #3b82f6; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">عرض</button>
+                        <button onclick="editCustomer('${customer.id}')" style="background: #10b981; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">تعديل</button>
+                        <button onclick="deleteCustomer('${customer.id}')" style="background: #ef4444; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">حذف</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function viewCustomer(id) {
+            const customers = JSON.parse(localStorage.getItem('serviceCustomers') || '[]');
+            const customer = customers.find(c => c.id === id);
+            if (!customer) return;
+
+            alert(`عرض تفاصيل العميل:\nالاسم: ${customer.customerName}\nرقم الهاتف: ${customer.customerPhone}\nالبريد الإلكتروني: ${customer.customerEmail}\nالحالة: ${customer.status === 'active' ? 'نشط' : 'غير نشط'}\nتاريخ التسجيل: ${new Date(customer.createdAt).toLocaleDateString('ar-SA')}`);
+        }
+
+        function editCustomer(id) {
+            alert('وظيفة تعديل العملاء قيد التطوير');
+        }
+
+        function deleteCustomer(id) {
+            if (confirm('هل أنت متأكد من حذف هذا العميل؟')) {
+                const customers = JSON.parse(localStorage.getItem('serviceCustomers') || '[]');
+                const filtered = customers.filter(c => c.id !== id);
+                localStorage.setItem('serviceCustomers', JSON.stringify(filtered));
+                alert('تم حذف العميل بنجاح!');
+                loadCustomers();
+            }
+        }
+
+        function filterCustomers() {
+            const search = document.getElementById('customerSearch').value.toLowerCase();
+            const status = document.getElementById('customerStatus').value;
+            
+            const customers = JSON.parse(localStorage.getItem('serviceCustomers') || '[]');
+            let filtered = customers;
+            
+            if (search) {
+                filtered = filtered.filter(c => 
+                    c.customerName.toLowerCase().includes(search) ||
+                    c.customerPhone.includes(search) ||
+                    c.customerEmail.toLowerCase().includes(search)
+                );
+            }
+            
+            if (status) {
+                filtered = filtered.filter(c => c.status === status);
+            }
+            
+            const tbody = document.getElementById('customersTableBody');
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align: center; padding: 2rem; color: #6b7280;">لا توجد نتائج</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(customer => `
+                <tr>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${customer.customerName}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${customer.customerPhone}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${customer.customerEmail}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <span style="padding: 0.25rem 0.75rem; border-radius: 1rem; font-size: 0.8rem; background: ${customer.status === 'active' ? '#10b981' : '#6b7280'}; color: white;">
+                            ${customer.status === 'active' ? 'نشط' : 'غير نشط'}
+                        </span>
+                    </td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">${new Date(customer.createdAt).toLocaleDateString('ar-SA')}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid #e5e7eb;">
+                        <button onclick="viewCustomer('${customer.id}')" style="background: #3b82f6; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">عرض</button>
+                        <button onclick="editCustomer('${customer.id}')" style="background: #10b981; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">تعديل</button>
+                        <button onclick="deleteCustomer('${customer.id}')" style="background: #ef4444; color: white; border: none; padding: 0.25rem 0.75rem; border-radius: 0.25rem; margin-left: 0.25rem; cursor: pointer;">حذف</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function resetCustomerFilters() {
+            document.getElementById('customerSearch').value = '';
+            document.getElementById('customerStatus').value = '';
+            loadCustomers();
+        }
+
+        // Enhanced Success/Error Messages
+        function showSuccessMessage(message) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #10b981, #059669);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 0.75rem;
+                box-shadow: 0 10px 25px rgba(16, 185, 129, 0.3);
+                z-index: 10001;
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                font-weight: 600;
+                animation: slideInRight 0.3s ease;
+                max-width: 350px;
+            `;
+            toast.innerHTML = `
+                <i class="fas fa-check-circle" style="font-size: 1.2rem;"></i>
+                <span>${message}</span>
+            `;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        function showErrorMessage(message) {
+            const toast = document.createElement('div');
+            toast.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: linear-gradient(135deg, #ef4444, #dc2626);
+                color: white;
+                padding: 1rem 1.5rem;
+                border-radius: 0.75rem;
+                box-shadow: 0 10px 25px rgba(239, 68, 68, 0.3);
+                z-index: 10001;
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                font-weight: 600;
+                animation: slideInRight 0.3s ease;
+                max-width: 350px;
+            `;
+            toast.innerHTML = `
+                <i class="fas fa-exclamation-circle" style="font-size: 1.2rem;"></i>
+                <span>${message}</span>
+            `;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.style.animation = 'slideOutRight 0.3s ease';
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Add CSS animations for toasts
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes slideInRight {
+                from {
+                    opacity: 0;
+                    transform: translateX(100%);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+            }
+            
+            @keyframes slideOutRight {
+                from {
+                    opacity: 1;
+                    transform: translateX(0);
+                }
+                to {
+                    opacity: 0;
+                    transform: translateX(100%);
+                }
+            }
+        `;
+        document.head.appendChild(style);
+
+        function logout() {
+            if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
+                localStorage.removeItem('user');
+                window.location.href = 'login.html';
+            }
+        }
+    </script>
+</body>
+</html>

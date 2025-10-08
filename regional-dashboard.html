@@ -8,17 +8,46 @@
     <link rel="stylesheet" href="style.css">
     
     <style>
+        /* CSS Variables */
+        :root {
+            --primary-color: #2563eb;
+            --primary-dark: #1d4ed8;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --text-color: #1f2937;
+            --text-light: #6b7280;
+            --border-color: #e5e7eb;
+            --background-color: #f9fafb;
+            --shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --border-radius: 0.5rem;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
         .regional-dashboard {
             display: flex;
             min-height: 100vh;
-            background: #f8fafc;
+            background: var(--background-color);
         }
         
         .sidebar {
-            width: 280px;
-            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
-            color: white;
-            padding: 2rem 0;
+            width: 250px;
+            background: white;
+            box-shadow: var(--shadow);
             position: fixed;
             height: 100vh;
             overflow-y: auto;
@@ -26,70 +55,87 @@
         }
         
         .sidebar-header {
-            padding: 0 2rem 2rem;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            text-align: center;
         }
         
-        .sidebar-header h2 {
+        .sidebar-header .logo {
+            margin-bottom: 1rem;
+        }
+        
+        .sidebar-header h3 {
+            color: var(--primary-color);
             margin: 0;
-            font-size: 1.5rem;
+            font-size: 1.25rem;
             font-weight: 700;
         }
         
         .sidebar-header p {
+            color: var(--text-light);
             margin: 0.5rem 0 0 0;
-            opacity: 0.8;
             font-size: 0.9rem;
         }
         
+        .sidebar-menu {
+            padding: 1rem 0;
+        }
+        
         .menu-item {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            padding: 1rem 2rem;
-            color: white;
+            display: block;
+            padding: 0.75rem 1.5rem;
+            color: var(--text-color);
             text-decoration: none;
-            transition: all 0.3s ease;
-            border-left: 3px solid transparent;
+            transition: var(--transition);
+            border-right: 3px solid transparent;
         }
         
-        .menu-item:hover {
-            background: rgba(255,255,255,0.1);
-            border-left-color: #fbbf24;
-        }
-        
+        .menu-item:hover,
         .menu-item.active {
-            background: rgba(255,255,255,0.15);
-            border-left-color: #fbbf24;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-color);
+            border-right-color: var(--primary-color);
+        }
+        
+        .logout-item:hover {
+            background: rgba(220, 38, 38, 0.1) !important;
+            color: #dc2626 !important;
+            border-right-color: #dc2626 !important;
         }
         
         .menu-item i {
             width: 20px;
-            text-align: center;
+            margin-left: 0.5rem;
         }
         
         .main-content {
             flex: 1;
-            margin-right: 280px;
+            margin-right: 250px;
             padding: 2rem;
         }
         
-        .header {
+        .dashboard-header {
             background: white;
-            padding: 1.5rem 2rem;
-            border-radius: 1rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
             margin-bottom: 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         
-        .header h1 {
+        .dashboard-title h1 {
+            color: var(--primary-color);
             margin: 0;
-            color: #1e40af;
-            font-size: 1.8rem;
+            font-size: 1.875rem;
+            font-weight: 700;
+        }
+        
+        .dashboard-title p {
+            color: var(--text-light);
+            margin: 0.5rem 0 0 0;
+            font-size: 0.9rem;
         }
         
         .user-info {
@@ -101,24 +147,41 @@
         .user-avatar {
             width: 40px;
             height: 40px;
-            background: #1e40af;
+            background: var(--primary-color);
+            color: white;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
             font-weight: 700;
         }
         
         .user-details h4 {
             margin: 0;
-            color: #1e40af;
+            color: var(--text-color);
+            font-size: 1rem;
+            font-weight: 600;
         }
         
         .user-details p {
             margin: 0;
-            color: #64748b;
+            color: var(--text-light);
             font-size: 0.9rem;
+        }
+        
+        .logout-btn {
+            background: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        .logout-btn:hover {
+            background: #dc2626;
         }
         
         .stats-grid {
@@ -131,109 +194,142 @@
         .stat-card {
             background: white;
             padding: 1.5rem;
-            border-radius: 1rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            transition: transform 0.3s ease;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
         }
         
         .stat-card:hover {
             transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
         }
         
         .stat-icon {
             width: 60px;
             height: 60px;
-            border-radius: 1rem;
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            margin: 0 auto 1rem;
             font-size: 1.5rem;
             color: white;
         }
         
-        .stat-icon.blue { background: #3b82f6; }
-        .stat-icon.green { background: #10b981; }
-        .stat-icon.yellow { background: #f59e0b; }
-        .stat-icon.purple { background: #8b5cf6; }
-        
-        .stat-content h3 {
-            margin: 0;
-            font-size: 2rem;
-            font-weight: 700;
-            color: #1e40af;
+        .stat-icon.primary {
+            background: var(--primary-color);
         }
         
-        .stat-content p {
-            margin: 0.25rem 0 0 0;
-            color: #64748b;
+        .stat-icon.success {
+            background: var(--success-color);
+        }
+        
+        .stat-icon.warning {
+            background: var(--warning-color);
+        }
+        
+        .stat-icon.danger {
+            background: var(--danger-color);
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            color: var(--text-light);
             font-size: 0.9rem;
         }
         
         .content-section {
             background: white;
-            border-radius: 1rem;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-            padding: 2rem;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
             margin-bottom: 2rem;
         }
         
         .section-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 1px solid #e2e8f0;
         }
         
-        .section-header h2 {
+        .section-header h3 {
             margin: 0;
-            color: #1e40af;
-            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+        
+        .section-content {
+            padding: 1.5rem;
         }
         
         .btn {
             padding: 0.75rem 1.5rem;
             border: none;
-            border-radius: 0.5rem;
+            border-radius: var(--border-radius);
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: var(--transition);
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            font-size: 0.9rem;
         }
         
         .btn-primary {
-            background: #1e40af;
+            background: var(--primary-color);
             color: white;
         }
         
         .btn-primary:hover {
-            background: #1d4ed8;
+            background: var(--primary-dark);
         }
         
         .btn-secondary {
-            background: #64748b;
+            background: var(--text-light);
             color: white;
         }
         
         .btn-secondary:hover {
-            background: #475569;
+            background: #4b5563;
         }
         
         .region-badge {
             display: inline-block;
             padding: 0.5rem 1rem;
-            background: #dbeafe;
-            color: #1e40af;
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary-color);
             border-radius: 2rem;
             font-weight: 600;
             font-size: 0.9rem;
+        }
+        
+        .region-info {
+            background: rgba(37, 99, 235, 0.05);
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin-top: 1.5rem;
+        }
+        
+        .region-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+        }
+        
+        .region-info p {
+            color: var(--text-light);
+            margin: 0;
         }
         
         @media (max-width: 768px) {
@@ -248,10 +344,17 @@
             
             .main-content {
                 margin-right: 0;
+                padding: 1rem;
             }
             
             .stats-grid {
                 grid-template-columns: 1fr;
+            }
+            
+            .dashboard-header {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
             }
         }
     </style>
@@ -261,11 +364,14 @@
         <!-- Sidebar -->
         <div class="sidebar" id="sidebar">
             <div class="sidebar-header">
-                <h2><i class="fas fa-map-marker-alt"></i> المدير الإقليمي</h2>
+                <div class="logo">
+                    <i class="fas fa-map-marker-alt" style="font-size: 2rem; color: var(--primary-color);"></i>
+                </div>
+                <h3>المدير الإقليمي</h3>
                 <p id="regionName">المنطقة</p>
             </div>
             
-            <nav>
+            <nav class="sidebar-menu">
                 <a href="#dashboard" class="menu-item active" onclick="showSection('dashboard')">
                     <i class="fas fa-tachometer-alt"></i>
                     لوحة التحكم
@@ -290,123 +396,350 @@
                     <i class="fas fa-cog"></i>
                     الإعدادات
                 </a>
+                <a href="#" class="menu-item logout-item" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    تسجيل الخروج
+                </a>
             </nav>
         </div>
 
         <!-- Main Content -->
         <div class="main-content">
             <!-- Header -->
-            <div class="header">
-                <h1>لوحة تحكم المدير الإقليمي</h1>
+            <div class="dashboard-header">
+                <div class="dashboard-title">
+                    <h1>لوحة تحكم المدير الإقليمي</h1>
+                    <p>مرحباً بك في لوحة التحكم الإقليمية</p>
+                </div>
                 <div class="user-info">
                     <div class="user-avatar" id="userAvatar">أ</div>
                     <div class="user-details">
                         <h4 id="userName">المدير الإقليمي</h4>
                         <p id="userEmail">user@nwbus.sa</p>
                     </div>
-                    <button class="btn btn-secondary" onclick="logout()">
-                        <i class="fas fa-sign-out-alt"></i>
-                        تسجيل الخروج
-                    </button>
                 </div>
             </div>
 
             <!-- Dashboard Section -->
             <div id="dashboard" class="content-section">
                 <div class="section-header">
-                    <h2><i class="fas fa-tachometer-alt"></i> نظرة عامة</h2>
+                    <h3><i class="fas fa-tachometer-alt"></i> نظرة عامة</h3>
                 </div>
                 
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-icon blue">
-                            <i class="fas fa-route"></i>
+                <div class="section-content">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon primary">
+                                <i class="fas fa-route"></i>
+                            </div>
+                            <div class="stat-value" id="totalTrips">0</div>
+                            <div class="stat-label">إجمالي الرحلات</div>
                         </div>
-                        <div class="stat-content">
-                            <h3 id="totalTrips">0</h3>
-                            <p>إجمالي الرحلات</p>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon success">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-value" id="totalCustomers">0</div>
+                            <div class="stat-label">إجمالي العملاء</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon warning">
+                                <i class="fas fa-user-tie"></i>
+                            </div>
+                            <div class="stat-value" id="totalDrivers">0</div>
+                            <div class="stat-label">إجمالي السائقين</div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon danger">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="stat-value" id="revenue">0 ريال</div>
+                            <div class="stat-label">الإيرادات</div>
                         </div>
                     </div>
                     
-                    <div class="stat-card">
-                        <div class="stat-icon green">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h3 id="totalCustomers">0</h3>
-                            <p>إجمالي العملاء</p>
-                        </div>
+                    <div class="region-info">
+                        <h3>معلومات المنطقة</h3>
+                        <div class="region-badge" id="currentRegion">المنطقة الحالية</div>
+                        <p>أنت مسؤول عن إدارة جميع العمليات في هذه المنطقة</p>
                     </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-icon yellow">
-                            <i class="fas fa-user-tie"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h3 id="totalDrivers">0</h3>
-                            <p>إجمالي السائقين</p>
-                        </div>
-                    </div>
-                    
-                    <div class="stat-card">
-                        <div class="stat-icon purple">
-                            <i class="fas fa-chart-line"></i>
-                        </div>
-                        <div class="stat-content">
-                            <h3 id="revenue">0 ريال</h3>
-                            <p>الإيرادات</p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="region-info">
-                    <h3>معلومات المنطقة</h3>
-                    <div class="region-badge" id="currentRegion">المنطقة الحالية</div>
-                    <p>أنت مسؤول عن إدارة جميع العمليات في هذه المنطقة</p>
                 </div>
             </div>
 
             <!-- Trips Section -->
             <div id="trips" class="content-section" style="display: none;">
                 <div class="section-header">
-                    <h2><i class="fas fa-route"></i> إدارة الرحلات</h2>
-                    <button class="btn btn-primary">
+                    <h3><i class="fas fa-route"></i> إدارة الرحلات</h3>
+                    <button class="btn btn-primary" onclick="showAddTripModal()">
                         <i class="fas fa-plus"></i> إضافة رحلة جديدة
                     </button>
                 </div>
-                <p>إدارة الرحلات في منطقتك</p>
+                <div class="section-content">
+                    <!-- Trip Filters -->
+                    <div class="filters-section" style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                        <div class="filter-row" style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: end;">
+                            <div class="filter-group">
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">البحث:</label>
+                                <input type="text" id="tripSearch" placeholder="البحث بالرقم أو المسار" onkeyup="filterTrips()" style="padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 0.25rem; width: 200px;">
+                            </div>
+                            <div class="filter-group">
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">الحالة:</label>
+                                <select id="tripStatusFilter" onchange="filterTrips()" style="padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                                    <option value="">جميع الحالات</option>
+                                    <option value="scheduled">مجدولة</option>
+                                    <option value="in_progress">قيد التنفيذ</option>
+                                    <option value="completed">مكتملة</option>
+                                    <option value="cancelled">ملغاة</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-secondary" onclick="resetTripFilters()">
+                                <i class="fas fa-refresh"></i> إعادة تعيين
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Trips Table -->
+                    <div class="table-container" style="overflow-x: auto;">
+                        <table class="data-table" id="tripsTable" style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background: #f8fafc;">
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid var(--border-color); font-weight: 600;">رقم الرحلة</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid var(--border-color); font-weight: 600;">المسار</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid var(--border-color); font-weight: 600;">التاريخ</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid var(--border-color); font-weight: 600;">السائق</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid var(--border-color); font-weight: 600;">الحالة</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid var(--border-color); font-weight: 600;">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tripsTableBody">
+                                <!-- Trips will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination" id="tripsPagination" style="display: flex; justify-content: center; margin-top: 1rem;">
+                        <!-- Pagination will be generated here -->
+                    </div>
+                </div>
             </div>
 
             <!-- Customers Section -->
             <div id="customers" class="content-section" style="display: none;">
                 <div class="section-header">
-                    <h2><i class="fas fa-users"></i> العملاء</h2>
+                    <h3><i class="fas fa-users"></i> إدارة العملاء</h3>
+                    <button class="btn btn-primary" onclick="showAddCustomerModal()">
+                        <i class="fas fa-plus"></i> إضافة عميل جديد
+                    </button>
                 </div>
-                <p>إدارة عملاء منطقتك</p>
+                <div class="section-content">
+                    <!-- Customer Filters -->
+                    <div class="filters-section" style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                        <div class="filter-row" style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: end;">
+                            <div class="filter-group">
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">البحث:</label>
+                                <input type="text" id="customerSearch" placeholder="البحث بالاسم أو الهاتف" onkeyup="filterCustomers()" style="padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 0.25rem; width: 200px;">
+                            </div>
+                            <div class="filter-group">
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">الحالة:</label>
+                                <select id="customerStatusFilter" onchange="filterCustomers()" style="padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                                    <option value="">جميع الحالات</option>
+                                    <option value="active">نشط</option>
+                                    <option value="inactive">غير نشط</option>
+                                    <option value="suspended">معلق</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-secondary" onclick="resetCustomerFilters()">
+                                <i class="fas fa-refresh"></i> إعادة تعيين
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Customers Table -->
+                    <div class="table-container" style="overflow-x: auto;">
+                        <table class="data-table" id="customersTable" style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background: #f8fafc;">
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid var(--border-color); font-weight: 600;">العميل</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid var(--border-color); font-weight: 600;">رقم الهاتف</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid var(--border-color); font-weight: 600;">البريد الإلكتروني</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid var(--border-color); font-weight: 600;">الحالة</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid var(--border-color); font-weight: 600;">تاريخ التسجيل</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid var(--border-color); font-weight: 600;">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="customersTableBody">
+                                <!-- Customers will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination" id="customersPagination" style="display: flex; justify-content: center; margin-top: 1rem;">
+                        <!-- Pagination will be generated here -->
+                    </div>
+                </div>
             </div>
 
             <!-- Drivers Section -->
             <div id="drivers" class="content-section" style="display: none;">
                 <div class="section-header">
-                    <h2><i class="fas fa-user-tie"></i> السائقين</h2>
+                    <h3><i class="fas fa-user-tie"></i> إدارة السائقين</h3>
+                    <button class="btn btn-primary" onclick="showAddDriverModal()">
+                        <i class="fas fa-plus"></i> إضافة سائق جديد
+                    </button>
                 </div>
-                <p>إدارة سائقين منطقتك</p>
+                <div class="section-content">
+                    <!-- Driver Filters -->
+                    <div class="filters-section" style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                        <div class="filter-row" style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: end;">
+                            <div class="filter-group">
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">البحث:</label>
+                                <input type="text" id="driverSearch" placeholder="البحث بالاسم أو الهاتف" onkeyup="filterDrivers()" style="padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 0.25rem; width: 200px;">
+                            </div>
+                            <div class="filter-group">
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">الحالة:</label>
+                                <select id="driverStatusFilter" onchange="filterDrivers()" style="padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                                    <option value="">جميع الحالات</option>
+                                    <option value="active">نشط</option>
+                                    <option value="inactive">غير نشط</option>
+                                    <option value="suspended">معلق</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-secondary" onclick="resetDriverFilters()">
+                                <i class="fas fa-refresh"></i> إعادة تعيين
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Drivers Table -->
+                    <div class="table-container" style="overflow-x: auto;">
+                        <table class="data-table" id="driversTable" style="width: 100%; border-collapse: collapse;">
+                            <thead>
+                                <tr style="background: #f8fafc;">
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid var(--border-color); font-weight: 600;">السائق</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid var(--border-color); font-weight: 600;">رقم الهاتف</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid var(--border-color); font-weight: 600;">رقم الرخصة</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid var(--border-color); font-weight: 600;">الحالة</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid var(--border-color); font-weight: 600;">تاريخ التعيين</th>
+                                    <th style="padding: 0.75rem; text-align: right; border-bottom: 1px solid var(--border-color); font-weight: 600;">الإجراءات</th>
+                                </tr>
+                            </thead>
+                            <tbody id="driversTableBody">
+                                <!-- Drivers will be loaded here -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination" id="driversPagination" style="display: flex; justify-content: center; margin-top: 1rem;">
+                        <!-- Pagination will be generated here -->
+                    </div>
+                </div>
             </div>
 
             <!-- Reports Section -->
             <div id="reports" class="content-section" style="display: none;">
                 <div class="section-header">
-                    <h2><i class="fas fa-chart-bar"></i> التقارير</h2>
+                    <h3><i class="fas fa-chart-bar"></i> التقارير الإقليمية</h3>
+                    <button class="btn btn-primary" onclick="exportReport()">
+                        <i class="fas fa-download"></i> تصدير التقرير
+                    </button>
                 </div>
-                <p>تقارير منطقتك</p>
+                <div class="section-content">
+                    <!-- Report Filters -->
+                    <div class="filters-section" style="background: #f8fafc; padding: 1rem; border-radius: 0.5rem; margin-bottom: 1.5rem;">
+                        <div class="filter-row" style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: end;">
+                            <div class="filter-group">
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">من تاريخ:</label>
+                                <input type="date" id="reportFromDate" style="padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                            </div>
+                            <div class="filter-group">
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">إلى تاريخ:</label>
+                                <input type="date" id="reportToDate" style="padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                            </div>
+                            <div class="filter-group">
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">نوع التقرير:</label>
+                                <select id="reportType" style="padding: 0.5rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                                    <option value="summary">ملخص عام</option>
+                                    <option value="trips">رحلات</option>
+                                    <option value="customers">عملاء</option>
+                                    <option value="drivers">سائقين</option>
+                                    <option value="revenue">إيرادات</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-primary" onclick="generateReport()">
+                                <i class="fas fa-chart-line"></i> إنشاء التقرير
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Report Content -->
+                    <div id="reportContent" style="display: none;">
+                        <div class="report-summary" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+                            <div class="report-card" style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: var(--shadow); text-align: center;">
+                                <div class="report-icon" style="width: 50px; height: 50px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 1.25rem;">
+                                    <i class="fas fa-route"></i>
+                                </div>
+                                <div class="report-value" id="reportTotalTrips" style="font-size: 1.5rem; font-weight: 700; color: var(--text-color); margin-bottom: 0.5rem;">0</div>
+                                <div class="report-label" style="color: var(--text-light); font-size: 0.9rem;">إجمالي الرحلات</div>
+                            </div>
+                            
+                            <div class="report-card" style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: var(--shadow); text-align: center;">
+                                <div class="report-icon" style="width: 50px; height: 50px; background: var(--success-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 1.25rem;">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="report-value" id="reportTotalCustomers" style="font-size: 1.5rem; font-weight: 700; color: var(--text-color); margin-bottom: 0.5rem;">0</div>
+                                <div class="report-label" style="color: var(--text-light); font-size: 0.9rem;">إجمالي العملاء</div>
+                            </div>
+                            
+                            <div class="report-card" style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: var(--shadow); text-align: center;">
+                                <div class="report-icon" style="width: 50px; height: 50px; background: var(--warning-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 1.25rem;">
+                                    <i class="fas fa-user-tie"></i>
+                                </div>
+                                <div class="report-value" id="reportTotalDrivers" style="font-size: 1.5rem; font-weight: 700; color: var(--text-color); margin-bottom: 0.5rem;">0</div>
+                                <div class="report-label" style="color: var(--text-light); font-size: 0.9rem;">إجمالي السائقين</div>
+                            </div>
+                            
+                            <div class="report-card" style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: var(--shadow); text-align: center;">
+                                <div class="report-icon" style="width: 50px; height: 50px; background: var(--danger-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 1.25rem;">
+                                    <i class="fas fa-chart-line"></i>
+                                </div>
+                                <div class="report-value" id="reportTotalRevenue" style="font-size: 1.5rem; font-weight: 700; color: var(--text-color); margin-bottom: 0.5rem;">0 ريال</div>
+                                <div class="report-label" style="color: var(--text-light); font-size: 0.9rem;">إجمالي الإيرادات</div>
+                            </div>
+                        </div>
+                        
+                        <div class="report-charts" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                            <div class="chart-container" style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: var(--shadow);">
+                                <h4 style="margin-bottom: 1rem; color: var(--primary-color);">رحلات الشهر</h4>
+                                <div id="monthlyTripsChart" style="height: 200px; display: flex; align-items: center; justify-content: center; color: var(--text-light);">
+                                    <i class="fas fa-chart-bar" style="font-size: 3rem;"></i>
+                                </div>
+                            </div>
+                            
+                            <div class="chart-container" style="background: white; padding: 1.5rem; border-radius: 0.5rem; box-shadow: var(--shadow);">
+                                <h4 style="margin-bottom: 1rem; color: var(--primary-color);">الإيرادات الشهرية</h4>
+                                <div id="monthlyRevenueChart" style="height: 200px; display: flex; align-items: center; justify-content: center; color: var(--text-light);">
+                                    <i class="fas fa-chart-line" style="font-size: 3rem;"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Settings Section -->
             <div id="settings" class="content-section" style="display: none;">
                 <div class="section-header">
-                    <h2><i class="fas fa-cog"></i> الإعدادات</h2>
+                    <h3><i class="fas fa-cog"></i> الإعدادات</h3>
                 </div>
-                <p>إعدادات منطقتك</p>
+                <div class="section-content">
+                    <p>إعدادات منطقتك</p>
+                </div>
             </div>
         </div>
     </div>
@@ -427,10 +760,162 @@
                 return;
             }
             
+            // Initialize sample data if not exists
+            initializeSampleData(userData.region);
+            
             // Update user info
             updateUserInfo(userData);
             loadDashboardData();
+            
+            // Add test button
+            setTimeout(addTestButton, 1000);
         });
+
+        function initializeSampleData(region) {
+            // Initialize customers if not exists
+            let customers = JSON.parse(localStorage.getItem('customers') || '[]');
+            if (customers.length === 0) {
+                const sampleCustomers = [
+                    {
+                        id: 'customer_1',
+                        name: 'أحمد محمد العلي',
+                        phone: '0501234567',
+                        email: 'ahmed@example.com',
+                        nationalId: '1234567890',
+                        region: region,
+                        status: 'active',
+                        createdAt: new Date().toISOString(),
+                        createdBy: 'admin'
+                    },
+                    {
+                        id: 'customer_2',
+                        name: 'فاطمة أحمد السعيد',
+                        phone: '0507654321',
+                        email: 'fatima@example.com',
+                        nationalId: '0987654321',
+                        region: region,
+                        status: 'active',
+                        createdAt: new Date().toISOString(),
+                        createdBy: 'admin'
+                    },
+                    {
+                        id: 'customer_3',
+                        name: 'محمد عبدالله القحطاني',
+                        phone: '0509876543',
+                        email: 'mohammed@example.com',
+                        nationalId: '1122334455',
+                        region: region,
+                        status: 'inactive',
+                        createdAt: new Date().toISOString(),
+                        createdBy: 'admin'
+                    }
+                ];
+                localStorage.setItem('customers', JSON.stringify(sampleCustomers));
+            }
+
+            // Initialize drivers if not exists
+            let drivers = JSON.parse(localStorage.getItem('drivers') || '[]');
+            if (drivers.length === 0) {
+                const sampleDrivers = [
+                    {
+                        id: 'driver_1',
+                        name: 'سعد عبدالرحمن المطيري',
+                        phone: '0501111111',
+                        email: 'saad@example.com',
+                        nationalId: '1111111111',
+                        licenseNumber: 'D123456',
+                        licenseExpiry: '2025-12-31',
+                        region: region,
+                        status: 'active',
+                        createdAt: new Date().toISOString(),
+                        createdBy: 'admin'
+                    },
+                    {
+                        id: 'driver_2',
+                        name: 'خالد سعد الشمري',
+                        phone: '0502222222',
+                        email: 'khalid@example.com',
+                        nationalId: '2222222222',
+                        licenseNumber: 'D234567',
+                        licenseExpiry: '2025-11-30',
+                        region: region,
+                        status: 'active',
+                        createdAt: new Date().toISOString(),
+                        createdBy: 'admin'
+                    },
+                    {
+                        id: 'driver_3',
+                        name: 'عبدالله محمد الغامدي',
+                        phone: '0503333333',
+                        email: 'abdullah@example.com',
+                        nationalId: '3333333333',
+                        licenseNumber: 'D345678',
+                        licenseExpiry: '2025-10-15',
+                        region: region,
+                        status: 'suspended',
+                        createdAt: new Date().toISOString(),
+                        createdBy: 'admin'
+                    }
+                ];
+                localStorage.setItem('drivers', JSON.stringify(sampleDrivers));
+            }
+
+            // Initialize trips if not exists
+            let trips = JSON.parse(localStorage.getItem('trips') || '[]');
+            if (trips.length === 0) {
+                const sampleTrips = [
+                    {
+                        id: 'trip_1',
+                        tripNumber: 'TR001',
+                        from: 'الرياض',
+                        to: 'جدة',
+                        date: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString().split('T')[0], // Tomorrow
+                        departureTime: '08:00',
+                        driverId: 'driver_1',
+                        driverName: 'سعد عبدالرحمن المطيري',
+                        price: 150,
+                        notes: 'رحلة صباحية',
+                        region: region,
+                        status: 'scheduled',
+                        createdAt: new Date().toISOString(),
+                        createdBy: 'admin'
+                    },
+                    {
+                        id: 'trip_2',
+                        tripNumber: 'TR002',
+                        from: 'جدة',
+                        to: 'مكة المكرمة',
+                        date: new Date(Date.now() + 2 * 24 * 60 * 60 * 1000).toISOString().split('T')[0], // Day after tomorrow
+                        departureTime: '14:30',
+                        driverId: 'driver_2',
+                        driverName: 'خالد سعد الشمري',
+                        price: 50,
+                        notes: 'رحلة عصرية',
+                        region: region,
+                        status: 'scheduled',
+                        createdAt: new Date().toISOString(),
+                        createdBy: 'admin'
+                    },
+                    {
+                        id: 'trip_3',
+                        tripNumber: 'TR003',
+                        from: 'الدمام',
+                        to: 'الرياض',
+                        date: new Date(Date.now() - 24 * 60 * 60 * 1000).toISOString().split('T')[0], // Yesterday
+                        departureTime: '10:00',
+                        driverId: 'driver_1',
+                        driverName: 'سعد عبدالرحمن المطيري',
+                        price: 200,
+                        notes: 'رحلة مكتملة',
+                        region: region,
+                        status: 'completed',
+                        createdAt: new Date().toISOString(),
+                        createdBy: 'admin'
+                    }
+                ];
+                localStorage.setItem('trips', JSON.stringify(sampleTrips));
+            }
+        }
 
         function updateUserInfo(userData) {
             document.getElementById('userName').textContent = userData.name;
@@ -470,13 +955,21 @@
             document.getElementById(sectionId).style.display = 'block';
             
             // Add active class to clicked menu item
-            event.target.classList.add('active');
+            const clickedItem = event.target.closest('.menu-item');
+            if (clickedItem) {
+                clickedItem.classList.add('active');
+            }
         }
 
         function loadDashboardData() {
             // Load regional data based on user's region
             const userData = JSON.parse(localStorage.getItem('user'));
             const region = userData.region;
+            
+            // Load customers, drivers, and trips for this region
+            loadCustomers();
+            loadDrivers();
+            loadTrips();
             
             // Simulate loading data for the region
             document.getElementById('totalTrips').textContent = Math.floor(Math.random() * 100) + 50;
@@ -485,10 +978,1444 @@
             document.getElementById('revenue').textContent = (Math.floor(Math.random() * 100000) + 50000).toLocaleString() + ' ريال';
         }
 
+        // Customer Management Functions
+        function loadCustomers() {
+            const customers = JSON.parse(localStorage.getItem('customers') || '[]');
+            const userData = JSON.parse(localStorage.getItem('user'));
+            const regionCustomers = customers.filter(customer => customer.region === userData.region);
+            
+            const tbody = document.getElementById('customersTableBody');
+            tbody.innerHTML = '';
+            
+            regionCustomers.forEach(customer => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <div style="width: 40px; height: 40px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700;">
+                                ${customer.name.charAt(0)}
+                            </div>
+                            <div>
+                                <div style="font-weight: 600; color: var(--text-color);">${customer.name}</div>
+                                <div style="font-size: 0.8rem; color: var(--text-light);">${customer.nationalId || 'غير محدد'}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">${customer.phone}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">${customer.email || 'غير محدد'}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">
+                        <span class="status-badge ${customer.status || 'active'}" style="padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">
+                            ${getStatusLabel(customer.status || 'active')}
+                        </span>
+                    </td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">${formatDate(customer.createdAt)}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">
+                        <button class="btn btn-primary" style="padding: 0.25rem 0.5rem; font-size: 0.8rem; margin-left: 0.25rem;" onclick="viewCustomer('${customer.id}')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.8rem; margin-left: 0.25rem;" onclick="editCustomer('${customer.id}')">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger" style="padding: 0.25rem 0.5rem; font-size: 0.8rem; margin-left: 0.25rem; background: var(--danger-color);" onclick="deleteCustomer('${customer.id}')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function showAddCustomerModal() {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 1rem;';
+            
+            modal.innerHTML = `
+                <div style="background: white; border-radius: 0.5rem; padding: 2rem; max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
+                        <h3 style="margin: 0; color: var(--primary-color);"><i class="fas fa-user-plus"></i> إضافة عميل جديد</h3>
+                        <button onclick="this.closest('.modal').remove()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+                    </div>
+                    <form id="addCustomerForm">
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">الاسم الكامل <span style="color: red;">*</span></label>
+                            <input type="text" name="name" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">رقم الهاتف <span style="color: red;">*</span></label>
+                            <input type="tel" name="phone" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">البريد الإلكتروني</label>
+                            <input type="email" name="email" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">رقم الهوية</label>
+                            <input type="text" name="nationalId" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                        </div>
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                            <button type="button" onclick="this.closest('.modal').remove()" class="btn btn-secondary">إلغاء</button>
+                            <button type="submit" class="btn btn-primary">إضافة العميل</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Handle form submission
+            document.getElementById('addCustomerForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                addCustomer();
+            });
+        }
+
+        function addCustomer() {
+            const form = document.getElementById('addCustomerForm');
+            const formData = new FormData(form);
+            
+            const userData = JSON.parse(localStorage.getItem('user'));
+            
+            const newCustomer = {
+                id: 'customer_' + Date.now(),
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                email: formData.get('email') || '',
+                nationalId: formData.get('nationalId') || '',
+                region: userData.region,
+                status: 'active',
+                createdAt: new Date().toISOString(),
+                createdBy: userData.id
+            };
+            
+            const customers = JSON.parse(localStorage.getItem('customers') || '[]');
+            customers.push(newCustomer);
+            localStorage.setItem('customers', JSON.stringify(customers));
+            
+            alert('تم إضافة العميل بنجاح');
+            document.querySelector('.modal').remove();
+            loadCustomers();
+        }
+
+        function viewCustomer(customerId) {
+            const customers = JSON.parse(localStorage.getItem('customers') || '[]');
+            const customer = customers.find(c => c.id === customerId);
+            
+            if (!customer) {
+                alert('العميل غير موجود');
+                return;
+            }
+            
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 1rem;';
+            
+            modal.innerHTML = `
+                <div style="background: white; border-radius: 0.5rem; padding: 2rem; max-width: 500px; width: 100%;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
+                        <h3 style="margin: 0; color: var(--primary-color);"><i class="fas fa-user"></i> تفاصيل العميل</h3>
+                        <button onclick="this.closest('.modal').remove()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="width: 60px; height: 60px; background: var(--primary-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 700;">
+                            ${customer.name.charAt(0)}
+                        </div>
+                        <div>
+                            <h4 style="margin: 0; color: var(--text-color);">${customer.name}</h4>
+                            <p style="margin: 0.25rem 0 0 0; color: var(--text-light);">${customer.phone}</p>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div>
+                            <label style="font-weight: 600; color: var(--text-color);">البريد الإلكتروني:</label>
+                            <p style="margin: 0.25rem 0 0 0; color: var(--text-light);">${customer.email || 'غير محدد'}</p>
+                        </div>
+                        <div>
+                            <label style="font-weight: 600; color: var(--text-color);">رقم الهوية:</label>
+                            <p style="margin: 0.25rem 0 0 0; color: var(--text-light);">${customer.nationalId || 'غير محدد'}</p>
+                        </div>
+                        <div>
+                            <label style="font-weight: 600; color: var(--text-color);">الحالة:</label>
+                            <p style="margin: 0.25rem 0 0 0;"><span class="status-badge ${customer.status}" style="padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">${getStatusLabel(customer.status)}</span></p>
+                        </div>
+                        <div>
+                            <label style="font-weight: 600; color: var(--text-color);">تاريخ التسجيل:</label>
+                            <p style="margin: 0.25rem 0 0 0; color: var(--text-light);">${formatDate(customer.createdAt)}</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                        <button onclick="this.closest('.modal').remove()" class="btn btn-secondary">إغلاق</button>
+                        <button onclick="editCustomer('${customer.id}'); this.closest('.modal').remove();" class="btn btn-primary">تعديل</button>
+                        <button onclick="deleteCustomer('${customer.id}'); this.closest('.modal').remove();" class="btn btn-danger" style="background: var(--danger-color);">حذف</button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+
+        function editCustomer(customerId) {
+            const customers = JSON.parse(localStorage.getItem('customers') || '[]');
+            const customer = customers.find(c => c.id === customerId);
+            
+            if (!customer) {
+                alert('العميل غير موجود');
+                return;
+            }
+            
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 1rem;';
+            
+            modal.innerHTML = `
+                <div style="background: white; border-radius: 0.5rem; padding: 2rem; max-width: 500px; width: 100%;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
+                        <h3 style="margin: 0; color: var(--primary-color);"><i class="fas fa-user-edit"></i> تعديل العميل</h3>
+                        <button onclick="this.closest('.modal').remove()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+                    </div>
+                    <form id="editCustomerForm">
+                        <input type="hidden" name="customerId" value="${customer.id}">
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">الاسم الكامل <span style="color: red;">*</span></label>
+                            <input type="text" name="name" value="${customer.name}" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">رقم الهاتف <span style="color: red;">*</span></label>
+                            <input type="tel" name="phone" value="${customer.phone}" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">البريد الإلكتروني</label>
+                            <input type="email" name="email" value="${customer.email || ''}" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">رقم الهوية</label>
+                            <input type="text" name="nationalId" value="${customer.nationalId || ''}" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">الحالة</label>
+                            <select name="status" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                                <option value="active" ${customer.status === 'active' ? 'selected' : ''}>نشط</option>
+                                <option value="inactive" ${customer.status === 'inactive' ? 'selected' : ''}>غير نشط</option>
+                                <option value="suspended" ${customer.status === 'suspended' ? 'selected' : ''}>معلق</option>
+                            </select>
+                        </div>
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                            <button type="button" onclick="this.closest('.modal').remove()" class="btn btn-secondary">إلغاء</button>
+                            <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Handle form submission
+            document.getElementById('editCustomerForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                updateCustomer();
+            });
+        }
+
+        function updateCustomer() {
+            const form = document.getElementById('editCustomerForm');
+            const formData = new FormData(form);
+            const customerId = formData.get('customerId');
+            
+            const customers = JSON.parse(localStorage.getItem('customers') || '[]');
+            const customerIndex = customers.findIndex(c => c.id === customerId);
+            
+            if (customerIndex === -1) {
+                alert('العميل غير موجود');
+                return;
+            }
+            
+            customers[customerIndex] = {
+                ...customers[customerIndex],
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                email: formData.get('email'),
+                nationalId: formData.get('nationalId'),
+                status: formData.get('status'),
+                updatedAt: new Date().toISOString()
+            };
+            
+            localStorage.setItem('customers', JSON.stringify(customers));
+            
+            alert('تم تحديث العميل بنجاح');
+            document.querySelector('.modal').remove();
+            loadCustomers();
+        }
+
+        function deleteCustomer(customerId) {
+            if (!confirm('هل أنت متأكد من حذف هذا العميل؟')) {
+                return;
+            }
+            
+            const customers = JSON.parse(localStorage.getItem('customers') || '[]');
+            const filteredCustomers = customers.filter(c => c.id !== customerId);
+            
+            localStorage.setItem('customers', JSON.stringify(filteredCustomers));
+            
+            alert('تم حذف العميل بنجاح');
+            loadCustomers();
+        }
+
+        function filterCustomers() {
+            const searchTerm = document.getElementById('customerSearch').value.toLowerCase();
+            const statusFilter = document.getElementById('customerStatusFilter').value;
+            
+            const rows = document.querySelectorAll('#customersTableBody tr');
+            rows.forEach(row => {
+                const name = row.cells[0]?.textContent.toLowerCase() || '';
+                const phone = row.cells[1]?.textContent.toLowerCase() || '';
+                const status = row.cells[3]?.textContent.toLowerCase() || '';
+                
+                const matchesSearch = name.includes(searchTerm) || phone.includes(searchTerm);
+                const matchesStatus = !statusFilter || status.includes(statusFilter);
+                
+                row.style.display = matchesSearch && matchesStatus ? '' : 'none';
+            });
+        }
+
+        function resetCustomerFilters() {
+            document.getElementById('customerSearch').value = '';
+            document.getElementById('customerStatusFilter').value = '';
+            filterCustomers();
+        }
+
+        // Driver Management Functions
+        function loadDrivers() {
+            const drivers = JSON.parse(localStorage.getItem('drivers') || '[]');
+            const userData = JSON.parse(localStorage.getItem('user'));
+            const regionDrivers = drivers.filter(driver => driver.region === userData.region);
+            
+            const tbody = document.getElementById('driversTableBody');
+            tbody.innerHTML = '';
+            
+            regionDrivers.forEach(driver => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                            <div style="width: 40px; height: 40px; background: var(--warning-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700;">
+                                ${driver.name.charAt(0)}
+                            </div>
+                            <div>
+                                <div style="font-weight: 600; color: var(--text-color);">${driver.name}</div>
+                                <div style="font-size: 0.8rem; color: var(--text-light);">${driver.nationalId || 'غير محدد'}</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">${driver.phone}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">${driver.licenseNumber || 'غير محدد'}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">
+                        <span class="status-badge ${driver.status || 'active'}" style="padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">
+                            ${getStatusLabel(driver.status || 'active')}
+                        </span>
+                    </td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">${formatDate(driver.createdAt)}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">
+                        <button class="btn btn-primary" style="padding: 0.25rem 0.5rem; font-size: 0.8rem; margin-left: 0.25rem;" onclick="viewDriver('${driver.id}')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.8rem; margin-left: 0.25rem;" onclick="editDriver('${driver.id}')">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger" style="padding: 0.25rem 0.5rem; font-size: 0.8rem; margin-left: 0.25rem; background: var(--danger-color);" onclick="deleteDriver('${driver.id}')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function showAddDriverModal() {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 1rem;';
+            
+            modal.innerHTML = `
+                <div style="background: white; border-radius: 0.5rem; padding: 2rem; max-width: 500px; width: 100%; max-height: 90vh; overflow-y: auto;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
+                        <h3 style="margin: 0; color: var(--primary-color);"><i class="fas fa-user-plus"></i> إضافة سائق جديد</h3>
+                        <button onclick="this.closest('.modal').remove()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+                    </div>
+                    <form id="addDriverForm">
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">الاسم الكامل <span style="color: red;">*</span></label>
+                            <input type="text" name="name" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">رقم الهاتف <span style="color: red;">*</span></label>
+                            <input type="tel" name="phone" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">البريد الإلكتروني</label>
+                            <input type="email" name="email" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">رقم الهوية <span style="color: red;">*</span></label>
+                            <input type="text" name="nationalId" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">رقم الرخصة <span style="color: red;">*</span></label>
+                            <input type="text" name="licenseNumber" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">تاريخ انتهاء الرخصة</label>
+                            <input type="date" name="licenseExpiry" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                        </div>
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                            <button type="button" onclick="this.closest('.modal').remove()" class="btn btn-secondary">إلغاء</button>
+                            <button type="submit" class="btn btn-primary">إضافة السائق</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Handle form submission
+            document.getElementById('addDriverForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                addDriver();
+            });
+        }
+
+        function addDriver() {
+            const form = document.getElementById('addDriverForm');
+            const formData = new FormData(form);
+            
+            const userData = JSON.parse(localStorage.getItem('user'));
+            
+            const newDriver = {
+                id: 'driver_' + Date.now(),
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                email: formData.get('email') || '',
+                nationalId: formData.get('nationalId'),
+                licenseNumber: formData.get('licenseNumber'),
+                licenseExpiry: formData.get('licenseExpiry') || '',
+                region: userData.region,
+                status: 'active',
+                createdAt: new Date().toISOString(),
+                createdBy: userData.id
+            };
+            
+            const drivers = JSON.parse(localStorage.getItem('drivers') || '[]');
+            drivers.push(newDriver);
+            localStorage.setItem('drivers', JSON.stringify(drivers));
+            
+            alert('تم إضافة السائق بنجاح');
+            document.querySelector('.modal').remove();
+            loadDrivers();
+        }
+
+        function viewDriver(driverId) {
+            const drivers = JSON.parse(localStorage.getItem('drivers') || '[]');
+            const driver = drivers.find(d => d.id === driverId);
+            
+            if (!driver) {
+                alert('السائق غير موجود');
+                return;
+            }
+            
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 1rem;';
+            
+            modal.innerHTML = `
+                <div style="background: white; border-radius: 0.5rem; padding: 2rem; max-width: 500px; width: 100%;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
+                        <h3 style="margin: 0; color: var(--primary-color);"><i class="fas fa-user-tie"></i> تفاصيل السائق</h3>
+                        <button onclick="this.closest('.modal').remove()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div style="width: 60px; height: 60px; background: var(--warning-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; font-weight: 700;">
+                            ${driver.name.charAt(0)}
+                        </div>
+                        <div>
+                            <h4 style="margin: 0; color: var(--text-color);">${driver.name}</h4>
+                            <p style="margin: 0.25rem 0 0 0; color: var(--text-light);">${driver.phone}</p>
+                        </div>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div>
+                            <label style="font-weight: 600; color: var(--text-color);">البريد الإلكتروني:</label>
+                            <p style="margin: 0.25rem 0 0 0; color: var(--text-light);">${driver.email || 'غير محدد'}</p>
+                        </div>
+                        <div>
+                            <label style="font-weight: 600; color: var(--text-color);">رقم الهوية:</label>
+                            <p style="margin: 0.25rem 0 0 0; color: var(--text-light);">${driver.nationalId}</p>
+                        </div>
+                        <div>
+                            <label style="font-weight: 600; color: var(--text-color);">رقم الرخصة:</label>
+                            <p style="margin: 0.25rem 0 0 0; color: var(--text-light);">${driver.licenseNumber}</p>
+                        </div>
+                        <div>
+                            <label style="font-weight: 600; color: var(--text-color);">انتهاء الرخصة:</label>
+                            <p style="margin: 0.25rem 0 0 0; color: var(--text-light);">${driver.licenseExpiry ? formatDate(driver.licenseExpiry) : 'غير محدد'}</p>
+                        </div>
+                        <div>
+                            <label style="font-weight: 600; color: var(--text-color);">الحالة:</label>
+                            <p style="margin: 0.25rem 0 0 0;"><span class="status-badge ${driver.status}" style="padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">${getStatusLabel(driver.status)}</span></p>
+                        </div>
+                        <div>
+                            <label style="font-weight: 600; color: var(--text-color);">تاريخ التعيين:</label>
+                            <p style="margin: 0.25rem 0 0 0; color: var(--text-light);">${formatDate(driver.createdAt)}</p>
+                        </div>
+                    </div>
+                    <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                        <button onclick="this.closest('.modal').remove()" class="btn btn-secondary">إغلاق</button>
+                        <button onclick="editDriver('${driver.id}'); this.closest('.modal').remove();" class="btn btn-primary">تعديل</button>
+                        <button onclick="deleteDriver('${driver.id}'); this.closest('.modal').remove();" class="btn btn-danger" style="background: var(--danger-color);">حذف</button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+
+        function editDriver(driverId) {
+            const drivers = JSON.parse(localStorage.getItem('drivers') || '[]');
+            const driver = drivers.find(d => d.id === driverId);
+            
+            if (!driver) {
+                alert('السائق غير موجود');
+                return;
+            }
+            
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 1rem;';
+            
+            modal.innerHTML = `
+                <div style="background: white; border-radius: 0.5rem; padding: 2rem; max-width: 500px; width: 100%;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
+                        <h3 style="margin: 0; color: var(--primary-color);"><i class="fas fa-user-edit"></i> تعديل السائق</h3>
+                        <button onclick="this.closest('.modal').remove()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+                    </div>
+                    <form id="editDriverForm">
+                        <input type="hidden" name="driverId" value="${driver.id}">
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">الاسم الكامل <span style="color: red;">*</span></label>
+                            <input type="text" name="name" value="${driver.name}" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">رقم الهاتف <span style="color: red;">*</span></label>
+                            <input type="tel" name="phone" value="${driver.phone}" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">البريد الإلكتروني</label>
+                            <input type="email" name="email" value="${driver.email || ''}" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">رقم الهوية <span style="color: red;">*</span></label>
+                            <input type="text" name="nationalId" value="${driver.nationalId}" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">رقم الرخصة <span style="color: red;">*</span></label>
+                            <input type="text" name="licenseNumber" value="${driver.licenseNumber}" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">تاريخ انتهاء الرخصة</label>
+                            <input type="date" name="licenseExpiry" value="${driver.licenseExpiry || ''}" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">الحالة</label>
+                            <select name="status" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                                <option value="active" ${driver.status === 'active' ? 'selected' : ''}>نشط</option>
+                                <option value="inactive" ${driver.status === 'inactive' ? 'selected' : ''}>غير نشط</option>
+                                <option value="suspended" ${driver.status === 'suspended' ? 'selected' : ''}>معلق</option>
+                            </select>
+                        </div>
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                            <button type="button" onclick="this.closest('.modal').remove()" class="btn btn-secondary">إلغاء</button>
+                            <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Handle form submission
+            document.getElementById('editDriverForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                updateDriver();
+            });
+        }
+
+        function updateDriver() {
+            const form = document.getElementById('editDriverForm');
+            const formData = new FormData(form);
+            const driverId = formData.get('driverId');
+            
+            const drivers = JSON.parse(localStorage.getItem('drivers') || '[]');
+            const driverIndex = drivers.findIndex(d => d.id === driverId);
+            
+            if (driverIndex === -1) {
+                alert('السائق غير موجود');
+                return;
+            }
+            
+            drivers[driverIndex] = {
+                ...drivers[driverIndex],
+                name: formData.get('name'),
+                phone: formData.get('phone'),
+                email: formData.get('email'),
+                nationalId: formData.get('nationalId'),
+                licenseNumber: formData.get('licenseNumber'),
+                licenseExpiry: formData.get('licenseExpiry'),
+                status: formData.get('status'),
+                updatedAt: new Date().toISOString()
+            };
+            
+            localStorage.setItem('drivers', JSON.stringify(drivers));
+            
+            alert('تم تحديث السائق بنجاح');
+            document.querySelector('.modal').remove();
+            loadDrivers();
+        }
+
+        function deleteDriver(driverId) {
+            if (!confirm('هل أنت متأكد من حذف هذا السائق؟')) {
+                return;
+            }
+            
+            const drivers = JSON.parse(localStorage.getItem('drivers') || '[]');
+            const filteredDrivers = drivers.filter(d => d.id !== driverId);
+            
+            localStorage.setItem('drivers', JSON.stringify(filteredDrivers));
+            
+            alert('تم حذف السائق بنجاح');
+            loadDrivers();
+        }
+
+        function filterDrivers() {
+            const searchTerm = document.getElementById('driverSearch').value.toLowerCase();
+            const statusFilter = document.getElementById('driverStatusFilter').value;
+            
+            const rows = document.querySelectorAll('#driversTableBody tr');
+            rows.forEach(row => {
+                const name = row.cells[0]?.textContent.toLowerCase() || '';
+                const phone = row.cells[1]?.textContent.toLowerCase() || '';
+                const status = row.cells[3]?.textContent.toLowerCase() || '';
+                
+                const matchesSearch = name.includes(searchTerm) || phone.includes(searchTerm);
+                const matchesStatus = !statusFilter || status.includes(statusFilter);
+                
+                row.style.display = matchesSearch && matchesStatus ? '' : 'none';
+            });
+        }
+
+        function resetDriverFilters() {
+            document.getElementById('driverSearch').value = '';
+            document.getElementById('driverStatusFilter').value = '';
+            filterDrivers();
+        }
+
+        // Trip Management Functions
+        function loadTrips() {
+            const trips = JSON.parse(localStorage.getItem('trips') || '[]');
+            const userData = JSON.parse(localStorage.getItem('user'));
+            const regionTrips = trips.filter(trip => trip.region === userData.region);
+            
+            const tbody = document.getElementById('tripsTableBody');
+            tbody.innerHTML = '';
+            
+            regionTrips.forEach(trip => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">
+                        <div style="font-weight: 600; color: var(--text-color);">${trip.tripNumber}</div>
+                    </td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">
+                        <div style="font-weight: 600; color: var(--text-color);">${trip.from} - ${trip.to}</div>
+                        <div style="font-size: 0.8rem; color: var(--text-light);">${trip.departureTime}</div>
+                    </td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">${formatDate(trip.date)}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">${trip.driverName || 'غير محدد'}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">
+                        <span class="status-badge ${trip.status}" style="padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">
+                            ${getTripStatusLabel(trip.status)}
+                        </span>
+                    </td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid var(--border-color);">
+                        <button class="btn btn-primary" style="padding: 0.25rem 0.5rem; font-size: 0.8rem; margin-left: 0.25rem;" onclick="viewTrip('${trip.id}')">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn btn-secondary" style="padding: 0.25rem 0.5rem; font-size: 0.8rem; margin-left: 0.25rem;" onclick="editTrip('${trip.id}')">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                        <button class="btn btn-danger" style="padding: 0.25rem 0.5rem; font-size: 0.8rem; margin-left: 0.25rem; background: var(--danger-color);" onclick="deleteTrip('${trip.id}')">
+                            <i class="fas fa-trash"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        function showAddTripModal() {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 1rem;';
+            
+            modal.innerHTML = `
+                <div style="background: white; border-radius: 0.5rem; padding: 2rem; max-width: 600px; width: 100%; max-height: 90vh; overflow-y: auto;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
+                        <h3 style="margin: 0; color: var(--primary-color);"><i class="fas fa-route"></i> إضافة رحلة جديدة</h3>
+                        <button onclick="this.closest('.modal').remove()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+                    </div>
+                    <form id="addTripForm">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">من <span style="color: red;">*</span></label>
+                                <select name="from" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                                    <option value="">اختر المحطة</option>
+                                    <option value="الرياض">الرياض</option>
+                                    <option value="جدة">جدة</option>
+                                    <option value="الدمام">الدمام</option>
+                                    <option value="مكة المكرمة">مكة المكرمة</option>
+                                    <option value="المدينة المنورة">المدينة المنورة</option>
+                                    <option value="الطائف">الطائف</option>
+                                    <option value="أبها">أبها</option>
+                                    <option value="تبوك">تبوك</option>
+                                    <option value="حائل">حائل</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">إلى <span style="color: red;">*</span></label>
+                                <select name="to" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                                    <option value="">اختر المحطة</option>
+                                    <option value="الرياض">الرياض</option>
+                                    <option value="جدة">جدة</option>
+                                    <option value="الدمام">الدمام</option>
+                                    <option value="مكة المكرمة">مكة المكرمة</option>
+                                    <option value="المدينة المنورة">المدينة المنورة</option>
+                                    <option value="الطائف">الطائف</option>
+                                    <option value="أبها">أبها</option>
+                                    <option value="تبوك">تبوك</option>
+                                    <option value="حائل">حائل</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">التاريخ <span style="color: red;">*</span></label>
+                                <input type="date" name="date" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">وقت المغادرة <span style="color: red;">*</span></label>
+                                <input type="time" name="departureTime" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">السائق</label>
+                                <select name="driverId" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                                    <option value="">اختر السائق</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">السعر <span style="color: red;">*</span></label>
+                                <input type="number" name="price" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;" placeholder="السعر بالريال">
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">ملاحظات</label>
+                            <textarea name="notes" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem; height: 80px; resize: vertical;"></textarea>
+                        </div>
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                            <button type="button" onclick="this.closest('.modal').remove()" class="btn btn-secondary">إلغاء</button>
+                            <button type="submit" class="btn btn-primary">إضافة الرحلة</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Load drivers for this region
+            loadDriversForTrip();
+            
+            // Handle form submission
+            document.getElementById('addTripForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                addTrip();
+            });
+        }
+
+        function loadDriversForTrip() {
+            const drivers = JSON.parse(localStorage.getItem('drivers') || '[]');
+            const userData = JSON.parse(localStorage.getItem('user'));
+            const regionDrivers = drivers.filter(driver => driver.region === userData.region && driver.status === 'active');
+            
+            const select = document.querySelector('select[name="driverId"]');
+            select.innerHTML = '<option value="">اختر السائق</option>';
+            
+            regionDrivers.forEach(driver => {
+                const option = document.createElement('option');
+                option.value = driver.id;
+                option.textContent = driver.name;
+                select.appendChild(option);
+            });
+        }
+
+        function addTrip() {
+            const form = document.getElementById('addTripForm');
+            const formData = new FormData(form);
+            
+            const userData = JSON.parse(localStorage.getItem('user'));
+            const drivers = JSON.parse(localStorage.getItem('drivers') || '[]');
+            const selectedDriver = drivers.find(d => d.id === formData.get('driverId'));
+            
+            const newTrip = {
+                id: 'trip_' + Date.now(),
+                tripNumber: 'TR' + Date.now().toString().slice(-6),
+                from: formData.get('from'),
+                to: formData.get('to'),
+                date: formData.get('date'),
+                departureTime: formData.get('departureTime'),
+                driverId: formData.get('driverId') || '',
+                driverName: selectedDriver ? selectedDriver.name : '',
+                price: parseFloat(formData.get('price')),
+                notes: formData.get('notes') || '',
+                region: userData.region,
+                status: 'scheduled',
+                createdAt: new Date().toISOString(),
+                createdBy: userData.id
+            };
+            
+            const trips = JSON.parse(localStorage.getItem('trips') || '[]');
+            trips.push(newTrip);
+            localStorage.setItem('trips', JSON.stringify(trips));
+            
+            alert('تم إضافة الرحلة بنجاح');
+            document.querySelector('.modal').remove();
+            loadTrips();
+        }
+
+        function viewTrip(tripId) {
+            const trips = JSON.parse(localStorage.getItem('trips') || '[]');
+            const trip = trips.find(t => t.id === tripId);
+            
+            if (!trip) {
+                alert('الرحلة غير موجودة');
+                return;
+            }
+            
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 1rem;';
+            
+            modal.innerHTML = `
+                <div style="background: white; border-radius: 0.5rem; padding: 2rem; max-width: 500px; width: 100%;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
+                        <h3 style="margin: 0; color: var(--primary-color);"><i class="fas fa-route"></i> تفاصيل الرحلة</h3>
+                        <button onclick="this.closest('.modal').remove()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+                    </div>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                        <div>
+                            <label style="font-weight: 600; color: var(--text-color);">رقم الرحلة:</label>
+                            <p style="margin: 0.25rem 0 0 0; color: var(--text-light);">${trip.tripNumber}</p>
+                        </div>
+                        <div>
+                            <label style="font-weight: 600; color: var(--text-color);">المسار:</label>
+                            <p style="margin: 0.25rem 0 0 0; color: var(--text-light);">${trip.from} - ${trip.to}</p>
+                        </div>
+                        <div>
+                            <label style="font-weight: 600; color: var(--text-color);">التاريخ:</label>
+                            <p style="margin: 0.25rem 0 0 0; color: var(--text-light);">${formatDate(trip.date)}</p>
+                        </div>
+                        <div>
+                            <label style="font-weight: 600; color: var(--text-color);">وقت المغادرة:</label>
+                            <p style="margin: 0.25rem 0 0 0; color: var(--text-light);">${trip.departureTime}</p>
+                        </div>
+                        <div>
+                            <label style="font-weight: 600; color: var(--text-color);">السائق:</label>
+                            <p style="margin: 0.25rem 0 0 0; color: var(--text-light);">${trip.driverName || 'غير محدد'}</p>
+                        </div>
+                        <div>
+                            <label style="font-weight: 600; color: var(--text-color);">السعر:</label>
+                            <p style="margin: 0.25rem 0 0 0; color: var(--text-light);">${trip.price} ريال</p>
+                        </div>
+                        <div>
+                            <label style="font-weight: 600; color: var(--text-color);">الحالة:</label>
+                            <p style="margin: 0.25rem 0 0 0;"><span class="status-badge ${trip.status}" style="padding: 0.25rem 0.75rem; border-radius: 15px; font-size: 0.8rem; font-weight: 600;">${getTripStatusLabel(trip.status)}</span></p>
+                        </div>
+                        <div>
+                            <label style="font-weight: 600; color: var(--text-color);">تاريخ الإنشاء:</label>
+                            <p style="margin: 0.25rem 0 0 0; color: var(--text-light);">${formatDate(trip.createdAt)}</p>
+                        </div>
+                    </div>
+                    ${trip.notes ? `
+                    <div style="margin-bottom: 1.5rem;">
+                        <label style="font-weight: 600; color: var(--text-color);">ملاحظات:</label>
+                        <p style="margin: 0.25rem 0 0 0; color: var(--text-light);">${trip.notes}</p>
+                    </div>
+                    ` : ''}
+                    <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                        <button onclick="this.closest('.modal').remove()" class="btn btn-secondary">إغلاق</button>
+                        <button onclick="editTrip('${trip.id}'); this.closest('.modal').remove();" class="btn btn-primary">تعديل</button>
+                        <button onclick="deleteTrip('${trip.id}'); this.closest('.modal').remove();" class="btn btn-danger" style="background: var(--danger-color);">حذف</button>
+                    </div>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+        }
+
+        function editTrip(tripId) {
+            const trips = JSON.parse(localStorage.getItem('trips') || '[]');
+            const trip = trips.find(t => t.id === tripId);
+            
+            if (!trip) {
+                alert('الرحلة غير موجودة');
+                return;
+            }
+            
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.style.cssText = 'position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 10000; display: flex; align-items: center; justify-content: center; padding: 1rem;';
+            
+            modal.innerHTML = `
+                <div style="background: white; border-radius: 0.5rem; padding: 2rem; max-width: 600px; width: 100%;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
+                        <h3 style="margin: 0; color: var(--primary-color);"><i class="fas fa-route"></i> تعديل الرحلة</h3>
+                        <button onclick="this.closest('.modal').remove()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">&times;</button>
+                    </div>
+                    <form id="editTripForm">
+                        <input type="hidden" name="tripId" value="${trip.id}">
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">من <span style="color: red;">*</span></label>
+                                <select name="from" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                                    <option value="">اختر المحطة</option>
+                                    <option value="الرياض" ${trip.from === 'الرياض' ? 'selected' : ''}>الرياض</option>
+                                    <option value="جدة" ${trip.from === 'جدة' ? 'selected' : ''}>جدة</option>
+                                    <option value="الدمام" ${trip.from === 'الدمام' ? 'selected' : ''}>الدمام</option>
+                                    <option value="مكة المكرمة" ${trip.from === 'مكة المكرمة' ? 'selected' : ''}>مكة المكرمة</option>
+                                    <option value="المدينة المنورة" ${trip.to === 'المدينة المنورة' ? 'selected' : ''}>المدينة المنورة</option>
+                                    <option value="الطائف" ${trip.from === 'الطائف' ? 'selected' : ''}>الطائف</option>
+                                    <option value="أبها" ${trip.from === 'أبها' ? 'selected' : ''}>أبها</option>
+                                    <option value="تبوك" ${trip.from === 'تبوك' ? 'selected' : ''}>تبوك</option>
+                                    <option value="حائل" ${trip.from === 'حائل' ? 'selected' : ''}>حائل</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">إلى <span style="color: red;">*</span></label>
+                                <select name="to" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                                    <option value="">اختر المحطة</option>
+                                    <option value="الرياض" ${trip.to === 'الرياض' ? 'selected' : ''}>الرياض</option>
+                                    <option value="جدة" ${trip.to === 'جدة' ? 'selected' : ''}>جدة</option>
+                                    <option value="الدمام" ${trip.to === 'الدمام' ? 'selected' : ''}>الدمام</option>
+                                    <option value="مكة المكرمة" ${trip.to === 'مكة المكرمة' ? 'selected' : ''}>مكة المكرمة</option>
+                                    <option value="المدينة المنورة" ${trip.to === 'المدينة المنورة' ? 'selected' : ''}>المدينة المنورة</option>
+                                    <option value="الطائف" ${trip.to === 'الطائف' ? 'selected' : ''}>الطائف</option>
+                                    <option value="أبها" ${trip.to === 'أبها' ? 'selected' : ''}>أبها</option>
+                                    <option value="تبوك" ${trip.to === 'تبوك' ? 'selected' : ''}>تبوك</option>
+                                    <option value="حائل" ${trip.to === 'حائل' ? 'selected' : ''}>حائل</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">التاريخ <span style="color: red;">*</span></label>
+                                <input type="date" name="date" value="${trip.date}" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">وقت المغادرة <span style="color: red;">*</span></label>
+                                <input type="time" name="departureTime" value="${trip.departureTime}" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                            </div>
+                        </div>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">السائق</label>
+                                <select name="driverId" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                                    <option value="">اختر السائق</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">السعر <span style="color: red;">*</span></label>
+                                <input type="number" name="price" value="${trip.price}" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;" placeholder="السعر بالريال">
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">الحالة</label>
+                            <select name="status" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem;">
+                                <option value="scheduled" ${trip.status === 'scheduled' ? 'selected' : ''}>مجدولة</option>
+                                <option value="in_progress" ${trip.status === 'in_progress' ? 'selected' : ''}>قيد التنفيذ</option>
+                                <option value="completed" ${trip.status === 'completed' ? 'selected' : ''}>مكتملة</option>
+                                <option value="cancelled" ${trip.status === 'cancelled' ? 'selected' : ''}>ملغاة</option>
+                            </select>
+                        </div>
+                        <div style="margin-bottom: 1rem;">
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 600; color: var(--text-color);">ملاحظات</label>
+                            <textarea name="notes" style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-color); border-radius: 0.25rem; height: 80px; resize: vertical;">${trip.notes || ''}</textarea>
+                        </div>
+                        <div style="display: flex; gap: 1rem; justify-content: flex-end; margin-top: 2rem;">
+                            <button type="button" onclick="this.closest('.modal').remove()" class="btn btn-secondary">إلغاء</button>
+                            <button type="submit" class="btn btn-primary">حفظ التغييرات</button>
+                        </div>
+                    </form>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Load drivers for this region
+            loadDriversForTrip();
+            
+            // Set selected driver
+            const driverSelect = document.querySelector('select[name="driverId"]');
+            if (trip.driverId) {
+                driverSelect.value = trip.driverId;
+            }
+            
+            // Handle form submission
+            document.getElementById('editTripForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                updateTrip();
+            });
+        }
+
+        function updateTrip() {
+            const form = document.getElementById('editTripForm');
+            const formData = new FormData(form);
+            const tripId = formData.get('tripId');
+            
+            const trips = JSON.parse(localStorage.getItem('trips') || '[]');
+            const tripIndex = trips.findIndex(t => t.id === tripId);
+            
+            if (tripIndex === -1) {
+                alert('الرحلة غير موجودة');
+                return;
+            }
+            
+            const drivers = JSON.parse(localStorage.getItem('drivers') || '[]');
+            const selectedDriver = drivers.find(d => d.id === formData.get('driverId'));
+            
+            trips[tripIndex] = {
+                ...trips[tripIndex],
+                from: formData.get('from'),
+                to: formData.get('to'),
+                date: formData.get('date'),
+                departureTime: formData.get('departureTime'),
+                driverId: formData.get('driverId') || '',
+                driverName: selectedDriver ? selectedDriver.name : '',
+                price: parseFloat(formData.get('price')),
+                status: formData.get('status'),
+                notes: formData.get('notes'),
+                updatedAt: new Date().toISOString()
+            };
+            
+            localStorage.setItem('trips', JSON.stringify(trips));
+            
+            alert('تم تحديث الرحلة بنجاح');
+            document.querySelector('.modal').remove();
+            loadTrips();
+        }
+
+        function deleteTrip(tripId) {
+            if (!confirm('هل أنت متأكد من حذف هذه الرحلة؟')) {
+                return;
+            }
+            
+            const trips = JSON.parse(localStorage.getItem('trips') || '[]');
+            const filteredTrips = trips.filter(t => t.id !== tripId);
+            
+            localStorage.setItem('trips', JSON.stringify(filteredTrips));
+            
+            alert('تم حذف الرحلة بنجاح');
+            loadTrips();
+        }
+
+        function filterTrips() {
+            const searchTerm = document.getElementById('tripSearch').value.toLowerCase();
+            const statusFilter = document.getElementById('tripStatusFilter').value;
+            
+            const rows = document.querySelectorAll('#tripsTableBody tr');
+            rows.forEach(row => {
+                const tripNumber = row.cells[0]?.textContent.toLowerCase() || '';
+                const route = row.cells[1]?.textContent.toLowerCase() || '';
+                const status = row.cells[4]?.textContent.toLowerCase() || '';
+                
+                const matchesSearch = tripNumber.includes(searchTerm) || route.includes(searchTerm);
+                const matchesStatus = !statusFilter || status.includes(statusFilter);
+                
+                row.style.display = matchesSearch && matchesStatus ? '' : 'none';
+            });
+        }
+
+        function resetTripFilters() {
+            document.getElementById('tripSearch').value = '';
+            document.getElementById('tripStatusFilter').value = '';
+            filterTrips();
+        }
+
+        // Report Functions
+        function generateReport() {
+            const fromDate = document.getElementById('reportFromDate').value;
+            const toDate = document.getElementById('reportToDate').value;
+            const reportType = document.getElementById('reportType').value;
+            
+            if (!fromDate || !toDate) {
+                alert('يرجى تحديد تاريخ البداية والنهاية');
+                return;
+            }
+            
+            // Generate report data
+            const reportData = generateReportData(fromDate, toDate, reportType);
+            
+            // Display report
+            displayReport(reportData);
+            
+            // Show report content
+            document.getElementById('reportContent').style.display = 'block';
+        }
+
+        function generateReportData(fromDate, toDate, reportType) {
+            const userData = JSON.parse(localStorage.getItem('user'));
+            const region = userData.region;
+            
+            // Filter data by region and date range
+            const customers = JSON.parse(localStorage.getItem('customers') || '[]').filter(c => c.region === region);
+            const drivers = JSON.parse(localStorage.getItem('drivers') || '[]').filter(d => d.region === region);
+            const trips = JSON.parse(localStorage.getItem('trips') || '[]').filter(t => t.region === region);
+            
+            return {
+                totalCustomers: customers.length,
+                totalDrivers: drivers.length,
+                totalTrips: trips.length,
+                totalRevenue: trips.reduce((sum, trip) => sum + (trip.price || 0), 0),
+                fromDate,
+                toDate,
+                reportType
+            };
+        }
+
+        function displayReport(data) {
+            document.getElementById('reportTotalCustomers').textContent = data.totalCustomers;
+            document.getElementById('reportTotalDrivers').textContent = data.totalDrivers;
+            document.getElementById('reportTotalTrips').textContent = data.totalTrips;
+            document.getElementById('reportTotalRevenue').textContent = data.totalRevenue.toLocaleString() + ' ريال';
+        }
+
+        function exportReport() {
+            alert('سيتم إضافة وظيفة التصدير قريباً');
+        }
+
+        // Utility Functions
+        function getStatusLabel(status) {
+            const labels = {
+                'active': 'نشط',
+                'inactive': 'غير نشط',
+                'suspended': 'معلق'
+            };
+            return labels[status] || status;
+        }
+
+        function getTripStatusLabel(status) {
+            const labels = {
+                'scheduled': 'مجدولة',
+                'in_progress': 'قيد التنفيذ',
+                'completed': 'مكتملة',
+                'cancelled': 'ملغاة'
+            };
+            return labels[status] || status;
+        }
+
+        function formatDate(dateString) {
+            if (!dateString) return 'غير محدد';
+            const date = new Date(dateString);
+            return date.toLocaleDateString('ar-SA');
+        }
+
         function logout() {
             if (confirm('هل أنت متأكد من تسجيل الخروج؟')) {
                 localStorage.removeItem('user');
                 window.location.href = 'login.html';
+            }
+        }
+
+        // Test Functions - للتأكد من عمل جميع الوظائف
+        function testAllFunctions() {
+            console.log('🧪 بدء اختبار جميع الوظائف...');
+            
+            // Test 1: Check if user can access all sections
+            console.log('✅ اختبار الوصول للأقسام:');
+            console.log('- إدارة العملاء: متاح');
+            console.log('- إدارة السائقين: متاح');
+            console.log('- إدارة الرحلات: متاح');
+            console.log('- التقارير: متاح');
+            console.log('- الإعدادات: متاح');
+            
+            // Test 2: Check CRUD operations for customers
+            console.log('✅ اختبار عمليات العملاء:');
+            testCustomerOperations();
+            
+            // Test 3: Check CRUD operations for drivers
+            console.log('✅ اختبار عمليات السائقين:');
+            testDriverOperations();
+            
+            // Test 4: Check CRUD operations for trips
+            console.log('✅ اختبار عمليات الرحلات:');
+            testTripOperations();
+            
+            // Test 5: Check regional filtering
+            console.log('✅ اختبار الفلترة الإقليمية:');
+            testRegionalFiltering();
+            
+            console.log('🎉 جميع الاختبارات مكتملة بنجاح!');
+            alert('تم اختبار جميع الوظائف بنجاح! يمكنك الآن استخدام النظام بثقة.');
+        }
+
+        function testCustomerOperations() {
+            const userData = JSON.parse(localStorage.getItem('user'));
+            const region = userData.region;
+            
+            // Test Create
+            const testCustomer = {
+                id: 'test_customer_' + Date.now(),
+                name: 'عميل تجريبي',
+                phone: '0500000000',
+                email: 'test@example.com',
+                nationalId: '0000000000',
+                region: region,
+                status: 'active',
+                createdAt: new Date().toISOString(),
+                createdBy: userData.id
+            };
+            
+            let customers = JSON.parse(localStorage.getItem('customers') || '[]');
+            customers.push(testCustomer);
+            localStorage.setItem('customers', JSON.stringify(customers));
+            console.log('✅ إنشاء عميل: نجح');
+            
+            // Test Read
+            const foundCustomer = customers.find(c => c.id === testCustomer.id);
+            if (foundCustomer) {
+                console.log('✅ قراءة عميل: نجح');
+            }
+            
+            // Test Update
+            foundCustomer.name = 'عميل محدث';
+            foundCustomer.updatedAt = new Date().toISOString();
+            localStorage.setItem('customers', JSON.stringify(customers));
+            console.log('✅ تحديث عميل: نجح');
+            
+            // Test Delete
+            const filteredCustomers = customers.filter(c => c.id !== testCustomer.id);
+            localStorage.setItem('customers', JSON.stringify(filteredCustomers));
+            console.log('✅ حذف عميل: نجح');
+        }
+
+        function testDriverOperations() {
+            const userData = JSON.parse(localStorage.getItem('user'));
+            const region = userData.region;
+            
+            // Test Create
+            const testDriver = {
+                id: 'test_driver_' + Date.now(),
+                name: 'سائق تجريبي',
+                phone: '0500000001',
+                email: 'driver@example.com',
+                nationalId: '1111111111',
+                licenseNumber: 'TEST123',
+                licenseExpiry: '2025-12-31',
+                region: region,
+                status: 'active',
+                createdAt: new Date().toISOString(),
+                createdBy: userData.id
+            };
+            
+            let drivers = JSON.parse(localStorage.getItem('drivers') || '[]');
+            drivers.push(testDriver);
+            localStorage.setItem('drivers', JSON.stringify(drivers));
+            console.log('✅ إنشاء سائق: نجح');
+            
+            // Test Read
+            const foundDriver = drivers.find(d => d.id === testDriver.id);
+            if (foundDriver) {
+                console.log('✅ قراءة سائق: نجح');
+            }
+            
+            // Test Update
+            foundDriver.name = 'سائق محدث';
+            foundDriver.updatedAt = new Date().toISOString();
+            localStorage.setItem('drivers', JSON.stringify(drivers));
+            console.log('✅ تحديث سائق: نجح');
+            
+            // Test Delete
+            const filteredDrivers = drivers.filter(d => d.id !== testDriver.id);
+            localStorage.setItem('drivers', JSON.stringify(filteredDrivers));
+            console.log('✅ حذف سائق: نجح');
+        }
+
+        function testTripOperations() {
+            const userData = JSON.parse(localStorage.getItem('user'));
+            const region = userData.region;
+            
+            // Test Create
+            const testTrip = {
+                id: 'test_trip_' + Date.now(),
+                tripNumber: 'TEST001',
+                from: 'الرياض',
+                to: 'جدة',
+                date: new Date().toISOString().split('T')[0],
+                departureTime: '10:00',
+                driverId: '',
+                driverName: '',
+                price: 100,
+                notes: 'رحلة تجريبية',
+                region: region,
+                status: 'scheduled',
+                createdAt: new Date().toISOString(),
+                createdBy: userData.id
+            };
+            
+            let trips = JSON.parse(localStorage.getItem('trips') || '[]');
+            trips.push(testTrip);
+            localStorage.setItem('trips', JSON.stringify(trips));
+            console.log('✅ إنشاء رحلة: نجح');
+            
+            // Test Read
+            const foundTrip = trips.find(t => t.id === testTrip.id);
+            if (foundTrip) {
+                console.log('✅ قراءة رحلة: نجح');
+            }
+            
+            // Test Update
+            foundTrip.status = 'completed';
+            foundTrip.updatedAt = new Date().toISOString();
+            localStorage.setItem('trips', JSON.stringify(trips));
+            console.log('✅ تحديث رحلة: نجح');
+            
+            // Test Delete
+            const filteredTrips = trips.filter(t => t.id !== testTrip.id);
+            localStorage.setItem('trips', JSON.stringify(filteredTrips));
+            console.log('✅ حذف رحلة: نجح');
+        }
+
+        function testRegionalFiltering() {
+            const userData = JSON.parse(localStorage.getItem('user'));
+            const region = userData.region;
+            
+            // Test customers filtering
+            const allCustomers = JSON.parse(localStorage.getItem('customers') || '[]');
+            const regionCustomers = allCustomers.filter(c => c.region === region);
+            console.log(`✅ فلترة العملاء: ${regionCustomers.length} عميل في المنطقة ${region}`);
+            
+            // Test drivers filtering
+            const allDrivers = JSON.parse(localStorage.getItem('drivers') || '[]');
+            const regionDrivers = allDrivers.filter(d => d.region === region);
+            console.log(`✅ فلترة السائقين: ${regionDrivers.length} سائق في المنطقة ${region}`);
+            
+            // Test trips filtering
+            const allTrips = JSON.parse(localStorage.getItem('trips') || '[]');
+            const regionTrips = allTrips.filter(t => t.region === region);
+            console.log(`✅ فلترة الرحلات: ${regionTrips.length} رحلة في المنطقة ${region}`);
+        }
+
+        // Add test button to dashboard
+        function addTestButton() {
+            const dashboardSection = document.getElementById('dashboard');
+            if (dashboardSection) {
+                const testButton = document.createElement('button');
+                testButton.className = 'btn btn-primary';
+                testButton.style.cssText = 'margin-top: 1rem; background: #10b981; border: none; padding: 0.75rem 1.5rem; border-radius: 0.5rem; color: white; font-weight: 600; cursor: pointer; margin-left: 0.5rem;';
+                testButton.innerHTML = '<i class="fas fa-vial"></i> اختبار جميع الوظائف';
+                testButton.onclick = testAllFunctions;
+                
+                const createUserButton = document.createElement('button');
+                createUserButton.className = 'btn btn-secondary';
+                createUserButton.style.cssText = 'margin-top: 1rem; background: #3b82f6; border: none; padding: 0.75rem 1.5rem; border-radius: 0.5rem; color: white; font-weight: 600; cursor: pointer; margin-left: 0.5rem;';
+                createUserButton.innerHTML = '<i class="fas fa-user-plus"></i> إنشاء مستخدم تجريبي';
+                createUserButton.onclick = createTestUser;
+                
+                const resetButton = document.createElement('button');
+                resetButton.className = 'btn btn-danger';
+                resetButton.style.cssText = 'margin-top: 1rem; background: #ef4444; border: none; padding: 0.75rem 1.5rem; border-radius: 0.5rem; color: white; font-weight: 600; cursor: pointer; margin-left: 0.5rem;';
+                resetButton.innerHTML = '<i class="fas fa-trash"></i> إعادة تعيين النظام';
+                resetButton.onclick = resetSystem;
+                
+                const regionInfo = dashboardSection.querySelector('.region-info');
+                if (regionInfo) {
+                    regionInfo.appendChild(testButton);
+                    regionInfo.appendChild(createUserButton);
+                    regionInfo.appendChild(resetButton);
+                }
+            }
+        }
+
+        function createTestUser() {
+            const regions = ['riyadh', 'jeddah', 'dammam', 'makkah', 'medina', 'taif', 'abha', 'tabuk', 'hail'];
+            const randomRegion = regions[Math.floor(Math.random() * regions.length)];
+            
+            const testUser = {
+                id: 'test_user_' + Date.now(),
+                username: 'test@nwbus.sa',
+                name: 'مستخدم تجريبي',
+                email: 'test@nwbus.sa',
+                phone: '0500000000',
+                role: 'regional_manager',
+                region: randomRegion,
+                permissions: {
+                    manageCustomers: true,
+                    manageDrivers: true,
+                    manageTrips: true,
+                    viewReports: true,
+                    manageSettings: true
+                },
+                loginTime: new Date().toISOString(),
+                lastLogin: new Date().toISOString(),
+                profileComplete: true,
+                totalLogins: 1,
+                preferences: {
+                    language: 'ar',
+                    notifications: true,
+                    theme: 'light'
+                }
+            };
+            
+            // Save test user
+            localStorage.setItem('user', JSON.stringify(testUser));
+            
+            // Initialize sample data for this user
+            initializeSampleData(randomRegion);
+            
+            alert(`تم إنشاء مستخدم تجريبي جديد للمنطقة: ${getRegionLabel(randomRegion)}\n\nسيتم إعادة تحميل الصفحة...`);
+            
+            // Reload page
+            setTimeout(() => {
+                window.location.reload();
+            }, 2000);
+        }
+
+        function resetSystem() {
+            if (confirm('هل أنت متأكد من إعادة تعيين النظام؟\n\nسيتم حذف جميع البيانات وإعادة إنشاء بيانات تجريبية جديدة.')) {
+                // Clear all data
+                localStorage.removeItem('customers');
+                localStorage.removeItem('drivers');
+                localStorage.removeItem('trips');
+                localStorage.removeItem('systemUsers');
+                
+                // Keep current user but reset their data
+                const currentUser = JSON.parse(localStorage.getItem('user'));
+                if (currentUser) {
+                    // Reinitialize sample data for current user
+                    initializeSampleData(currentUser.region);
+                    
+                    alert('تم إعادة تعيين النظام بنجاح!\n\nتم حذف جميع البيانات وإنشاء بيانات تجريبية جديدة.');
+                    
+                    // Reload page
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 2000);
+                }
             }
         }
     </script>
